@@ -1,0 +1,51 @@
+// Dzükou Valley: everything the engine needs that is specific to this trek.
+// Route: up from Viswema, a night at the rest house, down to Jakhama (Jessie on a Journey; Treks and Trails runs the same way).
+// Trail and road from OpenStreetMap; distances measured on the map.
+export default {
+  id: 'dzukou',
+  stages: [
+    // opening shot: from behind Viswema, facing west to the ridge that hides the valley
+    { id: 'hero', name: 'Overview', km: 0, hr: 8.0, cam: { yaw: 3.09, dist: 3000, h: 1300, side: 0, look: 6000, lookUp: 1100 } },
+    { id: 'viswema', q: 'Kohima', name: 'Viswema', km: 0.05, hr: 8.0, cam: { dist: 600, h: 280, side: 240, look: 500, lookUp: 60 },
+      code: 'Day 1 · Viswema · 1,631 m', title: 'Up the <em>Viswema</em> side', deva: 'Viswema',
+      stats: [['Permit', 'ILP', '', 'For Nagaland'], ['Today', '~13', 'km', 'To the rest house']],
+      body: ['From <b>Viswema</b>, on the highway south of Kohima, a road climbs 8–9 km to Trekker\'s Point.',
+             'Indian visitors need a Nagaland Inner Line Permit.'],
+      dl: [['Trek so far', '0 km'], ['Look for', 'The long forested ridge to the west: the valley is behind it']] },
+    { id: 'trekkerspoint', q: 'Dzükou Valley', name: 'Trekker\'s Point', km: 7.52, hr: 11.0, cam: { dist: 520, h: 220, side: -220, look: 600, lookUp: 200 },
+      code: 'Day 1 · Trekker\'s Point', title: 'The <em>steps</em>', deva: 'Trekker\'s Point',
+      stats: [['Steps', '~4', 'km', 'Stone, through forest'], ['Time', '45–60', 'min', 'To the top']],
+      body: ['The road ends at <b>Trekker\'s Point</b>. From here about 4 km of stone steps climb steeply through the forest to the ridge.'],
+      dl: [['Trek so far', '7.5 km on the map']] },
+    { id: 'viewpoint', q: 'Dzükou Valley', name: 'The rim', km: 11.78, hr: 13.5, cam: { yaw: 2.7, dist: 450, h: 200, side: 0, look: 2500, lookUp: 0 },
+      code: 'Day 1 · The valley rim', title: 'The first <em>view</em>', deva: 'Dzükou',
+      stats: [['Below', 'Dzükou', '', 'Rolling green hills'], ['Cover', 'Dwarf bamboo', '', 'Up to 9 m']],
+      body: ['Over the ridge, the valley opens below: rolling hills covered in dwarf bamboo, which quickly grows back after the valley\'s recurring fires.'],
+      dl: [['Trek so far', '11.8 km on the map']] },
+    { id: 'resthouse', q: 'Dzükou Valley', name: 'Rest house', km: 13.02, hr: 15.0, cam: { dist: 520, h: 220, side: 220, look: 700, lookUp: 100 },
+      code: 'Day 1 · Dzükou · 2,452 m', title: 'A night in the <em>valley</em>', deva: 'Dzükou',
+      stats: [['Dorm or camp', '₹100', '', 'Plus ₹100 registration'], ['Signal', 'None', '', 'Only at the watch tower']],
+      body: ['The rest house sits at about 2,452 m. There is no electricity or mobile network; calls are possible only from the watch tower.',
+             'The pink Dzükou lily blooms here in May and June.'],
+      legend: 'Dzükou is popularly read as "cold water". In the Viswema dialect it is also read as "dull" or "soulless".',
+      dl: [['Night', 'Rest house or campsite'], ['Trek so far', '13 km on the map']] },
+    { id: 'jakhama', q: 'Kohima', name: 'Jakhama', km: 21.4, hr: 24 + 13.0, cam: { dist: 800, h: 380, side: -300, look: 600, lookUp: 60 },
+      code: 'Day 2 · Jakhama · 1,606 m', title: 'Down the <em>steep</em> side', deva: 'Jakhama',
+      stats: [['Route', 'Harder', '', 'Than the Viswema side'], ['Trek total', '21', 'km', 'On the map']],
+      body: ['The Jakhama route down is steeper and harder than the way up. It ends at <b>Jakhama</b>, about 2.5 km along the highway from Viswema.'],
+      dl: [['Next', 'Back to Kohima']] },
+  ],
+  labels: [['Viswema', '1,631 m', 'viswema'], ['Trekker\'s Point', '', 'trekkerspoint'], ['Dzükou rest house', '2,452 m', 'resthouse'], ['Japfü', '3,015 m', 'japfu'], ['Jakhama', '1,606 m', 'jakhama']],
+  farPeaks: [],
+  props: [
+    { type: 'village', at: 'viswema', houses: 60, radius: 350 },
+    { type: 'village', at: 'resthouse', houses: 4, radius: 40 },
+    { type: 'village', at: 'jakhama', houses: 50, radius: 300 },
+    { type: 'walkers', from: 8.5, to: 11.5 },
+  ],
+  // look: accent is set in index.html; green valley, no snow
+  theme: { snow: 0, weather: 'clear', sky: { day: { zen: '#3a6aa8', hor: '#d4e6dc' } } },
+  sound: { villages: [[0, 0.4, 1.5], [13.02, 0.2, 0.5], [21.4, 0.4, 1.5]], lakes: [[13.02, 0.4]], wind: [2300, 2750] },
+  climate: { alt: 1630, temp: 18 },
+  profile: { min: 1400, max: 3000, peak: 2, marks: [['Viswema', 0], ['Trekker\'s Point', 7.52], ['Rim', 11.78], ['Rest house', 13.02], ['Jakhama', 21.4]] },
+};

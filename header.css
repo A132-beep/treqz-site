@@ -1,0 +1,32 @@
+/* Global header + ribbon menu for every inner page (injected by header.js). Same look as the home page's. */
+.hd,.hmenu{--c:#e5fcc9;--g:#054634;--gd:#022d21;--mute:rgba(255,255,255,.66);--bs:44px;font-family:'Google Sans Flex',system-ui,sans-serif}
+.hd{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;height:72px;padding-inline:max(16px,9vw);transition:background .3s,backdrop-filter .3s}
+.hd.s{background:rgba(2,45,33,.82);backdrop-filter:blur(12px)}
+.hd .logo img{display:block;height:28px;width:auto}
+.hd .logo{margin-right:14px}.hd .hub{margin-right:auto;padding:6px 14px;border:1px solid rgba(229,252,201,.45);border-radius:99px;color:var(--c);font:500 14px 'Google Sans Flex',system-ui,sans-serif;text-decoration:none}.hd .hub:hover{background:var(--c);color:var(--g)}
+.hd .acts{display:flex;align-items:center;gap:10px}
+.hd .btn{display:inline-flex;align-items:center;height:var(--bs);padding:0 20px;border-radius:99px;background:#fff;color:var(--g);font:600 15px 'Google Sans Flex',system-ui,sans-serif;text-decoration:none;white-space:nowrap}
+.hd .burger{display:grid;place-items:center;width:var(--bs);aspect-ratio:1;border:0;border-radius:50%;background:var(--c);cursor:pointer}
+.hd .burger i,.hd .burger i::before{display:block;width:18px;height:2px;border-radius:2px;background:var(--g)}
+.hd .burger i{position:relative;transform:translateY(-3px)}.hd .burger i::before{content:'';position:absolute;top:6px}
+.hmenu{inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;border:0;padding:clamp(80px,11vh,120px) 0 24px;background:transparent;color:var(--c);overflow:hidden;transition:background .5s,display .8s allow-discrete,overlay .8s allow-discrete}
+.hmenu:popover-open{background:var(--gd)}
+@starting-style{.hmenu:popover-open{background:transparent}}
+.hmenu::backdrop{background:transparent}
+.hmenu nav{display:grid;gap:max(2.2vh,1.8vw)}   /* the tilt moves a ribbon's ends by ~0.6vw, so the gap must beat 1.2vw or neighbours touch */
+.hmenu nav a{--r:-.5deg;--x:-120vw;display:block;width:130vw;margin-left:-15vw;padding:.06em 0 .1em calc(15vw + max(16px,9vw));background:var(--c);color:var(--g);font-size:min(clamp(38px,6.6vw,96px),7.8vh);font-weight:700;letter-spacing:-.035em;line-height:1.05;text-decoration:none;
+  rotate:var(--r);translate:var(--x) 0;transition:translate .75s cubic-bezier(.7,0,.2,1) calc(var(--i) * 70ms),rotate .4s,background .3s,color .3s}
+.hmenu nav a:nth-child(even){--r:.5deg;--x:120vw}
+.hmenu:popover-open nav a{--x:0vw}
+@starting-style{.hmenu:popover-open nav a{--x:-120vw}.hmenu:popover-open nav a:nth-child(even){--x:120vw}}
+.hmenu nav a:hover{rotate:0deg;background:#fff}
+.hmenu nav a::after{content:' ↗';opacity:0;transition:opacity .3s}.hmenu nav a:hover::after{opacity:1}
+.hmenu .x{position:absolute;z-index:2;top:calc((72px - var(--bs)) / 2);right:max(16px,9vw);width:var(--bs);height:var(--bs);border-radius:50%;border:0;background:var(--c);color:var(--g);font-size:26px;cursor:pointer;transition:rotate .4s}.hmenu .x:hover{rotate:90deg}
+.hmenu p{margin:3vh 0 0;padding-left:max(16px,9vw);color:var(--mute);font-size:14px;opacity:0;transition:opacity .4s .5s}.hmenu:popover-open p{opacity:1}.hmenu p a{color:var(--c)}
+/* the pages' own breadcrumb sits under the header now, with no second logo */
+.mhead .crumb,.bhero .crumb{top:88px}
+.mhead .crumb a.logo,.bhero .crumb .logo{display:none}
+@media(max-width:820px){.hd .btn{display:none}}
+.hd.lt .hub{color:var(--g);border-color:rgba(5,70,52,.4)}.hd.lt .hub:hover{background:var(--g);color:var(--c)}
+/* trek pages carry their own corner logo (a.brand); the global header replaces it */
+body:has(.hd) a.brand{display:none}

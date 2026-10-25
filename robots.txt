@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://treqz.com/sitemap.xml
+Sitemap: https://treqz.com/sitemap-pages.xml

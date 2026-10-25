@@ -1,0 +1,29 @@
+// David Scott Trail: everything the engine needs that is specific to this trek.
+// Card text, the almanac and the hero live in index.html; terrain lives in geo.json, height.png, sat.jpg, far.png, far.jpg
+// (built by tools/build_trek.py from terrain.json). Route follows Meghalaya Tourism's two-day plan, walked towards Mawphlang. OpenStreetMap maps the trail (the David Scott's trail hiking route) only from Mawphlang down to the Umiew bridge and about 2.4 km beyond it; Lad Mawphlang and the rest of the 16 km are not mapped, so the map starts where the mapped trail ends. The riverside camp is the camp site mapped in OSM by the ford.
+export default {
+  id: "davidscott",
+  // story stages: km on the route, hr = hours since Day 1 00:00, cam = how the shot is framed
+  stages: [
+    {"id": "hero", "name": "Overview", "km": 0, "hr": 10.0, "cam": {"dist": 3600, "h": 1500, "side": -2600, "look": 5200, "lookUp": 900}},
+    {"id": "lower", "q": "David Scott Trail Meghalaya", "name": "Towards Lad Mawphlang", "km": 0.05, "hr": 10.0, "cam": {"dist": 700, "h": 320, "side": 280, "look": 600, "lookUp": 60}, "code": "Day 1 · Towards Lad Mawphlang", "title": "The Raj <em>road</em>", "deva": "Lad Mawphlang", "stats": [["Whole trail", "16", "km", "Lad Mawphlang to Mawphlang"], ["Old route", "100", "km", "From Assam to Sylhet"]], "body": ["The trail is a 16 km piece of a 100 km route the British laid across the Khasi Hills, from Assam to Sylhet in today's Bangladesh.", "Meghalaya Tourism suggests starting at <b>Lad Mawphlang</b>, so you meet the remnants of the Raj on the first day."], "dl": [["On the map", "The mapped trail starts here; Lad Mawphlang is further on"], ["Look for", "Stone paving laid nearly two centuries ago"]]},
+    {"id": "camp", "q": "Umiew river Mawphlang", "name": "Riverside camp", "km": 2.45, "hr": 16.0, "cam": {"dist": 560, "h": 260, "side": -260, "look": 500, "lookUp": 40}, "code": "Day 1 · Camp by the river", "title": "Night by the <em>river</em>", "deva": "Umiew", "stats": [["Lowest point", "1,536", "m", "Meghalaya Tourism"], ["Water", "Yes", "", "Along the trail"]], "body": ["Meghalaya Tourism's plan crosses Laitsohma village and camps by the river on the first night.", "The Umiew, or Umiam, runs beside long stretches of the trail, with natural pools and stepping stones."], "dl": [["Night", "Tents by the river"], ["Signal", "Jio and Airtel work best"]]},
+    {"id": "bridge", "q": "Umiam Mawphlang suspension bridge", "name": "Umiew bridge", "km": 3.19, "hr": 32.0, "cam": {"dist": 640, "h": 280, "side": 300, "look": 900, "lookUp": 220}, "code": "Day 2 · The Umiew bridge", "title": "A bridge <em>rebuilt</em>", "deva": "Umiew", "stats": [["Built", "1800s", "", "As a mule track"], ["Now", "Suspension", "", "Bridge over the river"]], "body": ["The old bridge over the Umiam-Mawphlang river was damaged years ago. A suspension bridge now carries the trail across.", "A British-era stone bridge still stands at a bend of the river."], "dl": [["Next", "The climb to Mawphlang"], ["Look for", "Megaliths beside the path"]]},
+    {"id": "climb", "q": "Mawphlang dam", "name": "The climb", "km": 5.09, "hr": 33.5, "cam": {"dist": 520, "h": 240, "side": -240, "look": 500, "lookUp": 40}, "code": "Day 2 · Up from the river", "title": "Stones that <em>remember</em>", "deva": "Mawphlang", "stats": [["Climb", "~300", "m", "1,536 to 1,829 m"], ["View", "Dam", "", "Mawphlang reservoir"]], "body": ["Megaliths line the route. They mark victories, sites of sacrifice, or graves.", "Higher up, the views open out and you can glimpse the Mawphlang dam."], "dl": [["Around you", "Grass, rhododendrons and pines"], ["Resting place", "Ka Kor Ka Shonmai, near Mawphlang"]]},
+    {"id": "mawphlang", "q": "Mawphlang sacred forest", "name": "Mawphlang", "km": 6.85, "hr": 35.0, "cam": {"dist": 1000, "h": 460, "side": -320, "look": 700, "lookUp": 60}, "code": "Day 2 · Mawphlang · the high point", "title": "The sacred <em>grove</em>", "deva": "Mawphlang", "stats": [["Grove", "800+", "years", "Meghalaya Tourism"], ["From Shillong", "25", "km", "About 45 min"]], "body": ["<b>Mawphlang</b> means 'grassy stone'. Its sacred grove, Law Lyngdoh, is the most sacred forest of the Khasi people.", "Nothing may be taken out of it. A spirit, U Basa, is said to punish anyone who harms the grove."], "legend": "The walk ends at the grove, as Meghalaya Tourism's plan does. Take nothing from the forest but memories.", "dl": [["Next", "Shared taxi to Shillong"], ["Trek total", "16 km"]]},
+  ],
+  // map labels for the stops: [text, altitude, point in geo.json pts]
+  labels: [["Towards Lad Mawphlang", "", "lower"], ["Riverside camp", "", "camp"], ["Umiew bridge", "", "bridge"], ["Mawphlang", "", "mawphlang"]],
+  // big peaks on the horizon: bearing th (radians from east toward south) and distance r in metres
+  farPeaks: [],
+  // what stands at each stop (types are built by the engine)
+  props: [{"type": "village", "at": "mawphlang", "houses": 30, "radius": 160}, {"type": "camp", "at": "camp", "tents": 12, "radius": 50, "dining": "#3a8fd9"}, {"type": "walkers", "from": 4.4, "to": 6.7}],
+  // look: accent is set in index.html (--buransh); sky mood
+  theme: {"snow": 0, "weather": "clear", "sky": {"day": {"zen": "#3c70b2", "hor": "#d4e6d8"}}},
+  // soundscape: villages [km, full within, silent beyond], lakes [km, spread], wind from/to altitude
+  sound: {"villages": [[6.9, 0.4, 2.0]], "lakes": [[1.6, 0.6], [2.4, 0.8], [3.2, 0.8]], "wind": [947, 1847]},
+  // HUD temperature: estimated °C at this altitude in mid-afternoon, falling 6.5 °C per km of height
+  climate: {"alt": 1780, "temp": 18},
+  // elevation profile in the almanac: axis range, labelled stops, which one is the high point
+  profile: {"min": 1400, "max": 2000, "peak": 4, "marks": [["Trail end", 0], ["Camp", 2.45], ["Bridge", 3.19], ["Climb", 5.09], ["Mawphlang", 6.9]]},
+};

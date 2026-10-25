@@ -1,0 +1,52 @@
+// Harishchandragad: everything the engine needs that is specific to this trek.
+// Route follows the Bikat Adventures itinerary by the Pachnai route: Pachnai → Kokankada (camp) → Taramati → temple and caves → Pachnai.
+// Routed along OpenStreetMap paths on the plateau; Pachnai to the temple is traced over the terrain. Distances are measured on the map.
+export default {
+  id: 'harishchandragad',
+  stages: [
+    // opening shot: from behind Pachnai, facing south-west to the fort plateau
+    { id: 'hero', name: 'Overview', km: 0, hr: 14.0, cam: { yaw: 1.97, dist: 2500, h: 1000, side: 0, look: 4000, lookUp: 500 } },
+    { id: 'pachnai', q: 'Harishchandragad', name: 'Pachnai', km: 0.05, hr: 14.0, cam: { dist: 600, h: 280, side: 240, look: 500, lookUp: 80 },
+      code: 'Day 1 · Pachnai', title: 'Up to the <em>plateau</em>', deva: 'पाचनई',
+      stats: [['From Kasara', '~5', 'h', 'By road'], ['To camp', '~3', 'h', 'Walk from 2 pm']],
+      body: ['A five-hour drive from <b>Kasara</b> reaches <b>Pachnai</b> by lunch. The walk starts at about 2 pm.',
+             'Metal ladders and railings help on the steep part, then a rock wall, then the plateau.'],
+      dl: [['Trek so far', '0 km'], ['Look for', 'The flat-topped fort to the south-west']] },
+    { id: 'temple', q: 'Harishchandragad', name: 'Harishchandreshwar', km: 2.75, hr: 16.0, cam: { dist: 500, h: 220, side: -220, look: 500, lookUp: 60 },
+      code: 'Day 1 · The temple', title: 'Temple and <em>cave</em>', deva: 'हरिश्चंद्रेश्वर',
+      stats: [['Cave linga', '1.5', 'm', 'In waist-deep water'], ['River', 'Mangalganga', '', 'Rises in the cave']],
+      body: ['On the plateau stands the temple of <b>Harishchandreshwar</b>, with a small pool beside it.',
+             'In the <b>Kedareshwar</b> cave a 1.5 m Shiva linga stands in waist-deep water; the cave is the source of the Mangalganga river.'],
+      dl: [['Trek so far', '3 km']] },
+    { id: 'kokankada', q: 'Harishchandragad', name: 'Kokankada', km: 4.0, hr: 17.0, cam: { dist: 600, h: 260, side: 260, look: 900, lookUp: 0 },
+      code: 'Day 1 · Kokankada', title: 'The edge of the <em>Konkan</em>', deva: 'कोकणकडा',
+      stats: [['Camp by', '5', 'pm', 'On the cliff top'], ['Faces', 'West', '', 'Over the Konkan']],
+      body: ['Camp is at <b>Kokankada</b>, a huge west-facing cliff that overhangs the Konkan far below.',
+             'A circular rainbow, a Brocken spectre, appears here; Colonel Sykes recorded one in 1835.'],
+      dl: [['Night', 'Tents at Kokankada'], ['Trek so far', '4 km']] },
+    { id: 'taramati', q: 'Harishchandragad', name: 'Taramati', km: 5.53, hr: 24 + 9.0, cam: { dist: 420, h: 200, side: -200, look: 600, lookUp: 60 },
+      code: 'Day 2 · Taramati · 1,422 m', title: 'The top of the <em>fort</em>', deva: 'तारामती',
+      stats: [['From camp', '~2', 'h', 'Easy, from 7:30 am'], ['Fort', '6th', 'century', 'Kalachuri citadel']],
+      body: ['An easy morning hike to <b>Taramati</b>, at 1,422 m the highest point of the fort.',
+             'The citadel dates to the 6th century under the Kalachuris. The Marathas took it in 1747. With luck, leopards may be seen in the forest beyond.'],
+      dl: [['Altitude', '1,422 m'], ['Trek so far', '5.5 km']] },
+    { id: 'return', q: 'Harishchandragad', name: 'Back to Pachnai', km: 9.12, hr: 24 + 14.0, cam: { dist: 800, h: 380, side: -300, look: 600, lookUp: 60 },
+      code: 'Day 2 · Pachnai', title: 'Down by <em>lunch</em>', deva: 'वापसी',
+      stats: [['Leave the fort', '12', 'pm', 'After the caves'], ['Kasara by', '8', 'pm', 'By road']],
+      body: ['Past the temple and caves once more, then down to <b>Pachnai</b> by about 2 pm and the drive back to Kasara.'],
+      dl: [['Next', 'Kasara station']] },
+  ],
+  labels: [['Pachnai', '', 'pachnai'], ['Harishchandreshwar', '', 'temple'], ['Kokankada', '', 'kokankada'], ['Taramati', '1,422 m', 'taramati'], ['Bale Killa', '', 'balekilla']],
+  farPeaks: [],
+  props: [
+    { type: 'village', at: 'pachnai', houses: 25, radius: 160 },
+    { type: 'temple', at: 'temple', offset: [0, 0] },
+    { type: 'camp', at: 'kokankada', offset: [60, 0], tents: 12, radius: 45, dining: '#f2a33a' },
+    { type: 'walkers', from: 4.4, to: 5.4 },
+  ],
+  // look: accent is set in index.html; green Sahyadri, no snow
+  theme: { snow: 0, weather: 'clear', sky: { dawn: { hor: '#f2a96b' } } },
+  sound: { bells: true, villages: [[0, 0.4, 1.5], [2.75, 0.3, 0.8], [6.42, 0.3, 0.8], [9.12, 0.4, 1.5]], lakes: [], wind: [1150, 1422] },
+  climate: { alt: 860, temp: 24 },
+  profile: { min: 600, max: 1600, peak: 3, marks: [['Pachnai', 0], ['Temple', 2.75], ['Kokankada', 4], ['Taramati 1,422 m', 5.53], ['Pachnai', 9.12]] },
+};

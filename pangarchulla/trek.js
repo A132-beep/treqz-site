@@ -1,0 +1,29 @@
+// Pangarchulla: everything the engine needs that is specific to this trek.
+// Card text, the almanac and the hero live in index.html; terrain lives in geo.json, height.png, sat.jpg, far.png, far.jpg
+// (built by tools/build_trek.py from terrain.json). Route follows the Bikat Adventures itinerary: Tugasi → Guling → Khulara (11 km) → Pangarchulla and back (14 km) → Tugasi (8 km). The Kuari Pass day from Khulara is not drawn; Guling is not mapped.
+export default {
+  id: "pangarchulla",
+  // story stages: km on the route, hr = hours since Day 1 00:00, cam = how the shot is framed
+  stages: [
+    {"id": "hero", "name": "Overview", "km": 0, "hr": 33.0, "cam": {"yaw": 0.32, "dist": 3000, "h": 1500, "side": 0, "look": 6000, "lookUp": 1300}},
+    {"id": "tugasi", "q": "Joshimath", "name": "Tugasi", "km": 0.05, "hr": 33.0, "cam": {"dist": 700, "h": 320, "side": 280, "look": 600, "lookUp": 60}, "code": "Day 2 · Tugasi · 2,090 m", "title": "Above <em>Joshimath</em>", "deva": "तुगासी", "stats": [["From Joshimath", "13–14", "km", "About 45 min by road"], ["Walk today", "6", "km", "About 5 h to Guling"]], "body": ["A short drive from Joshimath reaches <b>Tugasi</b>. The trail climbs through terraced villages with food stalls and water-powered mills.", "Then it enters oak, pine and walnut forest to the first camp at Guling."], "dl": [["Night", "Tents at Guling (2,857 m)"], ["Trek so far", "0 km"]]},
+    {"id": "khulara", "q": "Khulara camp", "name": "Khulara", "km": 10.9, "hr": 61.0, "cam": {"dist": 560, "h": 260, "side": -260, "look": 500, "lookUp": 40}, "code": "Day 3 · Khulara · 3,390 m", "title": "The base <em>camp</em>", "deva": "खुलारा", "stats": [["Today", "5", "km", "About 3 h from Guling"], ["Nights here", "3", "", "Base for two climbs"]], "body": ["From Guling the trail climbs to <b>Khulara</b>, the base camp in a clearing at the top of the forest.", "Day 4 is an acclimatisation walk to Kuari Pass (3,814 m) and back: 11 km and about 7 hours."], "dl": [["Night", "Tents at Khulara"], ["Trek so far", "11 km"]]},
+    {"id": "mini", "q": "Himalaya boulder snow", "name": "Mini Pangarchulla", "km": 14.66, "hr": 104.0, "cam": {"dist": 640, "h": 280, "side": 300, "look": 900, "lookUp": 220}, "code": "Day 5 · Mini Pangarchulla", "title": "The boulder <em>field</em>", "deva": "मिनी पंगरचुल्ला", "stats": [["Started", "3", "a.m.", "No water on the way"], ["Gain", "~1,200", "m", "On summit day"]], "body": ["Summit day starts at 3 a.m. An hour and a half above camp, a tiny temple marks where the trails to Kuari Pass and Pangarchulla split.", "Below the summit is the boulder section. In March–April snow turns it into a flat snowfield; from October to December the boulders show, with big gaps between them."], "dl": [["Gear", "Microspikes and gaiters"]]},
+    {"id": "summit", "q": "Nanda Devi", "name": "Pangarchulla", "km": 17.87, "hr": 107.0, "cam": {"yaw": 0.15, "dist": 330, "h": 120, "side": 0, "look": 3000, "lookUp": -150}, "code": "Day 5 · Pangarchulla · 4,590 m", "title": "An amphitheatre of <em>giants</em>", "deva": "पंगरचुल्ला", "stats": [["Summit day", "14", "km", "12–14 h, there and back"], ["Air", "58", "%", "Of sea-level oxygen"]], "body": ["The aim is to top out by 11 a.m. and say a short prayer at the temple on the summit.", "From the top: <b>Nanda Devi</b> and <b>Kamet</b>, India's second and third highest, with Dronagiri, Hathi Ghoda, Chaukhamba and Neelkanth."], "dl": [["Altitude", "4,590 m (Bikat also gives 4,592 and 4,481 m)"], ["Night", "Back at Khulara"]]},
+    {"id": "return", "q": "Joshimath", "name": "Back to Tugasi", "km": 32.78, "hr": 133.0, "cam": {"dist": 1000, "h": 460, "side": -320, "look": 700, "lookUp": 60}, "code": "Day 6 · Tugasi", "title": "Down to the <em>road</em>", "deva": "वापसी", "stats": [["Today", "8", "km", "3–4 h"], ["Trek total", "44", "km", "With the Kuari Pass day"]], "body": ["Down through the forest to Tugasi, then the drive back to Joshimath.", "Day 7 is the long drive to Dehradun."], "dl": [["Night", "Guesthouse in Joshimath"]]},
+  ],
+  // map labels for the stops: [text, altitude, point in geo.json pts]
+  labels: [["Tugasi", "2,090 m", "tugasi"], ["Khulara", "3,390 m", "khulara"], ["Pangarchulla", "4,590 m", "pangarchulla"]],
+  // big peaks on the horizon: bearing th (radians from east toward south) and distance r in metres
+  farPeaks: [{"name": "Nanda Devi", "alt": 7816, "th": 0.259, "r": 37013}, {"name": "Kamet", "alt": 7756, "th": -1.579, "r": 51084}, {"name": "Chaukhamba", "alt": 7138, "th": -2.315, "r": 43753}, {"name": "Dronagiri", "alt": 7066, "th": -0.23, "r": 26511}, {"name": "Hathi Parbat", "alt": 6727, "th": -1.17, "r": 26821}, {"name": "Nilkantha", "alt": 6596, "th": -2.124, "r": 35274}],
+  // what stands at each stop (types are built by the engine)
+  props: [{"type": "village", "at": "tugasi", "houses": 22, "radius": 160}, {"type": "village", "at": "dhak", "houses": 18, "radius": 160}, {"type": "camp", "at": "khulara", "tents": 12, "radius": 50, "dining": "#3a8fd9"}, {"type": "shrine", "at": "pangarchulla"}, {"type": "walkers", "from": 15.37, "to": 17.67}],
+  // look: accent is set in index.html (--buransh); sky mood
+  theme: {"sky": {"dawn": {"hor": "#f2a98f", "sun": "#ffcfa0"}, "day": {"zen": "#2a5cc0", "hor": "#cadff0"}}, "snow": 0.7, "weather": "light"},
+  // soundscape: villages [km, full within, silent beyond], lakes [km, spread], wind from/to altitude
+  sound: {"villages": [[0.0, 0.4, 2.0], [32.78, 0.4, 2.0]], "lakes": [], "wind": [3642, 4542]},
+  // HUD temperature: estimated °C at this altitude in mid-afternoon, falling 6.5 °C per km of height
+  climate: {"alt": 2570, "temp": 10},
+  // elevation profile in the almanac: axis range, labelled stops, which one is the high point
+  profile: {"min": 2000, "max": 5000, "peak": 3, "marks": [["Tugasi", 0], ["Khulara", 10.9], ["Mini Pangarchulla", 14.66], ["Summit 4,590 m", 17.87], ["Tugasi", 33.0]]},
+};

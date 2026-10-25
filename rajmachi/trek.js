@@ -1,0 +1,51 @@
+// Rajmachi: everything the engine needs that is specific to this trek.
+// Route follows the Bikat Adventures itinerary: Lonavala → Rajmachi base village → Shrivardhan and Manaranjan forts →
+// Kondana caves → Kondane (for Karjat). Routed along OpenStreetMap paths and the jeep road; distances measured on the map.
+export default {
+  id: 'rajmachi',
+  stages: [
+    // opening shot: from behind Lonavala, facing north to the Rajmachi plateau
+    { id: 'hero', name: 'Overview', km: 0, hr: 9.0, cam: { yaw: -1.66, dist: 2500, h: 1100, side: 0, look: 5000, lookUp: 300 } },
+    { id: 'lonavala', q: 'Lonavala', name: 'Lonavala', km: 0.05, hr: 9.0, cam: { dist: 600, h: 280, side: 240, look: 500, lookUp: 40 },
+      code: 'Day 1 · Lonavala', title: 'Out of <em>Lonavala</em>', deva: 'लोणावळा',
+      stats: [['Meet', '9', 'am', 'Lonavala station'], ['Walk', '~8', 'km', 'After a drive to the start']],
+      body: ['Meet at <b>Lonavala</b> station at 9 am. A vehicle takes the group to the start, then about 8 km on foot to the base village.',
+             'In the monsoon the jeep road closes and everyone walks.'],
+      dl: [['Trek so far', '0 km'], ['Look for', 'The plateau to the north, with two fort hills']] },
+    { id: 'udhewadi', q: 'Rajmachi', name: 'Rajmachi village', km: 15.6, hr: 16.0, cam: { dist: 600, h: 260, side: -240, look: 700, lookUp: 80 },
+      code: 'Day 1 · Rajmachi village', title: 'A village on the <em>machi</em>', deva: 'उधेवाडी',
+      stats: [['Village', 'Udhewadi', '', 'On the plateau'], ['Signal', 'None', '', 'From here on']],
+      body: ['The base village, <b>Udhewadi</b>, sits on the machi, the plateau below the forts. Tents for the night.'],
+      dl: [['Night', 'Tents at the base village'], ['Trek so far', '16 km on the map']] },
+    { id: 'shrivardhan', q: 'Shrivardhan Fort', name: 'Shrivardhan', km: 17.0, hr: 24 + 8.0, cam: { dist: 420, h: 200, side: 200, look: 600, lookUp: 40 },
+      code: 'Day 2 · Shrivardhan · 826 m', title: 'The twin <em>forts</em>', deva: 'श्रीवर्धन',
+      stats: [['Forts', '2', '', 'Shrivardhan and Manaranjan'], ['Below', 'Borghat', '', 'The old trade route']],
+      body: ['<b>Shrivardhan</b>, at about 826 m, and <b>Manaranjan</b> stand on either side of the machi. The fort played a part in the First Anglo-Maratha War and is a protected monument.',
+             'It overlooks the old Borghat trade route and the Shirota Dam backwaters. In the monsoon the Kataldhar waterfall can be seen from here.'],
+      dl: [['Altitude', '826 m'], ['Trek so far', '17 km on the map']] },
+    { id: 'kondanecaves', q: 'Kondana Caves', name: 'Kondana caves', km: 22.1, hr: 24 + 15.0, cam: { dist: 500, h: 220, side: -220, look: 500, lookUp: 80 },
+      code: 'Day 2 · Kondana caves', title: 'Caves from the <em>1st century BC</em>', deva: 'कोंडाणे लेणी',
+      stats: [['Caves', '16', '', 'Buddhist'], ['Cut', '1st c.', 'BC', 'With a chaitya hall']],
+      body: ['After lunch the trail drops off the plateau to the <b>Kondana caves</b>: sixteen Buddhist caves cut in the 1st century BC, among them a chaitya hall.'],
+      dl: [['Trek so far', '22 km on the map']] },
+    { id: 'kondane', q: 'Karjat', name: 'Kondane', km: 24.3, hr: 24 + 17.0, cam: { dist: 800, h: 380, side: 300, look: 600, lookUp: 60 },
+      code: 'Day 2 · Kondane', title: 'Down to the <em>Konkan</em>', deva: 'वापसी',
+      stats: [['Karjat by', '~7', 'pm', 'By road'], ['Trek total', '15', 'km', 'Bikat\'s figure']],
+      body: ['Down to the villages at the foot of the hill; Bikat\'s vehicles meet the group at Kondhavane for the drive to <b>Karjat</b> station.'],
+      dl: [['Next', 'Karjat station']] },
+  ],
+  labels: [['Lonavala', '', 'lonavala'], ['Tungarli Lake', '', 'tungarli'], ['Rajmachi village', '', 'udhewadi'], ['Shrivardhan', '826 m', 'shrivardhan'], ['Manaranjan', '', 'manaranjan'], ['Kondana caves', '', 'kondanecaves'], ['Kondane', '', 'kondane']],
+  farPeaks: [],
+  props: [
+    { type: 'village', at: 'lonavala', houses: 90, radius: 600 },
+    { type: 'village', at: 'udhewadi', houses: 25, radius: 150 },
+    { type: 'camp', at: 'udhewadi', offset: [-120, 60], tents: 12, radius: 45, dining: '#3a8fd9' },
+    { type: 'village', at: 'kondane', houses: 20, radius: 150 },
+    { type: 'walkers', from: 12.5, to: 15.4 },
+  ],
+  // look: accent is set in index.html; green Sahyadri, no snow
+  theme: { snow: 0, weather: 'clear', sky: { day: { zen: '#3f73b5', hor: '#d6e6dc' } } },
+  sound: { villages: [[0, 0.5, 2.0], [15.6, 0.4, 1.2], [24.3, 0.4, 1.5]], lakes: [[3.9, 0.6]], wind: [700, 830] },
+  climate: { alt: 620, temp: 25 },
+  profile: { min: 0, max: 1000, peak: 2, marks: [['Lonavala', 0], ['Rajmachi village', 15.6], ['Shrivardhan 826 m', 17], ['Kondana caves', 22.1], ['Kondane', 24.3]] },
+};

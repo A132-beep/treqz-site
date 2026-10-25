@@ -1,0 +1,87 @@
+/* inner pages (months, regions, cities, guides, comparisons): the home page's deep green, cream accent and motion */
+:root{--bg:#03342a;--panel:#022c23;--btn:#084a39;--accent:#e5fcc9;--ink:#fff;--mute:rgba(255,255,255,.58);--line:rgba(255,255,255,.1);--pad:clamp(16px,2.8vw,40px);--sy:clamp(64px,8vw,120px);
+  --paper:var(--bg);--card:var(--panel);--acc:var(--accent);--acc2:rgba(229,252,201,.12);color-scheme:dark}   /* old names, still used inline by the generators */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 'Google Sans Flex',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+::selection{background:var(--accent);color:var(--bg)}
+.wrap{width:min(1280px,100% - var(--pad) * 2);margin:0 auto}
+h2{font-size:clamp(30px,3.6vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.05;margin:0 0 12px;text-wrap:balance}
+.lead{color:var(--mute);margin:0 0 32px;max-width:62ch;font-size:17px}
+section{padding:var(--sy) 0 0}
+
+/* header: the page's photo, slowly pushing in, melting into the green; title rises in word block by block */
+.mhead{position:relative;isolation:isolate;min-height:min(78svh,760px);display:flex;align-items:flex-end;padding:120px 0 clamp(48px,8vh,88px);color:#fff;background:var(--panel) center/0 0 no-repeat;overflow:hidden}   /* the photo itself is drawn by ::before, so it can zoom */
+.mhead{background-image:var(--m)}@media(min-width:901px){.mhead{background-image:var(--d)}}   /* photo files are set per page by tools/banner.py */
+.mhead::before{content:"";position:absolute;inset:-4%;z-index:-2;background:inherit;background-size:cover;animation:push 24s ease-out both}
+.mhead::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(3,52,42,.55),rgba(3,52,42,.05) 35%,rgba(3,52,42,.55) 70%,var(--bg))}
+@keyframes push{from{transform:scale(1.14)}to{transform:scale(1)}}
+.mhead .wrap{position:static}   /* the crumb pins to the header, not the title block */
+.mhead .crumb{position:absolute;top:24px;left:max(var(--pad),(100% - 1280px) / 2);right:max(var(--pad),(100% - 1280px) / 2);display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:rgba(255,255,255,.85)}
+.mhead .crumb a{text-decoration:none}
+.mhead .crumb a.logo{display:flex;margin-right:8px}.mhead .crumb .logo img{height:26px;width:auto;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}.mhead .crumb .logo:hover img{transform:scale(1.06)}
+.mhead h1{font-size:clamp(40px,7vw,96px);font-weight:700;letter-spacing:-.035em;line-height:.98;margin:0 0 18px;max-width:15ch;text-wrap:balance;animation:rise 1.1s cubic-bezier(.2,.7,.2,1) .15s both}
+.mhead p{margin:0;max-width:56ch;font-size:clamp(16px,1.4vw,19px);color:rgba(255,255,255,.85);animation:rise 1.1s cubic-bezier(.2,.7,.2,1) .35s both}
+@keyframes rise{from{opacity:0;transform:translateY(36px)}}
+
+/* month switcher: the home page's chips */
+.mnav{display:flex;gap:8px;overflow-x:auto;padding:28px 0 4px;scrollbar-width:none}.mnav::-webkit-scrollbar{display:none}
+.mnav a{flex:none;height:44px;padding:0 18px;display:grid;place-items:center;border-radius:80px;border:1px solid rgba(255,255,255,.18);text-decoration:none;font:500 15px 'Google Sans Flex',system-ui,sans-serif;color:rgba(255,255,255,.85);transition:background .3s,color .3s,border-color .3s,transform .3s}
+.mnav a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.mnav a[aria-current="page"]{background:#fff;color:var(--bg);border-color:#fff}
+
+/* trek cards: dark tiles with a photo that zooms, a soft cream glow on hover */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:20px}
+.tc{position:relative;display:block;background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s,border-color .5s}
+.tc:hover{transform:translateY(-6px);border-color:rgba(229,252,201,.3);box-shadow:0 0 50px -14px rgba(229,252,201,.45)}
+.tc .ph{aspect-ratio:16/11;background:#0b3f33;overflow:hidden}
+.tc img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.tc:hover img{transform:scale(1.08)}
+.tc .bd{padding:18px 18px 20px}
+.tc h3{margin:0;font-size:21px;font-weight:700;letter-spacing:-.035em;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.tc h3 span{font-weight:400;font-size:14px;letter-spacing:0;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tc .meta{font-size:14px;margin:6px 0 2px;color:rgba(255,255,255,.85)}
+.tc .reg{font-size:13px;color:var(--mute);margin:0 0 14px}
+.tc .bd::after{content:"→";position:absolute;right:18px;bottom:18px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:var(--bg);font-weight:600;opacity:0;transform:translateX(-8px);transition:opacity .4s,transform .4s}   /* an arrow slides in on hover */
+.tc:hover .bd::after{opacity:1;transform:none}
+.tc:hover .bar{opacity:.25}
+.bar{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;transition:opacity .4s}
+.bar i{height:22px;border-radius:6px;border:1px solid var(--line);font:600 10px/20px 'Google Sans Flex',system-ui,sans-serif;font-style:normal;text-align:center;color:var(--mute)}
+.bar i.b{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.bar i.o{border:1.5px solid rgba(229,252,201,.6);color:var(--accent)}
+.legend{display:flex;gap:20px;font-size:14px;color:var(--mute);flex-wrap:wrap;align-items:center}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:8px}
+
+/* link lists (guides, privacy): each link becomes a chip; the " · " text between them collapses */
+.lead:has(> a ~ a){font-size:0;display:flex;flex-wrap:wrap;gap:10px;max-width:none}
+.lead:has(> a ~ a) a{font-size:15px;font-weight:500;padding:10px 18px;border-radius:80px;border:1px solid rgba(255,255,255,.16);text-decoration:none;transition:background .3s,color .3s,border-color .3s,transform .3s}
+.lead:has(> a ~ a) a:hover{background:var(--accent);color:var(--bg);border-color:var(--accent);transform:translateY(-2px)}
+.lead a{color:var(--accent)}
+
+/* see-all: the home page's pill with a round arrow */
+.seeall{display:inline-flex;align-items:center;gap:14px;height:48px;margin:18px 10px 0 0;padding:0 8px 0 22px;border-radius:80px;background:var(--btn);color:#fff;font:600 15px 'Google Sans Flex',system-ui,sans-serif;letter-spacing:-.02em;text-decoration:none;transition:background .3s}
+.seeall::after{content:"";width:32px;height:32px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2303342a' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center/16px no-repeat;transition:transform .3s}
+.seeall:hover{background:#0b5c45}.seeall:hover::after{transform:translateX(4px)}
+
+/* comparison table */
+.tablewrap{overflow-x:auto;margin:0 0 28px;border:1px solid var(--line);border-radius:20px;background:var(--panel)}
+.cmp{width:100%;border-collapse:collapse;font-size:15px}
+.cmp th,.cmp td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp tr:last-child>*{border-bottom:0}
+.cmp thead th{font-size:20px;font-weight:700;letter-spacing:-.035em;color:var(--accent)}
+.cmp tbody th{color:var(--mute);font-weight:500;white-space:nowrap}
+.cmp tbody tr{transition:background .3s}.cmp tbody tr:hover{background:rgba(229,252,201,.05)}
+
+footer{margin-top:var(--sy);padding:40px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:13px;line-height:1.6}
+
+/* reveal: sections and cards rise in as they scroll into view (CSS only, no script) */
+@supports (animation-timeline:view()){
+  main section>h2,main section>.lead,.tc,.tablewrap,.legend{animation:up linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+  .tc{animation-range:entry 0% entry 45%}
+  @keyframes up{from{opacity:0;transform:translateY(48px) scale(.97)}}
+}
+
+@media (max-width:640px){.mhead{min-height:64svh}.mhead .crumb{font-size:13px}.bar i{font-size:9px;height:20px;line-height:18px}.cmp th,.cmp td{padding:12px 14px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
