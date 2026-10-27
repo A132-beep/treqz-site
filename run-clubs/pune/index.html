@@ -40,7 +40,7 @@ const f = document.querySelector('#join form'), m = document.querySelector('#msg
 f?.addEventListener('submit', async e => {
   e.preventDefault();
   const fd = new FormData(f), rest = [...fd].filter(([k]) => k !== 'email').map(([k, v]) => k + ': ' + v).join(' | ');
-  const body = new URLSearchParams({ 'entry.257845312': String(fd.get('email') || '').trim(), 'entry.1319691017': (location.pathname + (rest ? ' | ' + rest : '')).slice(0, 1500) });
+  const body = new URLSearchParams({ 'entry.257845312': String(fd.get('email') || '').trim(), 'entry.1319691017': (location.pathname + location.search + (rest ? ' | ' + rest : '')).slice(0, 1500) });
   m.textContent = 'Sending...';
   const ok = await fetch(GF, { method: 'POST', mode: 'no-cors', body }).then(() => true, () => false);
   m.textContent = ok ? "You're in. We'll be in touch." : 'Could not send. Check your connection and try again.';
