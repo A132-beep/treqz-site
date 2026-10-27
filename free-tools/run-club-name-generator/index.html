@@ -45,14 +45,16 @@ render();
 <nav class="lk" aria-label="Footer"><a href="../../treks/">Trek</a><a href="../../run/">Run</a><a href="../../run-clubs/">Run clubs</a><a href="../../free-tools/">Free tools</a><a href="../../crew/">Crew</a><a href="../../guides/">Guides</a><a href="../../blog/">Blog</a></nav>
 <p class="fine">Photos: Envato, under its licence. © 2026 Treqz · <a href="../../privacy/" style="text-decoration:underline">Privacy</a></p></footer>
 <script>
-const FORM = '';   // Formspree form id (formspree.io/f/<id>); empty: the form says signups open soon and stores nothing
+const GF = 'https://docs.google.com/forms/d/e/1FAIpQLSdxfB55MurcN-h_KehAHOoOeBqokggc0UqFgxB8u8ztoWXQqQ/formResponse';   // Google Form "Treqz waitlist": entry.257845312 = email, entry.1319691017 = page and the other answers
 const f = document.querySelector('#join form'), m = document.querySelector('#msg');
 f?.addEventListener('submit', async e => {
   e.preventDefault();
-  if (!FORM) { m.textContent = 'Signups open soon. Nothing was saved.'; return; }
-  const r = await fetch(`https://formspree.io/f/${FORM}`, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } }).catch(() => null);
-  m.textContent = r && r.ok ? "You're in. We'll be in touch." : 'Could not send. Try again.';
-  if (r && r.ok) f.reset();
+  const fd = new FormData(f), rest = [...fd].filter(([k]) => k !== 'email').map(([k, v]) => k + ': ' + v).join(' | ');
+  const body = new URLSearchParams({ 'entry.257845312': String(fd.get('email') || '').trim(), 'entry.1319691017': (location.pathname + (rest ? ' | ' + rest : '')).slice(0, 1500) });
+  m.textContent = 'Sending...';
+  const ok = await fetch(GF, { method: 'POST', mode: 'no-cors', body }).then(() => true, () => false);
+  m.textContent = ok ? "You're in. We'll be in touch." : 'Could not send. Check your connection and try again.';
+  if (ok) f.reset();
 });
 </script>
 </body></html>
