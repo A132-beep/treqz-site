@@ -492,3 +492,13 @@ footer.sources a:hover{color:var(--accent)}
 .qf dt{font-size:13px;font-weight:600;color:var(--mist);letter-spacing:.01em}
 .qf dd{margin:4px 0 0;font-size:16px;line-height:1.45;color:var(--snow)}
 .qf h2{font-size:clamp(22px,2.4vw,32px);font-weight:700;letter-spacing:-.035em;margin:0}
+
+/* trek pages carry the global header (header.js, 72px): everything that used to sit at the top edge moves below it */
+body:has(.hd) .topbar{top:calc(env(safe-area-inset-top,0px) + 84px)}
+body:has(.hd) .lookhint{top:calc(env(safe-area-inset-top,0px) + 92px)}
+body:has(.hd) .me{top:calc(env(safe-area-inset-top,0px) + 136px)}
+body:has(.hd) .almnav{top:84px}
+body:has(.hd) .epilogue .sec-head{scroll-margin-top:150px}
+@media (min-width:721px){body:has(.hd) .card{top:calc(env(safe-area-inset-top,0px) + 88px);max-height:calc(100vh - 88px - 70px)}}   /* the story card on desktop; on phones it sits at the bottom */
+@media (max-width:1000px){body:has(.hd) .almnav{top:136px}}   /* under the top bar here */
+@media (max-width:720px){body:has(.hd) .lookhint{top:calc(env(safe-area-inset-top,0px) + 140px)}}

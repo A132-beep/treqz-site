@@ -583,12 +583,14 @@ readScroll(); sCur = sTarget;
 
 const UP = new THREE.Vector3(0, 1, 0);
 const camPos = new THREE.Vector3(), camTgt = new THREE.Vector3(), curPos = new THREE.Vector3(), curTgt = new THREE.Vector3();
+const CAM_PULL = isMobile ? 1.6 : 1.8;
 function shot(i) {
   const s = STAGES[i], c = s.cam, onRoute = routeAt(s.km), p = c.at ? new THREE.Vector3(...P[c.at]) : onRoute.clone();
   if (LAKES[c.at]) p.y = LAKES[c.at].position.y;   // an anchored shot frames a named point; its height counts from the ice
   const F = c.yaw != null ? new THREE.Vector3(Math.cos(c.yaw), 0, Math.sin(c.yaw)) : routeDir(s.km);
   const S = new THREE.Vector3(-F.z, 0, F.x);
-  const pos = p.clone().addScaledVector(F, -c.dist).addScaledVector(S, c.side); pos.y = p.y + c.h;
+  const k = c.dist < 1800 ? CAM_PULL : 1;   // trek stops sat 640 m behind and 280 m above the trail: too close to read the climb. The wide hero shots stay as drawn
+  const pos = p.clone().addScaledVector(F, -c.dist * k).addScaledVector(S, c.side * k); pos.y = p.y + c.h * k;
   const tgt = p.clone().addScaledVector(F, c.look); tgt.y = p.y + c.lookUp;
   return { pos, tgt, p: onRoute, pivot: p };   // journey() rides along the route relative to p; look-around swings around pivot
 }
