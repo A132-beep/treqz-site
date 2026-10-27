@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Running Pace Calculator (per km) and Race Time Predictor | Treqz</title>
+<script src="/veil.js"></script>
+<link rel="canonical" href="https://treqz.com/free-tools/running-pace-calculator/">
+<meta name="description" content="Free running pace calculator: enter a distance and a time to get your pace per km and speed in km/h, plus estimated 5K, 10K, half marathon and marathon times.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="../../pages.css">
+<script src="/header.js" defer></script><link rel="icon" href="/favicon.ico?v=d7a48e7d" sizes="32x32"><link rel="icon" href="/favicon.svg?v=d7a48e7d" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=d7a48e7d"><meta property="og:type" content="website"><meta property="og:site_name" content="Treqz"><meta property="og:url" content="https://treqz.com/free-tools/running-pace-calculator/"><meta property="og:title" content="Running Pace Calculator (per km) and Race Time Predictor | Treqz"><meta property="og:description" content="Free running pace calculator: enter a distance and a time to get your pace per km and speed in km/h, plus estimated 5K, 10K, half marathon and marathon times."><meta property="og:image" content="https://treqz.com/img/treqz/tq-team-9.webp"><meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json" id="ld">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Treqz", "item": "https://treqz.com/"}, {"@type": "ListItem", "position": 2, "name": "Free tools", "item": "https://treqz.com/free-tools/"}, {"@type": "ListItem", "position": 3, "name": "Running Pace Calculator (per km) and Race Time Predictor", "item": "https://treqz.com/free-tools/running-pace-calculator/"}]}, {"@type": "WebPage", "name": "Running Pace Calculator (per km) and Race Time Predictor | Treqz", "url": "https://treqz.com/free-tools/running-pace-calculator/", "description": "Free running pace calculator: enter a distance and a time to get your pace per km and speed in km/h, plus estimated 5K, 10K, half marathon and marathon times.", "isPartOf": {"@type": "WebSite", "name": "Treqz", "url": "https://treqz.com/"}, "about": {"@type": "Thing", "name": "Running and trekking in India"}}]}</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}addEventListener('load',()=>setTimeout(()=>document.head.append(Object.assign(document.createElement('script'),{src:'https://www.googletagmanager.com/gtag/js?id=G-GDJGTQJ4XM'}))));gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config','G-GDJGTQJ4XM');</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "046eb4d3531d4d408edc25291cf3fca8"}'></script>
+</head><body data-cta="Get early access">
+<main>
+<section class="hero pad"><div><span class="eyebrow">Free tool</span><h1>Running Pace Calculator.</h1><p class="lead">Type in a distance and a time, or a distance and a pace. You get your pace per kilometre, your speed in km/h, and an estimate for the other race distances.</p>
+<div class="acts"><a class="btn c" href="#tool">Use the tool</a><a class="btn o" href="../">All free tools</a></div><p class="fine">Free. No sign-up. Runs in your browser, nothing is saved.</p></div>
+<div class="im"><img src="../../img/treqz/tq-team-8.webp" alt="A group of runners on a city road" loading="eager"></div></section>
+<section class="pad" id="tool"><div class="tool"><form id="f">
+<label>Distance<select id="dist"><option value="5">5 km</option><option value="10">10 km</option><option value="21.0975">Half marathon</option><option value="42.195">Marathon</option><option value="custom">Other distance</option></select></label>
+<label id="kmwrap" hidden>Distance in km<input id="km" type="number" min="0.1" step="0.01" value="3"></label>
+<label>I know my<select id="mode"><option value="time">time</option><option value="pace">pace per km</option></select></label>
+<label id="timebox">Time (h : m : s)<span class="row"><input id="h" type="number" min="0" value="0" aria-label="hours"><input id="m" type="number" min="0" value="30" aria-label="minutes"><input id="s" type="number" min="0" value="0" aria-label="seconds"></span></label>
+<label id="pacebox" hidden>Pace (min : sec per km)<span class="row"><input id="pm" type="number" min="0" value="6" aria-label="minutes"><input id="ps" type="number" min="0" value="0" aria-label="seconds"></span></label>
+<button class="btn c" type="submit">Calculate</button></form>
+<div class="out" id="out" aria-live="polite"></div></div></section>
+<section class="sec pad"><h2>How this works.</h2><p class="lead">Pace is the time one kilometre takes. Speed in km/h is 60 divided by your pace in minutes per km, so 6:00 per km is 10 km/h. The race estimates use the Riegel formula, a standard rule of thumb: time at the new distance equals your time times the distance ratio to the power 1.06. It assumes you have trained for the longer distance, so treat it as a guide, not a promise.</p></section>
+<section class="pad"><div class="toolcta"><div><h2>Know your pace. Track every run.</h2><p>Treqz Run logs your pace on every run and turns your loops into territory on the map. It opens soon.</p></div><a class="btn" href="../../run/#join">Join the waitlist</a></div></section>
+<section class="sec pad"><div class="faq"><h2>Quick questions.</h2><div style="margin-top:32px"><details><summary>What is a good running pace?</summary><p>It depends on your fitness, age, hills and weather. Compare yourself with your own earlier runs rather than with other people.</p></details><details><summary>How do I turn pace into speed?</summary><p>Divide 60 by your pace in minutes per km. A pace of 5:00 per km is 12 km/h, and 6:00 per km is 10 km/h.</p></details><details><summary>How accurate are the race estimates?</summary><p>They are a rule of thumb for runners who have trained for the longer distance. A marathon estimate from a 5K time is the least reliable.</p></details></div></div></section>
+<section class="sec pad"><h2>More free tools.</h2><div class="tg"><a class="card plain fade" href="../5k-running-plan/"><h3>5 km running plan</h3><p>Make a 6 to 10 week plan that takes you from your first run to 5 km. Print it or save it as a PDF.</p></a><a class="card plain fade" href="../run-club-name-generator/"><h3>Run club name generator</h3><p>Get name ideas for your running group: fun, calm or women-only, with your city in the name if you like.</p></a><a class="card plain fade" href="../trek-finder/"><h3>Trek finder</h3><p>Pick your month, your days and your level. We match you to treks from the Treqz atlas, each with a 3D route.</p></a></div></section>
+<script src="/free-tools/tools.js"></script>
+<script>
+const $ = (s) => document.querySelector(s), out = $('#out');
+const num = (s) => Math.max(0, parseFloat($(s).value) || 0);
+const pick = () => $('#dist').value === 'custom' ? num('#km') : +$('#dist').value;
+function sync() { $('#kmwrap').hidden = $('#dist').value !== 'custom'; $('#timebox').hidden = $('#mode').value !== 'time'; $('#pacebox').hidden = $('#mode').value !== 'pace'; }
+function render() {
+  const km = pick(); if (!km) { out.textContent = 'Enter a distance.'; return; }
+  const sec = $('#mode').value === 'time' ? num('#h') * 3600 + num('#m') * 60 + num('#s') : TQ.timeFor(km, num('#pm') * 60 + num('#ps'));
+  if (!sec) { out.textContent = 'Enter a time or a pace.'; return; }
+  const p = TQ.pace(km, sec);
+  const stats = document.createElement('div'); stats.className = 'stats';
+  [['Pace', TQ.mmss(p.perKm) + ' per km'], ['Speed', p.kmh.toFixed(1) + ' km/h'], ['Total time', TQ.hmmss(sec)]].forEach(([k, v]) => { const d = document.createElement('div'); const b = document.createElement('div'); b.className = 'big'; b.textContent = v; const s = document.createElement('small'); s.textContent = k; d.append(b, s); stats.appendChild(d); });
+  const t = document.createElement('table'), h = t.createTHead().insertRow();
+  ['Distance', 'Estimated time', 'Pace per km'].forEach((x) => { const th = document.createElement('th'); th.textContent = x; h.appendChild(th); });
+  const b = t.createTBody();
+  [['5 km', 5], ['10 km', 10], ['Half marathon (21.1 km)', 21.0975], ['Marathon (42.2 km)', 42.195]].forEach(([n, d]) => { const s = TQ.riegel(km, sec, d), r = b.insertRow(); r.insertCell().textContent = n; r.insertCell().textContent = TQ.hmmss(s); r.insertCell().textContent = TQ.mmss(s / d); });
+  const note = document.createElement('p'); note.className = 'note'; note.textContent = 'Estimates use the Riegel formula and assume you have trained for the longer distance. Treat them as a guide.';
+  out.textContent = ''; out.append(stats, t, note);
+}
+['#dist', '#mode'].forEach((s) => $(s).addEventListener('change', sync));
+$('#f').addEventListener('submit', (e) => { e.preventDefault(); render(); });
+sync(); render();
+</script>
+</main>
+<footer class="pad" id="contact"><b style="font-size:20px">The outdoor app for India.</b><p class="fine" style="margin:6px 0 0">Free. Works with no network. Made in India.</p>
+<nav class="lk" aria-label="Footer"><a href="../../treks/">Trek</a><a href="../../run/">Run</a><a href="../../run-clubs/">Run clubs</a><a href="../../free-tools/">Free tools</a><a href="../../crew/">Crew</a><a href="../../guides/">Guides</a><a href="../../blog/">Blog</a></nav>
+<p class="fine">Photos: Envato, under its licence. © 2026 Treqz · <a href="../../privacy/" style="text-decoration:underline">Privacy</a></p></footer>
+<script>
+const FORM = '';   // Formspree form id (formspree.io/f/<id>); empty: the form says signups open soon and stores nothing
+const f = document.querySelector('#join form'), m = document.querySelector('#msg');
+f?.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!FORM) { m.textContent = 'Signups open soon. Nothing was saved.'; return; }
+  const r = await fetch(`https://formspree.io/f/${FORM}`, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } }).catch(() => null);
+  m.textContent = r && r.ok ? "You're in. We'll be in touch." : 'Could not send. Try again.';
+  if (r && r.ok) f.reset();
+});
+</script>
+</body></html>
