@@ -365,7 +365,7 @@ footer .deva{font-size:28px;color:var(--snow)}
 @keyframes meIn{from{opacity:0;transform:translateY(-6px)}}
 @media (prefers-reduced-motion:reduce){.me,.btn.offline svg{animation:none}}
 
-/* trekpeek theme: green + cream, matching the home page and site.css (2026-10-22). Overrides only; delete this block to get the old look back.
+/* Treqz theme: green + cream, matching the home page and site.css (2026-10-22). Overrides only; delete this block to get the old look back.
    --buransh stays per trek (engine.js reads it for the 3D route), so it marks trek data (route end, HUD day, rail, camps); UI chrome uses cream. */
 :root{
   --ink:#03342a;--ink-2:#022c23;--btn:#084a39;--accent:#e5fcc9;
@@ -485,3 +485,10 @@ footer.sources a:hover{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){
   .big4>*,.opsgrid>*,.gearwrap>*,.cities>*{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
 }
+
+/* at-a-glance box on the 9 most searched trek pages (tools/seo_blocks.py): answers distance, height, cost, best time at once */
+.qf dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px 28px;margin:14px 0 0}
+.qf dl>div{border-top:1px solid var(--line);padding-top:10px}
+.qf dt{font-size:13px;font-weight:600;color:var(--mist);letter-spacing:.01em}
+.qf dd{margin:4px 0 0;font-size:16px;line-height:1.45;color:var(--snow)}
+.qf h2{font-size:clamp(22px,2.4vw,32px);font-weight:700;letter-spacing:-.035em;margin:0}
