@@ -502,3 +502,4 @@ body:has(.hd) .epilogue .sec-head{scroll-margin-top:150px}
 @media (min-width:721px){body:has(.hd) .card{top:calc(env(safe-area-inset-top,0px) + 88px);max-height:calc(100vh - 88px - 70px)}}   /* the story card on desktop; on phones it sits at the bottom */
 @media (max-width:1000px){body:has(.hd) .almnav{top:136px}}   /* under the top bar here */
 @media (max-width:720px){body:has(.hd) .lookhint{top:calc(env(safe-area-inset-top,0px) + 140px)}}
+@media (min-width:721px) and (max-width:1100px){body:has(.hd) .card{top:calc(env(safe-area-inset-top,0px) + 136px);max-height:calc(100vh - 136px - 70px)}body:has(.hd) .lookhint{top:calc(env(safe-area-inset-top,0px) + 136px)}}   /* tablets: the card is wide enough to meet the top bar, so it starts under it */
