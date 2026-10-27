@@ -499,7 +499,7 @@
 <script>
 const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const FORM = '';   // Formspree form id (formspree.io/f/<id>); empty: the form says signups open soon and stores nothing
+const GF = 'https://docs.google.com/forms/d/e/1FAIpQLSdxfB55MurcN-h_KehAHOoOeBqokggc0UqFgxB8u8ztoWXQqQ/formResponse';   // Google Form "Treqz waitlist": entry.257845312 = email, entry.1319691017 = who and where from
 
 /* reveal: split headings into words; reveal blocks as they scroll in */
 $$('.split').forEach((el) => { el.innerHTML = el.innerHTML.split(/(<br>)/).map((p) => p === '<br>' ? p : p.trim().split(/\s+/).filter(Boolean).map((w, i) => `<span class="w"><span style="transition-delay:${i * 50}ms">${w}</span></span>`).join(' ')).join(''); });
@@ -629,11 +629,11 @@ const wl = $('#wl'), msg = $('#wlMsg');
 $$('[data-team]').forEach((a) => a.addEventListener('click', () => { $('#asTeam').checked = true; setTimeout(() => wl.email.focus({ preventScroll: true }), 700); }));
 wl.addEventListener('submit', async (e) => {
   e.preventDefault();
-  if (!FORM) { msg.innerHTML = 'Signups open in a few days. Follow <a href="https://www.instagram.com/treqz_india/" target="_blank" rel="noopener" style="text-decoration:underline">us on Instagram</a> to hear first.'; return; }
   msg.textContent = 'Adding you…';
-  const r = await fetch(`https://formspree.io/f/${FORM}`, { method: 'POST', body: new FormData(wl), headers: { Accept: 'application/json' } }).catch(() => null);
-  msg.textContent = r && r.ok ? '' : 'That didn\'t go through. Please try again.';
-  if (r && r.ok) { $('#me').textContent = wl.email.value[0].toUpperCase(); $('#proof').classList.add('joined'); wl.reset(); }   // your initial joins the stack
+  const body = new URLSearchParams({ 'entry.257845312': wl.email.value.trim(), 'entry.1319691017': ('home | ' + wl.as.value + ' | ' + location.search).slice(0, 500) });
+  const ok = await fetch(GF, { method: 'POST', mode: 'no-cors', body }).then(() => true, () => false);
+  msg.textContent = ok ? '' : 'That didn\'t go through. Please try again.';
+  if (ok) { $('#me').textContent = wl.email.value[0].toUpperCase(); $('#proof').classList.add('joined'); wl.reset(); }   // your initial joins the stack
 });
 </script>
 </body></html>
