@@ -73,6 +73,42 @@ section{padding:var(--sy) 0 0}
 .cmp tbody th{color:var(--mute);font-weight:500;white-space:nowrap}
 .cmp tbody tr{transition:background .3s}.cmp tbody tr:hover{background:rgba(229,252,201,.05)}
 
+/* free tools: the form panel, the results the tool scripts build (.out .stats .big, .names, .tcards), a closing band, FAQ */
+.btn{display:inline-flex;align-items:center;white-space:nowrap;height:48px;padding:0 24px;border:0;border-radius:80px;background:var(--accent);color:var(--bg);font:600 15px 'Google Sans Flex',system-ui,sans-serif;letter-spacing:-.02em;text-decoration:none;cursor:pointer;transition:background .3s,transform .3s}
+.btn:hover{transform:translateY(-2px)}.btn.o{background:none;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)}.btn.o:hover{box-shadow:inset 0 0 0 1.5px var(--accent);color:var(--accent)}
+.tool{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,3vw,32px)}
+.tool form{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));align-items:end}
+.tool label{display:grid;gap:8px;font-size:14px;font-weight:500;color:var(--mute)}
+.tool input,.tool select{width:100%;height:48px;padding:0 16px;border:1px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.05);color:#fff;font:500 16px 'Google Sans Flex',system-ui,sans-serif;transition:border-color .3s}
+.tool [hidden]{display:none}.mhead.sm{min-height:min(48svh,440px)}
+.tool select option{color:#03342a}.tool input:focus,.tool select:focus{outline:0;border-color:var(--accent)}
+.tool .row{display:flex;gap:8px}.tool .row input{min-width:0}
+.tool .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.out{margin-top:28px;overflow-x:auto}.out:empty{display:none}
+.out .stats{display:flex;flex-wrap:wrap;gap:12px 40px;margin-bottom:22px}.out .stats small{display:block;margin-top:2px;font-size:14px;color:var(--mute)}
+.out .big{font-size:clamp(30px,3.6vw,46px);font-weight:700;letter-spacing:-.035em;line-height:1.05;color:var(--accent)}
+.out table{width:100%;min-width:480px;border-collapse:collapse;font-size:15px}
+.out th,.out td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}.out tr:last-child>td{border-bottom:0}
+.out th{font-size:13px;font-weight:600;color:var(--mute);white-space:nowrap}.out tbody tr:hover{background:rgba(229,252,201,.05)}
+.names,.tcards{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.names{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.names li{padding:13px 18px;border:1px solid rgba(255,255,255,.16);border-radius:80px;font-weight:500;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.names li:hover,.names li.ok{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.tcards{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.tcards a{display:block;height:100%;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.04);text-decoration:none;transition:transform .4s,border-color .4s,box-shadow .4s}
+.tcards a:hover{transform:translateY(-4px);border-color:rgba(229,252,201,.3);box-shadow:0 0 40px -14px rgba(229,252,201,.45)}
+.tcards b{display:block;font-size:20px;letter-spacing:-.03em}.tcards span{display:block;margin-top:6px;font-size:14px;color:var(--mute)}
+.note{margin:14px 0 0;max-width:62ch;font-size:14px;color:var(--mute)}
+.toolcta{display:flex;flex-wrap:wrap;gap:20px 32px;align-items:center;justify-content:space-between;padding:clamp(24px,4vw,44px);border:1px solid rgba(229,252,201,.22);border-radius:24px;background:var(--btn)}
+.toolcta h2{margin:0 0 6px;font-size:clamp(24px,2.8vw,38px)}.toolcta p{margin:0;max-width:44ch;color:rgba(255,255,255,.75)}
+.faq details{border-bottom:1px solid var(--line)}.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{display:flex;justify-content:space-between;gap:20px;padding:20px 0;cursor:pointer;list-style:none;font-size:clamp(17px,1.4vw,20px);font-weight:600;letter-spacing:-.02em}.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--accent);font-size:24px;line-height:1;transition:transform .3s}.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 20px;max-width:62ch;color:var(--mute)}
+.tc.tx .bd{padding:24px 24px 68px}.tc.tx .meta{margin:8px 0 0;font-size:15px;color:var(--mute)}.tc.tx h3{display:block}
+@media print{.hd,.hmenu,.mhead,.toolcta,.faq,footer,.tool form,.noprint,.grid{display:none!important}
+ body{background:#fff;color:#000}.tool{background:none;border:0;padding:0}.out,.out td,.out th,h2,.lead{color:#000!important}.out table{min-width:0}.out th,.out td{border-color:#999}}
+
 footer{margin-top:var(--sy);padding:40px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:13px;line-height:1.6}
 
 /* reveal: sections and cards rise in as they scroll into view (CSS only, no script) */
