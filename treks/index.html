@@ -5,27 +5,45 @@
 <meta name="description" content="Every trek in India on one map: 59 treks in 3D with itineraries, costs, permits and best months, all sourced. Pick a month, a region or a kind of trek.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link media="print" onload="this.media='all'" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=optional">
+<link rel="stylesheet" href="trek-card.css">
 <link rel="preload" as="image" href="img/envato/ridge.webp">
 <script src="veil.js"></script>
 <style>
   /* tokens (after vita-travel): deep teal-black, one orange accent, hairlines, square photos, pill buttons */
-  :root{--bg:#03342a;--panel:#022c23;--btn:#084a39;--ink:#fff;--mute:rgba(255,255,255,.55);--line:rgba(255,255,255,.1);--accent:#e5fcc9;--pad:clamp(16px,2.8vw,40px)}
+  :root{--bg:#03342a;--panel:#022c23;--btn:#084a39;--ink:#fff;--mute:rgba(255,255,255,.55);--line:rgba(255,255,255,.1);--accent:#e5fcc9;--pad:clamp(16px,2.8vw,40px);--f:'Google Sans Flex',system-ui,sans-serif}   /* type matches the home page */
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.3 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.45 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%}
   .pad{padding-inline:var(--pad)}
   :root{--sy:clamp(72px,9vw,150px)}   /* one vertical rhythm: the breathing room above and below every content section */
   #month,#trust,#all{padding-block:var(--sy)}
-  #trust{padding-bottom:0}   /* #all follows straight on: one gap, not two */
-  h1,h2,h3{font-weight:600;margin:0}
-  h2{font-size:clamp(36px,4.2vw,60px);line-height:1.1;letter-spacing:-.06em}
+  #trust{padding-bottom:0}
+  /* the trek app: six real app screens, in the order a trekker uses them */
+  .tapp{max-width:1440px;margin:0 auto;padding-block:var(--sy)}
+  .tapp .ahd{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:56px}
+  .tapp .k{display:inline-block;padding:6px 14px;border-radius:80px;background:var(--accent);color:var(--bg);font-size:13px;font-weight:600}
+  .tapp h2{margin:18px 0 0;max-width:11em;color:var(--accent)}
+  .tapp .ahd p{max-width:26em;margin:0;color:var(--mute)}
+  /* one row you swipe or arrow through; it runs to the screen edges and fades out there */
+  .tapp .row{display:flex;gap:clamp(18px,2vw,28px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);scrollbar-width:none;margin-inline:calc(-1 * var(--pad));padding:16px var(--pad) 24px;-webkit-mask:linear-gradient(90deg,transparent,#000 var(--pad),#000 calc(100% - var(--pad)),transparent);mask:linear-gradient(90deg,transparent,#000 var(--pad),#000 calc(100% - var(--pad)),transparent)}
+  .tapp .row::-webkit-scrollbar{display:none}
+  .tapp figure{flex:0 0 clamp(210px,19vw,270px);margin:0;scroll-snap-align:start}.tapp figure:nth-child(even){margin-top:40px}
+  .tapp .ph{aspect-ratio:600/1304;padding:6px;border-radius:15% / 7%;background:#0b0f0d;box-shadow:0 0 0 1px rgba(255,255,255,.14),0 24px 50px rgba(0,0,0,.45)}   /* a dark phone frame; the screen sits inside it */
+  .tapp .ph img{width:100%;height:100%;object-fit:cover;border-radius:12.5% / 5.8%;scale:none!important}   /* no photo-zoom here: the whole screen must show */
+  .tapp figcaption{margin-top:22px;font-size:14px;line-height:1.45;color:var(--mute)}
+  .tapp figcaption b{display:block;margin-bottom:4px;color:#fff;font-size:19px;letter-spacing:-.02em}
+  .tapp .n{display:block;margin-bottom:6px;color:var(--accent);font-size:12px;font-weight:600}
+  .tapp .arrows{display:flex;gap:8px;margin-top:22px}
+  @media (max-width:900px){.tapp .ahd{display:block}.tapp .ahd p{margin-top:18px}.tapp figure{flex-basis:62vw;max-width:240px}.tapp figure:nth-child(even){margin-top:0}}
+  h1,h2,h3{font-weight:700;margin:0;letter-spacing:-.035em}
+  h2{font-size:clamp(36px,4.6vw,68px);line-height:1.05;letter-spacing:-.035em}
   .label{display:flex;align-items:center;gap:8px;font-weight:500;font-size:15px;letter-spacing:normal;line-height:1.3}
   .label::before{content:'';width:14px;height:14px;border:1.5px solid var(--mute);border-radius:3px;background:linear-gradient(var(--mute),var(--mute)) center/6px 6px no-repeat}
   .mute{color:var(--mute)}
   .row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:24px;padding-block:0 48px}
-  .row>.label{align-self:start;height:calc(clamp(36px,4.2vw,60px) * 1.1)}   /* centred on the heading's first line, not the whole block */
-  .pill{display:inline-flex;align-items:center;gap:14px;height:44px;padding:0 6px 0 22px;border-radius:80px;background:var(--btn);color:#fff;font:600 14px Inter,sans-serif;letter-spacing:-.03em;border:0;cursor:pointer;transition:background .3s}
+  .row>.label{align-self:start;height:calc(clamp(36px,4.6vw,68px) * 1.05)}   /* centred on the heading's first line, not the whole block */
+  .pill{display:inline-flex;align-items:center;gap:14px;height:44px;padding:0 6px 0 22px;border-radius:80px;background:var(--btn);color:#fff;font:600 14px var(--f);letter-spacing:-.03em;border:0;cursor:pointer;transition:background .3s}
   .pill:hover{background:#0b5c45}
   .pill i{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#fff;color:var(--bg);font-style:normal}
   .pill.light{background:#fff;color:var(--bg)}.pill.light i{background:var(--bg);color:#fff}.pill.light:hover{background:#e8eef0}
@@ -48,9 +66,9 @@
   .top .logo .lg{display:none}.top:not(.solid) .logo .lg{display:block}.top:not(.solid) .logo .lc{display:none}
   .top .logo{display:flex;align-items:center;padding:0 var(--pad);border-right:1px solid var(--line)}
   .top .logo img{height:24px;width:auto}
-  .top nav{display:flex;position:static;inset:auto;width:auto;height:auto;overflow:visible;border:0;background:none;color:inherit;margin:0 0 0 auto;align-items:center;gap:26px;padding:0 32px 0 0;font:600 14px Inter,sans-serif;letter-spacing:-.03em}
+  .top nav{display:flex;position:static;inset:auto;width:auto;height:auto;overflow:visible;border:0;background:none;color:inherit;margin:0 0 0 auto;align-items:center;gap:26px;padding:0 32px 0 0;font:600 14px var(--f);letter-spacing:-.03em}
   .top nav a{transition:color .3s}.top nav a:hover,.top nav a.on{color:var(--accent)}
-  .top .explore,.top .menu{display:flex;align-items:center;padding:0 var(--pad);border:0;border-left:1px solid var(--line);background:none;color:inherit;font:600 14px Inter,sans-serif;cursor:pointer}
+  .top .explore,.top .menu{display:flex;align-items:center;padding:0 var(--pad);border:0;border-left:1px solid var(--line);background:none;color:inherit;font:600 14px var(--f);cursor:pointer}
   .top .menu{display:none}
 
   /* 1 hero */
@@ -60,7 +78,7 @@
   .intro .bgw::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 88%,var(--bg))}   /* last strip melts into the dark section below */
   .intro .t{position:relative;z-index:1}
   .intro .t{width:100%;max-width:900px}
-  .intro h1{font-size:clamp(52px,8vw,124px);line-height:.95;letter-spacing:-.06em;max-width:8.2em;margin:0 auto;text-wrap:balance;color:var(--bg)}
+  .intro h1{font-size:clamp(52px,8vw,124px);line-height:.95;letter-spacing:-.035em;max-width:8.2em;margin:0 auto;text-wrap:balance;color:var(--bg)}
   .intro p{font-weight:500;font-size:clamp(17px,1.6vw,21px);line-height:1.35;letter-spacing:-.03em;margin:16px auto 28px;max-width:24em;color:rgba(3,52,42,.72)}
   .offline{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;padding:6px 14px;border-radius:80px;background:#fff;border:1px solid #dbe8dc;color:#0b5c45;font-size:13px;font-weight:500;transition:border-color .3s}
   .offline .sm{display:none}
@@ -74,10 +92,10 @@
   .fld+.fld::before{content:'';position:absolute;left:0;top:24%;bottom:24%;width:1px;background:#dfe5e7;transition:opacity .3s}
   .find.on .fld::before{opacity:0}
   .fld b{display:block;font-size:12px;font-weight:600;letter-spacing:-.02em}
-  .fld span,.fld input{display:block;width:100%;border:0;background:none;padding:2px 0 0;font:500 14px Inter,sans-serif;color:#51606a;outline:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fld span,.fld input{display:block;width:100%;border:0;background:none;padding:2px 0 0;font:500 14px var(--f);color:#51606a;outline:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .fld input::placeholder{color:#8a979e}
   .fld .set{color:var(--bg);font-weight:600}
-  .go{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:52px;min-width:52px;padding:0 16px;border-radius:80px;border:0;background:var(--accent);color:var(--bg);font:600 15px Inter,sans-serif;cursor:pointer;transition:padding .4s cubic-bezier(.2,.8,.2,1),transform .2s}
+  .go{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:52px;min-width:52px;padding:0 16px;border-radius:80px;border:0;background:var(--accent);color:var(--bg);font:600 15px var(--f);cursor:pointer;transition:padding .4s cubic-bezier(.2,.8,.2,1),transform .2s}
   .go span{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .4s cubic-bezier(.2,.8,.2,1),margin .4s}
   .find.on .go{padding:0 22px}.find.on .go span{max-width:80px;margin-left:8px}
   .go:hover{transform:scale(1.04)}.go svg{width:20px;height:20px;flex:none}
@@ -105,7 +123,7 @@
   .mo b{display:block;font-size:16px;font-weight:600}.mo small{display:block;font-size:11.5px;color:#6b7880;margin-top:3px}
   .mo.sel{background:var(--bg);border-color:var(--bg);color:#fff}.mo.sel small{color:rgba(255,255,255,.7)}
   .mo .now{position:absolute;top:-8px;left:50%;translate:-50% 0;padding:1px 7px;border-radius:80px;background:var(--accent);color:var(--bg);font-size:10px;font-weight:600}
-  .any{display:inline-flex;margin:0 0 12px;padding:7px 14px;border-radius:80px;border:1px solid #e3e8ea;background:#fff;font:600 13px Inter,sans-serif;color:var(--bg);cursor:pointer}
+  .any{display:inline-flex;margin:0 0 12px;padding:7px 14px;border-radius:80px;border:1px solid #e3e8ea;background:#fff;font:600 13px var(--f);color:var(--bg);cursor:pointer}
   .any.sel{background:var(--bg);color:#fff;border-color:var(--bg)}
   .intro .cap{left:var(--pad);bottom:22px;z-index:1}
   @keyframes settle{to{transform:none}}   /* a slight push-in that settles on the full frame */
@@ -151,7 +169,7 @@
   .fhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;padding-block:0 48px}
   .fhead p{max-width:28em;margin:0;color:var(--mute);font-size:15px;line-height:1.45}
   .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
-  .chips button{height:32px;padding:0 13px;border-radius:80px;border:1px solid var(--line);background:none;color:var(--mute);font:600 13px Inter,sans-serif;cursor:pointer;transition:all .3s}
+  .chips button{height:32px;padding:0 13px;border-radius:80px;border:1px solid var(--line);background:none;color:var(--mute);font:600 13px var(--f);cursor:pointer;transition:all .3s}
   .chips button:hover{color:#fff;border-color:rgba(255,255,255,.35)}
   .chips button[aria-pressed="true"]{background:#fff;color:var(--bg);border-color:#fff}
   .feat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;padding:8px var(--pad) 0}   /* tall photo cards: name, one stat line, a glass button */
@@ -161,7 +179,7 @@
   .card .ph .cap{top:14px;bottom:auto;left:16px}
   .card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(3,52,42,.95),rgba(3,52,42,.6) 30%,transparent 60%)}
   .card .ct{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:18px}
-  .card h3{font-size:clamp(20px,1.7vw,24px);line-height:1.1;letter-spacing:-.06em}
+  .card h3{font-size:clamp(20px,1.7vw,24px);line-height:1.1;letter-spacing:-.035em}
   .card .st{margin:6px 0 0;font-size:13px;font-weight:500;color:rgba(255,255,255,.8)}
   .card .go2{margin-top:16px;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:12px;font-size:14px;font-weight:600;background:rgba(229,252,201,.12);border:1px solid rgba(229,252,201,.22);backdrop-filter:blur(10px);transition:background .3s,border-color .3s}
   .card:hover .go2{background:rgba(229,252,201,.24);border-color:rgba(229,252,201,.4)}
@@ -201,7 +219,7 @@
   .gfall{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:grayscale(.85) brightness(.6) contrast(1.15)}   /* shown only if WebGL can't start */
   .mapview.zoomed{touch-action:none}.mapview.zoomed .dot b{opacity:1}   /* close in, every dot shows its name */
   .mctl{position:absolute;z-index:3;right:calc(var(--pad) + 44px);bottom:40px;display:flex;flex-direction:column;gap:8px}
-  .mctl button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(229,252,201,.25);background:rgba(3,52,42,.8);backdrop-filter:blur(8px);color:var(--accent);font:500 20px/1 Inter,sans-serif;cursor:pointer;transition:background .3s}
+  .mctl button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(229,252,201,.25);background:rgba(3,52,42,.8);backdrop-filter:blur(8px);color:var(--accent);font:500 20px/1 var(--f);cursor:pointer;transition:background .3s}
   .mctl button:hover{background:#0b5c45}
   .mhint{position:absolute;z-index:3;left:50%;bottom:40px;translate:-50% 0;font-size:12px;color:var(--mute);pointer-events:none}
   #map:fullscreen .mapview{height:100vh}#map:fullscreen .mapview{touch-action:none}
@@ -228,7 +246,7 @@
 
   /* 9 all treks: a hairline index */
   .tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:28px 0}
-  .tools input{flex:1 1 280px;height:44px;padding:0 20px;border-radius:80px;border:1px solid var(--line);background:var(--panel);color:#fff;font:15px Inter,sans-serif}
+  .tools input{flex:1 1 280px;height:44px;padding:0 20px;border-radius:80px;border:1px solid var(--line);background:var(--panel);color:#fff;font:15px var(--f)}
   .tools input:focus{outline:none;border-color:rgba(255,255,255,.4)}
   .idx a{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,2fr) 90px 70px minmax(0,2fr);gap:16px;align-items:baseline;padding:16px 0;border-top:1px solid var(--line);transition:color .3s}
   .idx a:last-child{border-bottom:1px solid var(--line)}
@@ -242,7 +260,7 @@
   .banner .t{position:absolute;inset:auto 0 0 0;z-index:1;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px;padding:28px}
   .banner .ph{position:absolute;inset:0}.banner .ph::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(3,52,42,.75))}
   footer.wrap{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:24px;padding:var(--sy) var(--pad) 32px;font-size:14px}
-  footer .big a{display:block;font-weight:600;font-size:clamp(28px,3vw,42px);letter-spacing:-.06em;line-height:1.15}
+  footer .big a{display:block;font-weight:600;font-size:clamp(28px,3vw,42px);letter-spacing:-.035em;line-height:1.15}
   footer .big a::before{content:'+';color:var(--mute);font-weight:400}
   footer .big a:hover{color:var(--accent)}
   footer .fine{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px;line-height:1.5}
@@ -266,7 +284,7 @@
   .trail .cp.on{fill:var(--accent);stroke:var(--accent)}
   .trail .cp:hover{stroke:#fff}
   #trH{fill:var(--accent);filter:drop-shadow(0 0 5px rgba(229,252,201,.85))}
-  .ttag{position:absolute;right:54px;top:0;transform:translateY(-50%);padding:4px 10px;border-radius:8px;background:#03342a;border:1px solid rgba(229,252,201,.2);color:var(--accent);font:600 12px Inter,sans-serif;white-space:nowrap;opacity:0;transition:opacity .3s,top .2s;pointer-events:none}
+  .ttag{position:absolute;right:54px;top:0;transform:translateY(-50%);padding:4px 10px;border-radius:8px;background:#03342a;border:1px solid rgba(229,252,201,.2);color:var(--accent);font:600 12px var(--f);white-space:nowrap;opacity:0;transition:opacity .3s,top .2s;pointer-events:none}
   .trail:hover .ttag{opacity:1}
   @media (max-width:1100px){.trail{display:none}}   /* below this there is no room for it beside the content */
   @media (min-width:1101px){.pad,#atlas,.apan,.fhd,footer.wrap{padding-right:72px}.banner{margin-right:72px}}   /* a gutter the trail sits in, so it never covers text */
@@ -300,14 +318,14 @@
 </style>
 <script src="/header.js" defer></script><style>.top{display:none!important}</style>   <!-- the global header (header.js) is the one menu; this page's own bar stays in the DOM for its scripts -->
 <link rel="icon" href="/favicon.ico?v=d7a48e7d" sizes="32x32"><link rel="icon" href="/favicon.svg?v=d7a48e7d" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=d7a48e7d"><meta property="og:type" content="website"><meta property="og:site_name" content="Treqz"><meta property="og:url" content="https://treqz.com/treks/"><meta property="og:title" content="Treks in India: Maps, Itineraries and Best Months | Treqz"><meta property="og:description" content="Every trek in India on one map: 59 treks in 3D with itineraries, costs, permits and best months, all sourced. Pick a month, a region or a kind of trek."><meta property="og:image" content="https://treqz.com/img/photo/hero/goechala.webp"><meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json" id="ld">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Treqz", "item": "https://treqz.com/"}, {"@type": "ListItem", "position": 2, "name": "All treks", "item": "https://treqz.com/treks/"}]}, {"@type": "ItemList", "name": "Treks in India", "numberOfItems": 59, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Kedarkantha Trek", "url": "https://treqz.com/kedarkantha/"}, {"@type": "ListItem", "position": 2, "name": "Brahmatal Trek", "url": "https://treqz.com/brahmatal/"}, {"@type": "ListItem", "position": 3, "name": "Dayara Bugyal Trek", "url": "https://treqz.com/dayara/"}, {"@type": "ListItem", "position": 4, "name": "Har Ki Dun Trek", "url": "https://treqz.com/harkidun/"}, {"@type": "ListItem", "position": 5, "name": "Sandakphu Trek", "url": "https://treqz.com/sandakphu/"}, {"@type": "ListItem", "position": 6, "name": "Nag Tibba Trek", "url": "https://treqz.com/nagtibba/"}, {"@type": "ListItem", "position": 7, "name": "Triund Trek", "url": "https://treqz.com/triund/"}, {"@type": "ListItem", "position": 8, "name": "Chopta Chandrashila Trek", "url": "https://treqz.com/chopta/"}, {"@type": "ListItem", "position": 9, "name": "Kuari Pass Trek", "url": "https://treqz.com/kuaripass/"}, {"@type": "ListItem", "position": 10, "name": "Valley of Flowers Trek", "url": "https://treqz.com/valleyofflowers/"}, {"@type": "ListItem", "position": 11, "name": "Hampta Pass Trek", "url": "https://treqz.com/hamptapass/"}, {"@type": "ListItem", "position": 12, "name": "Kashmir Great Lakes Trek", "url": "https://treqz.com/kashmirgreatlakes/"}, {"@type": "ListItem", "position": 13, "name": "Goechala Trek", "url": "https://treqz.com/goechala/"}, {"@type": "ListItem", "position": 14, "name": "Roopkund Trek", "url": "https://treqz.com/roopkund/"}, {"@type": "ListItem", "position": 15, "name": "Pangarchulla Trek", "url": "https://treqz.com/pangarchulla/"}, {"@type": "ListItem", "position": 16, "name": "Ali–Bedni Bugyal Trek", "url": "https://treqz.com/alibedni/"}, {"@type": "ListItem", "position": 17, "name": "Bhrigu Lake Trek", "url": "https://treqz.com/bhrigu/"}, {"@type": "ListItem", "position": 18, "name": "Beas Kund Trek", "url": "https://treqz.com/beaskund/"}, {"@type": "ListItem", "position": 19, "name": "Tarsar Marsar Trek", "url": "https://treqz.com/tarsarmarsar/"}, {"@type": "ListItem", "position": 20, "name": "Markha Valley Trek", "url": "https://treqz.com/markha/"}, {"@type": "ListItem", "position": 21, "name": "Chadar Trek", "url": "https://treqz.com/chadar/"}, {"@type": "ListItem", "position": 22, "name": "Pin Parvati Pass Trek", "url": "https://treqz.com/pinparvati/"}, {"@type": "ListItem", "position": 23, "name": "Rupin Pass Trek", "url": "https://treqz.com/rupin/"}, {"@type": "ListItem", "position": 24, "name": "Buran Ghati Trek", "url": "https://treqz.com/buranghati/"}, {"@type": "ListItem", "position": 25, "name": "Bali Pass Trek", "url": "https://treqz.com/balipass/"}, {"@type": "ListItem", "position": 26, "name": "Phulara Ridge Trek", "url": "https://treqz.com/phulara/"}, {"@type": "ListItem", "position": 27, "name": "Kedartal Trek", "url": "https://treqz.com/kedartal/"}, {"@type": "ListItem", "position": 28, "name": "Gaumukh Tapovan Trek", "url": "https://treqz.com/gaumukh/"}, {"@type": "ListItem", "position": 29, "name": "Pindari Glacier Trek", "url": "https://treqz.com/pindari/"}, {"@type": "ListItem", "position": 30, "name": "Kafni Glacier Trek", "url": "https://treqz.com/kafni/"}, {"@type": "ListItem", "position": 31, "name": "Panchachuli Base Trek", "url": "https://treqz.com/panchachuli/"}, {"@type": "ListItem", "position": 32, "name": "Kareri Lake Trek", "url": "https://treqz.com/kareri/"}, {"@type": "ListItem", "position": 33, "name": "Prashar Lake Trek", "url": "https://treqz.com/prashar/"}, {"@type": "ListItem", "position": 34, "name": "Sar Pass Trek", "url": "https://treqz.com/sarpass/"}, {"@type": "ListItem", "position": 35, "name": "Dzongri Trek", "url": "https://treqz.com/dzongri/"}, {"@type": "ListItem", "position": 36, "name": "Kudremukh Trek", "url": "https://treqz.com/kudremukh/"}, {"@type": "ListItem", "position": 37, "name": "Kumara Parvatha Trek", "url": "https://treqz.com/kumaraparvatha/"}, {"@type": "ListItem", "position": 38, "name": "Chembra Trek", "url": "https://treqz.com/chembra/"}, {"@type": "ListItem", "position": 39, "name": "Meesapulimala Trek", "url": "https://treqz.com/meesapulimala/"}, {"@type": "ListItem", "position": 40, "name": "Kalsubai Trek", "url": "https://treqz.com/kalsubai/"}, {"@type": "ListItem", "position": 41, "name": "Harishchandragad Trek", "url": "https://treqz.com/harishchandragad/"}, {"@type": "ListItem", "position": 42, "name": "Rajmachi Trek", "url": "https://treqz.com/rajmachi/"}, {"@type": "ListItem", "position": 43, "name": "Sandhan Valley Trek", "url": "https://treqz.com/sandhanvalley/"}, {"@type": "ListItem", "position": 44, "name": "Dzükou Valley Trek", "url": "https://treqz.com/dzukou/"}, {"@type": "ListItem", "position": 45, "name": "Nongriat root bridges Trek", "url": "https://treqz.com/nongriat/"}, {"@type": "ListItem", "position": 46, "name": "Bailey Trail (Tawang) Trek", "url": "https://treqz.com/baileytrail/"}, {"@type": "ListItem", "position": 47, "name": "Dholkal (Bailadila) Trek", "url": "https://treqz.com/dholkal/"}, {"@type": "ListItem", "position": 48, "name": "Rajgad to Torna Trek", "url": "https://treqz.com/rajgadtorna/"}, {"@type": "ListItem", "position": 49, "name": "Tadiandamol Trek", "url": "https://treqz.com/tadiandamol/"}, {"@type": "ListItem", "position": 50, "name": "David Scott Trail Trek", "url": "https://treqz.com/davidscott/"}, {"@type": "ListItem", "position": 51, "name": "Agasthyarkoodam Trek", "url": "https://treqz.com/agasthyarkoodam/"}, {"@type": "ListItem", "position": 52, "name": "Madmaheshwar Trek", "url": "https://treqz.com/madmaheshwar/"}, {"@type": "ListItem", "position": 53, "name": "Kolahoi Glacier Trek", "url": "https://treqz.com/kolahoi/"}, {"@type": "ListItem", "position": 54, "name": "Dodital Trek", "url": "https://treqz.com/dodital/"}, {"@type": "ListItem", "position": 55, "name": "Satopanth Tal Trek", "url": "https://treqz.com/satopanth/"}, {"@type": "ListItem", "position": 56, "name": "Kheerganga Trek", "url": "https://treqz.com/kheerganga/"}, {"@type": "ListItem", "position": 57, "name": "Rumtse to Tso Moriri Trek", "url": "https://treqz.com/tsomoriri/"}, {"@type": "ListItem", "position": 58, "name": "Green Lake Trek", "url": "https://treqz.com/greenlake/"}, {"@type": "ListItem", "position": 59, "name": "Indrahar Pass Trek", "url": "https://treqz.com/indrahar/"}]}]}</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}addEventListener('load',()=>setTimeout(()=>document.head.append(Object.assign(document.createElement('script'),{src:'https://www.googletagmanager.com/gtag/js?id=G-GDJGTQJ4XM'}))));gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config','G-GDJGTQJ4XM');</script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "046eb4d3531d4d408edc25291cf3fca8"}'></script>
-<script type="application/ld+json" id="ld">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Treqz", "item": "https://treqz.com/"}, {"@type": "ListItem", "position": 2, "name": "All treks", "item": "https://treqz.com/treks/"}]}, {"@type": "ItemList", "name": "Treks in India", "numberOfItems": 59, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Kedarkantha Trek", "url": "https://treqz.com/kedarkantha/"}, {"@type": "ListItem", "position": 2, "name": "Brahmatal Trek", "url": "https://treqz.com/brahmatal/"}, {"@type": "ListItem", "position": 3, "name": "Dayara Bugyal Trek", "url": "https://treqz.com/dayara/"}, {"@type": "ListItem", "position": 4, "name": "Har Ki Dun Trek", "url": "https://treqz.com/harkidun/"}, {"@type": "ListItem", "position": 5, "name": "Sandakphu Trek", "url": "https://treqz.com/sandakphu/"}, {"@type": "ListItem", "position": 6, "name": "Nag Tibba Trek", "url": "https://treqz.com/nagtibba/"}, {"@type": "ListItem", "position": 7, "name": "Triund Trek", "url": "https://treqz.com/triund/"}, {"@type": "ListItem", "position": 8, "name": "Chopta Chandrashila Trek", "url": "https://treqz.com/chopta/"}, {"@type": "ListItem", "position": 9, "name": "Kuari Pass Trek", "url": "https://treqz.com/kuaripass/"}, {"@type": "ListItem", "position": 10, "name": "Valley of Flowers Trek", "url": "https://treqz.com/valleyofflowers/"}, {"@type": "ListItem", "position": 11, "name": "Hampta Pass Trek", "url": "https://treqz.com/hamptapass/"}, {"@type": "ListItem", "position": 12, "name": "Kashmir Great Lakes Trek", "url": "https://treqz.com/kashmirgreatlakes/"}, {"@type": "ListItem", "position": 13, "name": "Goechala Trek", "url": "https://treqz.com/goechala/"}, {"@type": "ListItem", "position": 14, "name": "Roopkund Trek", "url": "https://treqz.com/roopkund/"}, {"@type": "ListItem", "position": 15, "name": "Pangarchulla Trek", "url": "https://treqz.com/pangarchulla/"}, {"@type": "ListItem", "position": 16, "name": "Ali–Bedni Bugyal Trek", "url": "https://treqz.com/alibedni/"}, {"@type": "ListItem", "position": 17, "name": "Bhrigu Lake Trek", "url": "https://treqz.com/bhrigu/"}, {"@type": "ListItem", "position": 18, "name": "Beas Kund Trek", "url": "https://treqz.com/beaskund/"}, {"@type": "ListItem", "position": 19, "name": "Tarsar Marsar Trek", "url": "https://treqz.com/tarsarmarsar/"}, {"@type": "ListItem", "position": 20, "name": "Markha Valley Trek", "url": "https://treqz.com/markha/"}, {"@type": "ListItem", "position": 21, "name": "Chadar Trek", "url": "https://treqz.com/chadar/"}, {"@type": "ListItem", "position": 22, "name": "Pin Parvati Pass Trek", "url": "https://treqz.com/pinparvati/"}, {"@type": "ListItem", "position": 23, "name": "Rupin Pass Trek", "url": "https://treqz.com/rupin/"}, {"@type": "ListItem", "position": 24, "name": "Buran Ghati Trek", "url": "https://treqz.com/buranghati/"}, {"@type": "ListItem", "position": 25, "name": "Bali Pass Trek", "url": "https://treqz.com/balipass/"}, {"@type": "ListItem", "position": 26, "name": "Phulara Ridge Trek", "url": "https://treqz.com/phulara/"}, {"@type": "ListItem", "position": 27, "name": "Kedartal Trek", "url": "https://treqz.com/kedartal/"}, {"@type": "ListItem", "position": 28, "name": "Gaumukh Tapovan Trek", "url": "https://treqz.com/gaumukh/"}, {"@type": "ListItem", "position": 29, "name": "Pindari Glacier Trek", "url": "https://treqz.com/pindari/"}, {"@type": "ListItem", "position": 30, "name": "Kafni Glacier Trek", "url": "https://treqz.com/kafni/"}, {"@type": "ListItem", "position": 31, "name": "Panchachuli Base Trek", "url": "https://treqz.com/panchachuli/"}, {"@type": "ListItem", "position": 32, "name": "Kareri Lake Trek", "url": "https://treqz.com/kareri/"}, {"@type": "ListItem", "position": 33, "name": "Prashar Lake Trek", "url": "https://treqz.com/prashar/"}, {"@type": "ListItem", "position": 34, "name": "Sar Pass Trek", "url": "https://treqz.com/sarpass/"}, {"@type": "ListItem", "position": 35, "name": "Dzongri Trek", "url": "https://treqz.com/dzongri/"}, {"@type": "ListItem", "position": 36, "name": "Kudremukh Trek", "url": "https://treqz.com/kudremukh/"}, {"@type": "ListItem", "position": 37, "name": "Kumara Parvatha Trek", "url": "https://treqz.com/kumaraparvatha/"}, {"@type": "ListItem", "position": 38, "name": "Chembra Trek", "url": "https://treqz.com/chembra/"}, {"@type": "ListItem", "position": 39, "name": "Meesapulimala Trek", "url": "https://treqz.com/meesapulimala/"}, {"@type": "ListItem", "position": 40, "name": "Kalsubai Trek", "url": "https://treqz.com/kalsubai/"}, {"@type": "ListItem", "position": 41, "name": "Harishchandragad Trek", "url": "https://treqz.com/harishchandragad/"}, {"@type": "ListItem", "position": 42, "name": "Rajmachi Trek", "url": "https://treqz.com/rajmachi/"}, {"@type": "ListItem", "position": 43, "name": "Sandhan Valley Trek", "url": "https://treqz.com/sandhanvalley/"}, {"@type": "ListItem", "position": 44, "name": "Dzükou Valley Trek", "url": "https://treqz.com/dzukou/"}, {"@type": "ListItem", "position": 45, "name": "Nongriat root bridges Trek", "url": "https://treqz.com/nongriat/"}, {"@type": "ListItem", "position": 46, "name": "Bailey Trail (Tawang) Trek", "url": "https://treqz.com/baileytrail/"}, {"@type": "ListItem", "position": 47, "name": "Dholkal (Bailadila) Trek", "url": "https://treqz.com/dholkal/"}, {"@type": "ListItem", "position": 48, "name": "Rajgad to Torna Trek", "url": "https://treqz.com/rajgadtorna/"}, {"@type": "ListItem", "position": 49, "name": "Tadiandamol Trek", "url": "https://treqz.com/tadiandamol/"}, {"@type": "ListItem", "position": 50, "name": "David Scott Trail Trek", "url": "https://treqz.com/davidscott/"}, {"@type": "ListItem", "position": 51, "name": "Agasthyarkoodam Trek", "url": "https://treqz.com/agasthyarkoodam/"}, {"@type": "ListItem", "position": 52, "name": "Madmaheshwar Trek", "url": "https://treqz.com/madmaheshwar/"}, {"@type": "ListItem", "position": 53, "name": "Kolahoi Glacier Trek", "url": "https://treqz.com/kolahoi/"}, {"@type": "ListItem", "position": 54, "name": "Dodital Trek", "url": "https://treqz.com/dodital/"}, {"@type": "ListItem", "position": 55, "name": "Satopanth Tal Trek", "url": "https://treqz.com/satopanth/"}, {"@type": "ListItem", "position": 56, "name": "Kheerganga Trek", "url": "https://treqz.com/kheerganga/"}, {"@type": "ListItem", "position": 57, "name": "Rumtse to Tso Moriri Trek", "url": "https://treqz.com/tsomoriri/"}, {"@type": "ListItem", "position": 58, "name": "Green Lake Trek", "url": "https://treqz.com/greenlake/"}, {"@type": "ListItem", "position": 59, "name": "Indrahar Pass Trek", "url": "https://treqz.com/indrahar/"}]}]}</script>
 </head><body data-hd="light">
 
 <header class="top" id="top">
   <a class="logo" href="/"><img class="lc" src="img/logo-cream.svg" alt="Treqz" width="90" height="24"><img class="lg" src="img/logo-green.svg" alt="" width="90" height="24"></a>
-  <nav id="nav" popover aria-label="Sections"><a href="treks/#month">This month</a><a href="treks/#featured">Categories</a><a href="treks/#map">Regions</a><a href="blog/">Blog</a><a class="keep" href="treks/#all" id="goSearch">Search</a></nav>
+  <nav id="nav" popover aria-label="Sections"><a href="treks/#month">This month</a><a href="treks/#map">Regions</a><a href="blog/">Blog</a><a class="keep" href="treks/#all" id="goSearch">Search</a></nav>
   <button class="menu" type="button" popovertarget="nav">Menu</button>
   <a class="explore" href="treks-in-october/" id="exploreLink">Explore</a>
 </header>
@@ -331,9 +349,22 @@
   <span class="cap">Snowy mountain ridge · Video: Envato</span>
 </section>
 
+<section class="tapp pad" id="app" aria-label="The Treqz app">
+  <div class="ahd"><div><span class="k">The Treqz app</span><h2 class="split">Your whole trek, in your pocket.</h2></div>
+    <p class="fade">Plan at home, fly the route in 3D, save it, and follow it on the trail with no signal. Free on Android first, then iPhone.</p><div class="arrows"><button type="button" data-d="-1" aria-label="Previous screens">←</button><button type="button" data-d="1" aria-label="More screens">→</button></div></div>
+  <div class="row">
+    <figure class="fade" style="--dl:0.00s"><div class="ph"><img src="img/treqz/tq-app-plan.webp" alt="Treqz app: Hampta Pass trek page" width="600" height="1304" loading="lazy"></div><figcaption><span class="n">01 · Plan</span><b>Every trek, all the facts</b><span>Days, distance, best months and safety, with sources.</span></figcaption></figure>
+    <figure class="fade" style="--dl:0.06s"><div class="ph"><img src="img/treqz/tq-app-fly.webp" alt="Treqz app: 3D fly-through of day 1" width="600" height="1304" loading="lazy"></div><figcaption><span class="n">02 · Preview</span><b>Fly it in 3D</b><span>Play the route day by day, camp by camp.</span></figcaption></figure>
+    <figure class="fade" style="--dl:0.12s"><div class="ph"><img src="img/treqz/tq-app-compare.webp" alt="Treqz app: Hampta Pass compared with Bhrigu Lake" width="600" height="1304" loading="lazy"></div><figcaption><span class="n">03 · Choose</span><b>Compare two treks</b><span>Days, climb, effort and season, side by side.</span></figcaption></figure>
+    <figure class="fade" style="--dl:0.18s"><div class="ph"><img src="img/treqz/tq-app-offline-list.webp" alt="Treqz app: Saved offline maps" width="600" height="1304" loading="lazy"></div><figcaption><span class="n">04 · Save</span><b>Offline maps</b><span>A few MB per trek. Works with no signal.</span></figcaption></figure>
+    <figure class="fade" style="--dl:0.24s"><div class="ph"><img src="img/treqz/tq-app-map.webp" alt="Treqz app: Satellite map with the route to Bari" width="600" height="1304" loading="lazy"></div><figcaption><span class="n">05 · Walk</span><b>Navigate on the trail</b><span>GPS on the 3D map, no mobile data.</span></figcaption></figure>
+    <figure class="fade" style="--dl:0.30s"><div class="ph"><img src="img/treqz/tq-app-stamps.webp" alt="Treqz app: Passport page of summit stamps" width="600" height="1304" loading="lazy"></div><figcaption><span class="n">06 · Keep</span><b>Summit stamps</b><span>One stamp per summit, confirmed by GPS.</span></figcaption></figure>
+  </div>
+</section>
+
 <div class="stack"><div>
 <section class="feature" id="featured">
-  <a class="typer" id="typer" href="treks/#all">Find your trek</a>
+  <a class="typer" id="typer" href="treks/#atlas">Find your trek</a>
   <div class="fhd"><h2 class="label">Categories</h2><div class="arrows"><button type="button" data-d="-1" aria-label="Previous categories">←</button><button type="button" data-d="1" aria-label="More categories">→</button></div></div>
   <div class="strip" id="strip"></div>
 </section>
@@ -385,7 +416,7 @@
   </div>
 </section>
 
-<section class="pad" id="all">
+<section class="pad" id="all" hidden>   <!-- shown only with search results -->
   <div class="row" style="padding-left:0;padding-right:0"><div class="label">Index</div><h2 class="split" id="iTitle">All treks</h2></div>
   <div class="tools"><input id="q" type="search" placeholder="Search a trek, district or peak" aria-label="Search treks" autocomplete="off"><div class="chips" id="chips" style="margin:0"></div></div>
   <p class="mute" id="iNote" style="margin:-8px 0 18px;font-size:14px"></p>
@@ -485,9 +516,10 @@ function featuredSetup() {
   const H = [380, 320, 420, 340, 400, 360];
   $('#strip').innerHTML = KINDS.map(([n, slug, img, f, d], i) => { const c = T.filter(f).length;
     return `<a class="tc fade" style="--dl:${i * .08}s" href="${slug}/">${ph(img, '', `--h:${H[i]}px`)}<b>${n}</b><small>${c ? `${c} treks · ` : ''}${d}</small></a>`; }).join('');
+  $('#app .arrows').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) $('#app .row').scrollBy({ left: +b.dataset.d * 600, behavior: still ? 'auto' : 'smooth' }); });
   $('#featured .arrows').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) $('#strip').scrollBy({ left: +b.dataset.d * 640, behavior: still ? 'auto' : 'smooth' }); });
   /* the headline types "Find your trek", then each category, linking to its guide */
-  const lines = [['Find your trek', '#all'], ...KINDS.slice(0, 5).filter(([n]) => n !== 'Monsoon & green' || [6, 7, 8, 9].includes(new Date().getMonth() + 1)).map(([n, slug]) => [`${n} treks`, slug + '/'])];
+  const lines = [['Find your trek', '#atlas'], ...KINDS.slice(0, 5).filter(([n]) => n !== 'Monsoon & green' || [6, 7, 8, 9].includes(new Date().getMonth() + 1)).map(([n, slug]) => [`${n} treks`, slug + '/'])];
   const el = $('#typer');
   if (still) return;
   let li = 0, ci = lines[0][0].length, del = false;
@@ -519,18 +551,30 @@ function statsSetup() {
   document.querySelectorAll('.srow').forEach((c) => io2.observe(c));
 }
 
+/* the trek card (trek-card.css): the JS twin of card() in tools/month_pages.py, keep the two in step */
+const DIFF = ['', 'Easy', 'Easy–moderate', 'Moderate', 'Moderate–hard', 'Hard'];
+const spanM = (ms) => ms.filter((m) => !ms.includes((m + 10) % 12 + 1)).sort((a, b) => ms.indexOf(a) - ms.indexOf(b))
+  .map((a) => { let b = a; while (ms.includes(b % 12 + 1)) b = b % 12 + 1; return MON[a - 1] + (a === b ? '' : '–' + MON[b - 1]); }).join(', ');
+const HIKER = '<svg viewBox="0 0 24 24"><circle cx="13" cy="4" r="2"/><path d="M11 21l2-6-2.5-2.5L12 8l3 3h3M10 12.5L7 14l-1 3M16 9l2 12"/></svg>';
+const tcard = (t, i) => {
+  const chip = [t.diff ? DIFF[t.diff] : 'Not graded', t.days && `${t.days} day${t.days > 1 ? 's' : ''}`].filter(Boolean).join(' · ');
+  const line = [/^\d/.test(t.altText) ? `▲ ${t.altText}` : t.altText, t.best.length && `Best ${spanM(t.best)}`].filter(Boolean).join(' · ');
+  const img = t.photo ? `<img loading="lazy" src="img/photo/${t.id}.webp" alt="${t.name}">` : `<img loading="lazy" src="img/${t.id}.webp" alt="${t.name} in 3D">`;
+  return `<a class="tk fade" style="--dl:${i % 4 * .1}s" href="${t.id}/">${img}<div class="tk-top"><span class="tk-c">${chip}</span>${t.photo ? `<span class="tk-cr">Photo: ${t.photo.by}, ${t.photo.license}</span>` : ''}</div>`
+    + `<div class="tk-b"><div><span class="tk-i" aria-hidden="true">${HIKER}</span><h3>${t.name}</h3><small>${line}</small></div><span class="tk-a" aria-hidden="true">↗</span></div></a>`;
+};
+console.assert(spanM([12, 1, 2]) === 'Dec–Feb' && spanM([4, 5, 9, 10]) === 'Apr–May, Sep–Oct', 'spanM');
+
 /* featured: treks at their best in the chosen month, easier first */
 function showMonth(m) {
   [...$('#mChips').children].forEach((b, i) => b.setAttribute('aria-pressed', i === m - 1));
   const best = T.filter((t) => t.best.includes(m)).sort((a, b) => (a.diff || 9) - (b.diff || 9) || (a.days || 0) - (b.days || 0));
   const name = FULL[m - 1], slug = `treks-in-${name.toLowerCase()}/`;
   $('#mTitle').textContent = `At their best in ${name}`; split($('#mTitle')); $('#mTitle').classList.add('in');
-  $('#mLead').textContent = `${best.length} treks whose sources call ${name} one of their best months. Photos show the region unless they name the trek.`;
+  $('#mLead').textContent = `${best.length} treks whose sources call ${name} one of their best months.`;
   $('#mAll').innerHTML = `See every ${name} trek <i>→</i>`; $('#mAll').href = slug;
   $('#exploreLink').href = slug; $('#fMonth').href = slug;
-  $('#feat').innerHTML = best.slice(0, 8).map((t, i) => { const k = photoFor(t);
-    return `<a class="card fade" style="--dl:${i % 4 * .1}s" href="${t.id}/">${k ? ph(k) : '<div class="ph noph"></div>'}<div class="ct"><h3>${t.name}</h3>
-      <p class="st">${[t.region, t.altText, t.days && `${t.days} day${t.days > 1 ? 's' : ''}`].filter(Boolean).join(' · ')}</p><span class="go2">Fly the route <i>→</i></span></div></a>`; }).join('');
+  $('#feat').innerHTML = best.slice(0, 8).map((t, i) => tcard(t, i)).join('');
   watch();
 }
 
@@ -622,11 +666,11 @@ function indexSetup() {
   const go = (where, month, kind) => {
     $('#q').value = where; MONTH = month; KIND = kind; REG = ''; [...$('#chips').children].forEach((x, i) => x.setAttribute('aria-pressed', !i));
     if (ORDER.includes(where)) { $('#q').value = ''; REG = where; [...$('#chips').children].forEach((x) => x.setAttribute('aria-pressed', x.textContent === where)); }
-    showIndex(); $('#all').scrollIntoView({ behavior: still ? 'auto' : 'smooth' });
+    showIndex(); $('#all').hidden = false; $('#all').scrollIntoView({ behavior: still ? 'auto' : 'smooth' });
   };
   searchSetup(go);
   $('#nav').addEventListener('click', (e) => { if (e.target.closest('a') && $('#nav').matches(':popover-open')) $('#nav').hidePopover(); });
-  $('#goSearch').addEventListener('click', (e) => { e.preventDefault(); $('#all').scrollIntoView({ behavior: still ? 'auto' : 'smooth' }); setTimeout(() => $('#q').focus({ preventScroll: true }), 600); });
+  $('#goSearch').addEventListener('click', (e) => { e.preventDefault(); $('#all').hidden = false; $('#all').scrollIntoView({ behavior: still ? 'auto' : 'smooth' }); setTimeout(() => $('#q').focus({ preventScroll: true }), 600); });
   showIndex();
 }
 
@@ -693,7 +737,7 @@ function searchSetup(go) {
 /* scroll trail: camp i is reached as section i scrolls into the upper third; between camps the dot moves with the scroll */
 (() => {
   const nav = $('#trail'), p = nav.querySelector('.tb'), d = $('#trD'), h = $('#trH'), g = $('#trC'), tag = $('#trT');
-  const CAMPS = [['Base', ''], ['Categories', '#featured'], ['About', '#about'], ['This month', '#month'], ['Plan', '#plan'], ['Regions', '#map'], ['Why trust it', '#trust'], ['Summit: all treks', '#all']], n = CAMPS.length;
+  const CAMPS = [['Base', ''], ['Categories', '#featured'], ['About', '#about'], ['This month', '#month'], ['Plan', '#plan'], ['Regions', '#map'], ['Why trust it', '#trust'], ['Summit: all treks', '#atlas']], n = CAMPS.length;
   const L = p.getTotalLength(); d.style.strokeDasharray = L;
   g.innerHTML = CAMPS.map(([name], i) => { const q = p.getPointAtLength(L * i / (n - 1)); return `<circle class="cp" cx="${q.x}" cy="${q.y}" r="4" data-i="${i}"><title>${name}</title></circle>`; }).join('');
   const upd = () => {

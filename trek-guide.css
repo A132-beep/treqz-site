@@ -1,0 +1,153 @@
+/* The per-trek guide pages (<id>/guide/), written by tools/trek_guides.py. Same tokens and type as the home page. */
+:root{--bg:#03342a;--deep:#022419;--c:#e5fcc9;--m:rgba(255,255,255,.62);--l:rgba(229,252,201,.14);--pad:clamp(16px,6vw,96px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:140px}
+body{margin:0;background:var(--bg);color:#fff;font:400 17px/1.5 'Google Sans Flex',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+.pad{padding-inline:var(--pad)}
+h1,h2,h3{margin:0;letter-spacing:-.035em;font-weight:700}
+h2{font-size:clamp(36px,4.6vw,64px);line-height:1;color:var(--c);margin-bottom:36px}
+.eyebrow{display:block;margin-bottom:14px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--m)}
+
+/* hero: the trek's own photo, its name large, the five numbers on frosted glass */
+/* hero, split: words and numbers on clean green at left, the trek's photo framed on its own at right */
+.hero{position:relative;display:grid;grid-template-columns:1fr 1.2fr;grid-template-rows:1fr auto;column-gap:clamp(32px,5vw,72px);row-gap:28px;padding:120px var(--pad) clamp(40px,5vw,64px);background:radial-gradient(900px 600px at 0% 100%,#0b5c45,transparent 70%),var(--bg)}
+.hero>img{grid-column:2;grid-row:1/3;width:100%;height:min(640px,72svh);object-fit:cover;border-radius:28px}
+.credit{position:absolute;right:calc(var(--pad) + 18px);bottom:calc(clamp(40px,5vw,64px) + 14px);font-size:11px;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.ht{grid-column:1;grid-row:1;align-self:end}
+.crumb{font-size:14px;color:var(--m)}.crumb a{text-decoration:none}.crumb a:hover{text-decoration:underline}
+.hero h1{margin-top:12px;font-size:clamp(52px,6.4vw,104px);line-height:.9;letter-spacing:-.05em;color:var(--c)}
+.dv{margin:12px 0 0;font-size:clamp(17px,1.5vw,22px);font-weight:300;color:rgba(255,255,255,.8)}
+.glass{grid-column:1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 16px;padding-top:24px;border-top:1px solid var(--l)}
+.glass b{display:block;font-size:clamp(20px,1.9vw,28px);font-weight:600;letter-spacing:-.03em;white-space:nowrap}
+.glass span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--m)}
+.fly{display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border-radius:99px;background:var(--c);color:var(--bg);font-weight:700;text-decoration:none;white-space:nowrap;grid-column:1/-1;justify-self:start;margin-top:6px}
+.fly i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--bg);color:var(--c);font-style:normal;font-size:10px}
+
+/* the section bar: every part of the page one tap away, so nobody has to hunt */
+.jump{position:sticky;top:72px;z-index:5;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:12px var(--pad);background:rgba(3,52,42,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--l)}
+.jump::-webkit-scrollbar{display:none}
+.jump a{flex:none;display:flex;align-items:center;gap:8px;padding:8px 15px 8px 9px;border-radius:99px;font-size:14px;font-weight:600;color:var(--m);text-decoration:none;transition:background .3s,color .3s}
+.jump a:hover,.jump a.on{background:var(--c);color:var(--bg)}
+.jump i{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid currentColor;font-style:normal;font-size:12px}
+
+/* five numbered steps, each opened by the same header: number, title, one line on what is in it */
+.step{padding-block:clamp(56px,7vw,96px);border-top:1px solid var(--l)}
+.sh{display:flex;align-items:flex-start;gap:18px;margin-bottom:clamp(28px,3vw,40px)}
+.no{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--c);color:var(--bg);font-size:22px;font-weight:700}
+.sh h2{margin:0}.sh p{margin:8px 0 0;max-width:40em;color:var(--m)}
+.light .no{background:var(--bg);color:var(--c)}.light .sh p{color:rgba(3,52,42,.7)}
+h3{font-size:22px;letter-spacing:-.02em;margin:0 0 14px}
+.ov{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(32px,6vw,80px);align-items:end}
+.big{margin:0;font-size:clamp(26px,3.1vw,44px);line-height:1.15;letter-spacing:-.03em;font-weight:500}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.acts>a{padding:13px 20px;border-radius:99px;border:1px solid var(--l);font-weight:600;font-size:15px;text-decoration:none}
+.acts>a:first-child{background:var(--c);color:var(--bg);border-color:var(--c)}
+.acts small{flex-basis:100%;margin-top:6px;color:var(--m);font-size:13px}.acts small a{color:var(--c)}
+
+/* elevation: the real profile from the route, camps pinned at their height */
+.elev{margin-top:clamp(40px,5vw,64px)}
+.prof{position:relative}.prof svg{display:block;width:100%;height:clamp(220px,24vw,340px)}
+.prof polyline{fill:none;stroke:var(--c);stroke-width:2;vector-effect:non-scaling-stroke}
+.prof .pins{position:absolute;inset:0;overflow:visible}
+.pins circle{fill:var(--c)}.pins .halo{fill:none;stroke:var(--c);stroke-opacity:.35}
+.pn{fill:#fff;font-size:15px;font-weight:600}.pa{fill:var(--c);font-size:13px}
+
+.rt{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(24px,3vw,44px);align-items:start}   /* the trail map stays put while the stops scroll past it */
+.tmap{position:sticky;top:140px;margin:0;border-radius:24px;overflow:hidden;background:var(--deep);border:1px solid var(--l)}
+.tmap svg{display:block;width:100%;height:calc(100svh - 230px);max-height:720px}
+.tmap image{filter:saturate(.85) brightness(.85)}
+.tmap .all{fill:none;stroke:rgba(255,255,255,.35);stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:4 3}
+.tmap .done{fill:none;stroke:#d7ff5c;filter:drop-shadow(0 0 3px rgba(0,0,0,.6));stroke-linejoin:round;stroke-linecap:round;transition:stroke-dashoffset .9s cubic-bezier(.3,.7,.2,1)}
+.pin circle{fill:var(--bg);stroke:var(--c);stroke-width:1.5;transition:fill .4s}.pin .ring{fill:none;stroke-opacity:0;transition:stroke-opacity .4s}
+.pin text{fill:var(--c);text-anchor:middle;font-weight:700}
+.pin.past circle:not(.ring){fill:#0b5c45}.pin.on circle:not(.ring){fill:var(--c)}.pin.on text{fill:var(--bg)}.pin.on .ring{stroke-opacity:.6;animation:pulse 2s infinite}
+@keyframes pulse{50%{stroke-opacity:.15}}
+.tmap figcaption{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;font-size:12px;color:var(--m)}.tmap figcaption b{color:#fff;font-size:14px;font-weight:600}
+.chs{display:grid;gap:14px}
+.ch{transition:border-color .4s,opacity .4s;opacity:.55}.ch.on{opacity:1;border-color:rgba(229,252,201,.45)}
+.ch{padding:22px 22px 24px;border-radius:22px;background:var(--deep);border:1px solid var(--l)}
+.dn{display:flex;align-items:baseline;gap:10px;margin:0 0 12px;font-size:12px;color:var(--m)}
+.dn b{font-size:44px;line-height:.9;font-weight:300;letter-spacing:-.05em;color:var(--c)}
+.dn .ckm{margin-left:auto;white-space:nowrap}
+.ch h3{margin:0 0 10px;font-size:24px;line-height:1.1;font-weight:600}.ch h3 em{font-style:normal;color:var(--c)}
+.cs{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:0 0 10px}.cs b{font-size:26px;font-weight:600;letter-spacing:-.03em}.cs b small{font-size:14px;margin-left:2px}.cs span{color:var(--m);font-size:13px}
+.ct{margin:0;font-size:14.5px;color:rgba(255,255,255,.8)}
+
+.light{background:var(--c);color:var(--bg)}.light h2{color:var(--bg)}.light .eyebrow{color:rgba(3,52,42,.6)}
+.months{display:grid;grid-template-columns:repeat(12,1fr);gap:8px}
+.m{height:170px;border-radius:18px;padding:16px 12px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(3,52,42,.07)}
+.m b{font-size:20px}.m span{font-size:12px;font-weight:600}
+.m.b{background:var(--bg);color:var(--c)}.m.o{background:rgba(3,52,42,.22)}
+.note{margin:26px 0 0;max-width:46em;font-size:17px}
+
+.costs{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(24px,5vw,70px);align-items:start}
+.more{display:inline-block;margin-top:16px;color:var(--c);font-weight:600}
+.range{margin:0 0 6px;font-size:clamp(44px,5vw,72px);font-weight:600;letter-spacing:-.04em}
+.op{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:20px 0;border-top:1px solid var(--l);text-decoration:none}
+.op b{font-size:20px}.op .p{font-size:24px;font-weight:600;color:var(--c);text-align:right}.op small{color:var(--m);font-size:13px}.op .r{text-align:right}
+.op:hover b{text-decoration:underline}
+.know{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:clamp(40px,5vw,60px)}
+.k{padding:22px;border-radius:20px;background:var(--deep);border:1px solid var(--l)}
+.k span{font-size:26px}.k b{display:block;margin:10px 0 6px;font-size:18px}.k p{margin:0 0 10px;font-size:14px;color:var(--m)}.k a{font-size:12px;color:var(--c)}
+
+.faq details{border-top:1px solid var(--l);padding:16px 0;max-width:900px}
+.faq summary{font-size:18px;font-weight:600;cursor:pointer;list-style:none}.faq summary::after{content:" +";color:var(--c)}.faq details[open] summary::after{content:" –"}
+.faq p{margin:8px 0 0;color:var(--m)}
+
+.near{padding-block:clamp(56px,7vw,96px);border-top:1px solid var(--l)}
+.nr{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+footer{padding-block:40px;border-top:1px solid var(--l);color:var(--m);font-size:13px}
+
+@media (max-width:1200px){.know{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;grid-template-rows:auto;padding-top:96px}   /* phones: photo, then name, then numbers */
+  .hero>img{grid-column:1;grid-row:1;height:44svh}.ht{grid-row:2}.glass{grid-row:3;grid-template-columns:1fr 1fr}
+  .credit{top:calc(96px + 44svh - 26px);bottom:auto}
+  .fly{grid-column:1/-1;justify-self:stretch;justify-content:center}
+  .ov,.costs{grid-template-columns:1fr}.no{width:40px;height:40px;font-size:18px}
+  .rt{grid-template-columns:1fr}.tmap{top:128px;z-index:3}.tmap svg{height:34svh}.tmap figcaption span{display:none}   /* phones: a short map pinned on top */
+  .months{grid-template-columns:repeat(6,1fr)}.m{height:96px;padding:10px}
+  .know{grid-template-columns:1fr}
+  .nr{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:calc(-1 * var(--pad));padding-inline:var(--pad);scrollbar-width:none}.nr .tk{flex:0 0 70vw;scroll-snap-align:start}
+  .pins text{display:none}   /* too small on a phone; the stop list below names every stop */
+}
+
+/* ---------- motion: Lenis does the smooth scrolling; everything below is skipped for reduced motion ---------- */
+html.lenis{height:auto;scroll-behavior:auto}.lenis-stopped{overflow:hidden}
+:root{interpolate-size:allow-keywords}   /* lets the FAQ answers open to their natural height */
+@media (prefers-reduced-motion:no-preference){
+  /* page load: the photo opens from a rounded window, the words rise in order */
+  @keyframes rise{from{opacity:0;translate:0 28px}}
+  @keyframes open{from{clip-path:inset(10% 8% 10% 8% round 40px);scale:1.08}}
+  .hero>img{animation:open 1.3s cubic-bezier(.2,.7,.2,1) both}
+  .ht>*,.glass>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+  .crumb{animation-delay:.1s}.hero h1{animation-delay:.18s}.dv{animation-delay:.28s}
+  .glass>*:nth-child(1){animation-delay:.4s}.glass>*:nth-child(2){animation-delay:.47s}.glass>*:nth-child(3){animation-delay:.54s}
+  .glass>*:nth-child(4){animation-delay:.61s}.glass>*:nth-child(5){animation-delay:.68s}.glass>*:nth-child(6){animation-delay:.78s}
+  .jump{animation:rise .8s .9s cubic-bezier(.2,.7,.2,1) both}
+
+  /* scroll reveals (the script adds .in as each part comes into view) */
+  .anim :is(.sh,.ov,.ch,.m,.costs,.op,.k,.faq details,.note,.near h2,.tk){opacity:0;translate:0 26px;transition:opacity .8s cubic-bezier(.2,.7,.2,1) var(--d,0s),translate .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),border-color .4s,background .3s}
+  .anim :is(.sh,.ov,.ch,.m,.costs,.op,.k,.faq details,.note,.near h2,.tk).in{opacity:1;translate:0}
+  .anim .ch:not(.on).in{opacity:.55}   /* the stop list keeps its dimmed, not-yet-read state */
+  .anim .no{transition:scale .6s cubic-bezier(.3,1.6,.4,1) .15s}.anim .sh:not(.in) .no{scale:.4}
+  .anim .m:not(.in){translate:0 18px;scale:.94}
+  .anim .elev .prof>svg:first-child{clip-path:inset(0 100% 0 0);transition:clip-path 1.8s cubic-bezier(.6,0,.2,1) .2s}   /* the climb draws left to right */
+  .anim .elev .pins{opacity:0;transition:opacity .6s 1.6s}
+  .anim .elev.in .prof>svg:first-child{clip-path:inset(0 0 0 0)}.anim .elev.in .pins{opacity:1}
+
+  /* micro-interactions */
+  .fly{transition:translate .3s cubic-bezier(.3,1.5,.4,1),box-shadow .3s}.fly:hover{translate:0 -2px;box-shadow:0 10px 30px rgba(229,252,201,.25)}
+  .fly i{transition:scale .3s cubic-bezier(.3,1.6,.4,1)}.fly:hover i{scale:1.18}
+  .acts>a{transition:translate .3s cubic-bezier(.3,1.5,.4,1),background .25s,border-color .25s}.acts>a:hover{translate:0 -2px;border-color:var(--c)}
+  .ch{transition:opacity .4s,border-color .4s,translate .4s cubic-bezier(.2,.7,.2,1)}.ch:hover{translate:0 -3px}
+  .op{transition:background .25s,padding .3s cubic-bezier(.2,.7,.2,1)}.op:hover{background:rgba(229,252,201,.06);padding-inline:12px}
+  .k{transition:translate .35s cubic-bezier(.2,.7,.2,1),border-color .3s}.k:hover{translate:0 -4px;border-color:rgba(229,252,201,.4)}
+  .m{transition:scale .3s cubic-bezier(.3,1.5,.4,1),opacity .8s,translate .9s}.m:hover{scale:1.04}
+  .jump a i{transition:background .3s,color .3s}.jump a.on i{background:var(--bg);color:var(--c);border-color:var(--bg)}
+  .faq details::details-content{block-size:0;overflow:hidden;transition:block-size .45s cubic-bezier(.2,.7,.2,1),content-visibility .45s allow-discrete}
+  .faq details[open]::details-content{block-size:auto}
+  .faq summary::after{display:inline-block;transition:rotate .35s}.faq details[open] summary::after{rotate:180deg}
+}

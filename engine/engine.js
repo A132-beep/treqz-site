@@ -2,16 +2,17 @@
    A trek page provides the hero and almanac HTML; trek.js and the terrain files sit beside it. */
 const isMobile = matchMedia('(max-width: 720px), (hover: none) and (pointer: coarse)').matches;
 {   // first paint: a still rendered from this trek's 3D sits behind the hero text until the terrain is ready
-  const id = location.pathname.split('/').filter((s) => s && !s.endsWith('.html')).pop();
-  document.documentElement.style.setProperty('--poster', `url(${new URL(`../img/${isMobile ? 'poster-m' : 'hero'}/${id}.webp`, location.href)})`);
+  const id = new URL(document.baseURI).pathname.split('/').filter((s) => s && !s.endsWith('.html')).pop();
+  document.documentElement.style.setProperty('--poster', `url(${new URL(`../img/${isMobile ? 'poster-m' : 'hero'}/${id}.webp`, document.baseURI)})`);
 }
 // dynamic imports, so the poster goes up before three.js arrives (static imports hold the whole module)
-// the page supplies the content (hero, almanac); trek.js beside it supplies the data
+// the page supplies the content (hero, almanac); trek.js beside it supplies the data.
+// Files resolve against document.baseURI: a 3D page at /<id>/3d/ carries <base href="../"> so it reads the trek folder; elsewhere this is the page's own address
 const LIB = window.TREQZ_LIB || '/vendor/npm/';   // the iPhone app points this at copies inside the app
 const [THREE, { default: Lenis }, { default: TREK }] = await Promise.all([
   import(LIB + 'three@0.160.0/build/three.module.min.js'),
   import(LIB + 'lenis@1.3.26/dist/lenis.mjs'),
-  import(new URL('trek.js', location.href)),
+  import(new URL('trek.js', document.baseURI)),
 ]);
 {   // the fixed UI around the hero is the same for every trek
   const hero = document.querySelector('#top');
@@ -53,6 +54,9 @@ const lenis = still ? null : new Lenis({
   // let modals and overflowing story cards scroll natively
   prevent: (n) => n.nodeName === 'DIALOG' || (n.classList?.contains('card') && n.scrollHeight > n.clientHeight),
 });
+// with a <base> on the page, a bare #link would leave for the base folder; without Lenis (reduced motion) keep it on this page
+// <base> makes "#x" point at the trek folder (the guide), and Lenis skips links to another path, so in-page jumps are handled here
+if (document.querySelector('base')) document.addEventListener('click', (e) => { const a = e.target.closest('a[href^="#"]'); if (!a) return; e.preventDefault(); const el = document.querySelector(a.getAttribute('href')); if (el) lenis ? lenis.scrollTo(el, { offset: -parseFloat(getComputedStyle(el).scrollMarginTop || 0) }) : el.scrollIntoView(); history.replaceState(null, '', location.pathname + a.getAttribute('href')); });
 // glide time grows with distance (about 2.3 s a stop), so a jump never whips the camera through the trek
 const scrollToY = (y) => lenis ? lenis.scrollTo(y, { duration: clamp(Math.abs(y - scrollY) / innerHeight * 1.2, 1.6, 8) }) : window.scrollTo({ top: y, behavior: 'smooth' });
 
@@ -733,12 +737,12 @@ if ((TREK.offline || APP) && geo.center) {   // the app carries every map, so ev
   const saved = (b) => { offBtn.dataset.state = 'saved'; offBtn.innerHTML = `${ICON.ok}<span>Saved offline${b ? ' · ' + mb(b) : ''}</span>`; };
   idle();
   if (offBtn.isConnected) caches.open(CACHE).then((c) => c.match(PAGE)).then((hit) => hit && saved()).catch(() => {});
-  if (offBtn.isConnected && navigator.serviceWorker && !navigator.serviceWorker.controller) caches.has(CACHE).then((y) => y && navigator.serviceWorker.register(new URL('../sw.js', location.href)));
+  if (offBtn.isConnected && navigator.serviceWorker && !navigator.serviceWorker.controller) caches.has(CACHE).then((y) => y && navigator.serviceWorker.register(new URL('../sw.js', document.baseURI)));
   offBtn.addEventListener('click', async () => {
     if (offBtn.disabled) return;
     offBtn.disabled = true; offBtn.dataset.state = 'busy';
     try {
-      await navigator.serviceWorker?.register(new URL('../sw.js', location.href));
+      await navigator.serviceWorker?.register(new URL('../sw.js', document.baseURI));
       navigator.storage?.persist?.();   // ask the browser not to clear it when space runs low
       const urls = [...new Set([PAGE, ...performance.getEntriesByType('resource').map((r) => r.name.split('#')[0])])]
         .filter((u) => /^https?:/.test(u) && !/cloudflareinsights|wikimedia\.org|googletagmanager|google-analytics/.test(u));
