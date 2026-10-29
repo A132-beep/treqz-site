@@ -96,6 +96,7 @@ h3{font-size:22px;letter-spacing:-.02em;margin:0 0 14px}
 .faq summary{font-size:18px;font-weight:600;cursor:pointer;list-style:none}.faq summary::after{content:" +";color:var(--c)}.faq details[open] summary::after{content:" –"}
 .faq p{margin:8px 0 0;color:var(--m)}
 
+.rel{padding-block:clamp(32px,4vw,56px);border-top:1px solid var(--l)}.rel h2{font-size:clamp(22px,2.4vw,32px);margin:0 0 14px;color:var(--c)}.rel p{margin:0;line-height:2;color:var(--m)}.rel a{color:#fff;text-decoration:underline;text-decoration-color:rgba(229,252,201,.4);text-underline-offset:3px}.rel a:hover{color:var(--c)}
 .near{padding-block:clamp(56px,7vw,96px);border-top:1px solid var(--l)}
 .nr{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
 footer{padding-block:40px;border-top:1px solid var(--l);color:var(--m);font-size:13px}

@@ -27,6 +27,9 @@
 <div class="hmenu" id="hmenu" popover data-lenis-prevent><button class="x" type="button" popovertarget="hmenu" popovertargetaction="hide" aria-label="Close menu">×</button>
 <nav aria-label="Menu">${burger}</nav><p>The outdoor app for India. Free, works with no network.</p></div>`);
     const hd = d.querySelector('.hd'), m = d.getElementById('hmenu');
+    hd.style.visibility = 'hidden'; m.style.visibility = 'hidden';   // until header.css lands, so the dropdown lists never flash unstyled
+    const reveal = () => { hd.style.visibility = ''; m.style.visibility = ''; };
+    link.addEventListener('load', reveal); link.addEventListener('error', reveal); setTimeout(reveal, 2000);
     m.addEventListener('click', (e) => { if (e.target.closest('nav a')) m.hidePopover(); });   // a link closes the menu on its way
     const logo = hd.querySelector('.logo img'), light = d.body.dataset.hd === 'light';   // data-hd="light": a pale hero, so dark ink until the page scrolls
     const sync = () => { const s = scrollY > 40; hd.classList.toggle('s', s); hd.classList.toggle('lt', light && !s); logo.src = light && !s ? '/img/treqz-green.svg' : '/img/treqz-cream.svg'; };
