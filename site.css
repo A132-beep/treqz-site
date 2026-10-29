@@ -35,21 +35,11 @@ section{padding:var(--sy) 0 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:20px}
 .tc{position:relative;display:block;background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s,border-color .5s}
 .tc:hover{transform:translateY(-6px);border-color:rgba(229,252,201,.3);box-shadow:0 0 50px -14px rgba(229,252,201,.45)}
-.tc .ph{aspect-ratio:16/11;background:#0b3f33;overflow:hidden}
-.tc img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.tc:hover img{transform:scale(1.08)}
-.tc .bd{padding:18px 18px 20px}
-.tc h3{margin:0;font-size:21px;font-weight:700;letter-spacing:-.035em;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
-.tc h3 span{font-weight:400;font-size:14px;letter-spacing:0;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tc .meta{font-size:14px;margin:6px 0 2px;color:rgba(255,255,255,.85)}
-.tc .reg{font-size:13px;color:var(--mute);margin:0 0 14px}
+.tc .bd{padding:16px 18px}
+.tc h3{margin:0;font-size:21px;font-weight:700;letter-spacing:-.035em;display:flex;justify-content:space-between;gap:8px;align-items:baseline;white-space:nowrap}
+.tc .meta{font-size:13.5px;font-weight:600;margin:6px 0 2px;color:var(--accent)}
 .tc .bd::after{content:"→";position:absolute;right:18px;bottom:18px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:var(--bg);font-weight:600;opacity:0;transform:translateX(-8px);transition:opacity .4s,transform .4s}   /* an arrow slides in on hover */
 .tc:hover .bd::after{opacity:1;transform:none}
-.tc:hover .bar{opacity:.25}
-.bar{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;transition:opacity .4s}
-.bar i{height:22px;border-radius:6px;border:1px solid var(--line);font:600 10px/20px 'Google Sans Flex',system-ui,sans-serif;font-style:normal;text-align:center;color:var(--mute)}
-.bar i.b{background:var(--accent);border-color:var(--accent);color:var(--bg)}
-.bar i.o{border:1.5px solid rgba(229,252,201,.6);color:var(--accent)}
 .legend{display:flex;gap:20px;font-size:14px;color:var(--mute);flex-wrap:wrap;align-items:center}
 .legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:8px}
 
@@ -106,8 +96,8 @@ section{padding:var(--sy) 0 0}
 .faq summary::after{content:"+";color:var(--accent);font-size:24px;line-height:1;transition:transform .3s}.faq details[open] summary::after{transform:rotate(45deg)}
 .faq details p{margin:0 0 20px;max-width:62ch;color:var(--mute)}
 .tc.tx .bd{padding:24px 24px 68px}.tc.tx .meta{margin:8px 0 0;font-size:15px;color:var(--mute)}.tc.tx h3{display:block}
-@media print{.hd,.hmenu,.mhead,.toolcta,.faq,footer,.tool form,.noprint,.grid{display:none!important}
- body{background:#fff;color:#000}.tool{background:none;border:0;padding:0}.out,.out td,.out th,h2,.lead{color:#000!important}.out table{min-width:0}.out th,.out td{border-color:#999}}
+@media print{body:has(.tool) :is(.hd,.hmenu,.mhead,.toolcta,.faq,footer,.tool form,.noprint,.grid){display:none!important}
+ body:has(.tool){background:#fff;color:#000}.tool{background:none;border:0;padding:0}body:has(.tool) :is(.out,.out td,.out th,h2,.lead){color:#000!important}.out table{min-width:0}.out th,.out td{border-color:#999}}
 
 footer{margin-top:var(--sy);padding:40px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:13px;line-height:1.6}
 
@@ -118,6 +108,6 @@ footer{margin-top:var(--sy);padding:40px 0 48px;border-top:1px solid var(--line)
   @keyframes up{from{opacity:0;transform:translateY(48px) scale(.97)}}
 }
 
-@media (max-width:640px){.mhead{min-height:64svh}.mhead .crumb{font-size:13px}.bar i{font-size:9px;height:20px;line-height:18px}.cmp th,.cmp td{padding:12px 14px}}
+@media (max-width:640px){.mhead{min-height:64svh}.mhead .crumb{font-size:13px}.cmp th,.cmp td{padding:12px 14px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 

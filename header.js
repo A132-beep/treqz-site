@@ -1,30 +1,50 @@
-// Global header: logo, button and burger, plus the full-screen ribbon menu (Home first). Same as the home page's.
-// Loaded on every inner page; the home page has its own copy inline, and the iPhone app (TREKPEEK_APP) brings its own chrome.
+// Global navigation: one bar on every page (Trek, Run, Crew, Blog, Free tools, Contact), each with a short dropdown, and a burger menu below 1200px.
+// Inner pages get the whole header from here; the home page keeps its own header markup and only gets the bar's content (header.css styles both).
+// The iPhone app (TREKPEEK_APP) brings its own chrome.
 (() => {
-  if (window.TREKPEEK_APP || document.querySelector('.hd')) return;
-  const d = document, join = d.getElementById('join');
-  const cta = join ? [d.body.dataset.cta || 'Get early access', '#join'] : ['Download App', '/#waitlist'];
-  const link = d.createElement('link'); link.rel = 'stylesheet'; link.href = '/header.css'; d.head.append(link);
-  // One menu per hub, so a page only offers what belongs to it. Home is always first; the line under the list points to the other hubs.
-  const p = location.pathname, month = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'][new Date().getMonth()];
-  const HUBS = {
-    run: { name: 'Run', href: '/run/', items: [['Run', '/run/'], ['How it works', '/run/#how'], ['Rewards', '/run/#rewards'], ['Run clubs', '/run-clubs/'], ['Early access', '/run/#join']], also: [['Trek', '/treks/'], ['Crew', '/crew/'], ['Free tools', '/free-tools/']] },
-    crew: { name: 'Crew', href: '/crew/', items: [['Crew', '/crew/'], ['Brands', '/crew/#brands'], ['Register', '/crew/#join']], also: [['Trek', '/treks/'], ['Run', '/run/'], ['Free tools', '/free-tools/']] },
-    trek: { name: 'Trek', href: '/treks/', items: [['Trek hub', '/treks/'], ['Categories', '/treks/#featured'], ['This month', `/treks-in-${month}/`], ['Guides', '/guides/'], ['Blog', '/blog/']], also: [['Run', '/run/'], ['Crew', '/crew/'], ['Free tools', '/free-tools/']] },
-    tools: { name: 'Tools', href: '/free-tools/', items: [['Free tools', '/free-tools/'], ['5 km plan', '/free-tools/5k-running-plan/'], ['Pace calculator', '/free-tools/running-pace-calculator/'], ['Trek finder', '/free-tools/trek-finder/'], ['Club names', '/free-tools/run-club-name-generator/']], also: [['Trek', '/treks/'], ['Run', '/run/'], ['Crew', '/crew/']] },
-    blog: { name: 'Blog', href: '/blog/', items: [['Blog', '/blog/'], ['Trek', '/treks/'], ['Run', '/run/'], ['Run clubs', '/run-clubs/'], ['Crew', '/crew/']], also: [] },
-    none: { name: '', href: '/', items: [['Trek', '/treks/'], ['Run', '/run/'], ['Crew', '/crew/']], also: [] },
-  };
-  const hub = HUBS[p.startsWith('/run') ? 'run' : p.startsWith('/crew/') ? 'crew' : p.startsWith('/privacy/') ? 'none' : p.startsWith('/blog/') ? 'blog' : p.startsWith('/free-tools') ? 'tools' : 'trek'];
-  const items = [['Home', '/'], ...hub.items.filter(([, h]) => !h.includes('#') || h.split('#')[0] === p)];   // a section link shows only on the page that has the section
-  const also = hub.also.length ? 'Also on Treqz: ' + hub.also.map(([n, h]) => `<a href="${h}" style="text-decoration:underline">${n}</a>`).join(' · ') : 'The outdoor app for India. Free, works with no network.';
-  d.body.insertAdjacentHTML('afterbegin', `<header class="hd"><a class="logo" href="/" aria-label="Treqz home"><img src="/img/treqz-cream.svg" alt="Treqz" width="187" height="40"></a>${hub.name ? `<a class="hub" href="${hub.href}">${hub.name}</a>` : ''}
+  if (window.TREKPEEK_APP || document.getElementById('hmenu')) return;   // only our own menu means "already added", not any class="hd" on the page
+  const d = document, p = location.pathname, home = p.replace(/index\.html$/, '') === '/' && d.getElementById('top');
+  const month = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'][new Date().getMonth()];
+  const S = [   // [name, link, dropdown links]
+    ['Trek', '/treks/', [['All treks', '/treks/'], ['This month', `/treks-in-${month}/`], ['Guides', '/guides/'], ['Trek finder', '/free-tools/trek-finder/']]],
+    ['Run', '/run/', [['How it works', '/run/#how'], ['Run clubs', '/run-clubs/'], ['Early access', '/run/#join']]],
+    ['Crew', '/crew/', [['Register your crew', '/crew/#join'], ['Brands', '/crew/#brands']]],
+    ['Blog', '/blog/', [['Running', '/blog/running/'], ['Trekking', '/blog/trek-guides/'], ['All posts', '/blog/']]],
+    ['Free tools', '/free-tools/', [['5 km plan', '/free-tools/5k-running-plan/'], ['Pace calculator', '/free-tools/running-pace-calculator/'], ['Trek finder', '/free-tools/trek-finder/'], ['Club names', '/free-tools/run-club-name-generator/']]],
+    ['Contact', '/#contact', []],
+  ];
+  const cur = home || p.startsWith('/privacy/') ? -1 : p.startsWith('/run') ? 1 : p.startsWith('/crew/') ? 2 : p.startsWith('/blog/') ? 3 : p.startsWith('/free-tools') ? 4 : 0;   // the trek hub also holds the guides and month pages
+  const bar = '<span class="tpill"></span>' + S.map(([n, h, k], i) => `<div class="ti"><a href="${h}"${i === cur ? ' aria-current="page"' : ''}>${n}</a>${k.length ? `<div class="dd">${k.map(([a, b], j) => `<a href="${b}" style="--i:${j}">${a}</a>`).join('')}</div>` : ''}</div>`).join('');
+  const burger = S.map(([n, h], i) => `<a href="${h}" style="--i:${i}">${n}</a>`).join('');
+  if (home) {
+    d.querySelector('.tnav').innerHTML = bar; d.querySelector('#menu nav').innerHTML = burger;
+  } else {
+    const join = d.getElementById('join'), cta = join ? [d.body.dataset.cta || 'Get early access', '#join'] : ['Download App', '/#waitlist'];
+    const link = d.createElement('link'); link.rel = 'stylesheet'; link.href = '/header.css'; d.head.append(link);
+    d.body.insertAdjacentHTML('afterbegin', `<header class="hd"><a class="logo" href="/" aria-label="Treqz home"><img src="/img/treqz-cream.svg" alt="Treqz" width="187" height="40"></a>
+<nav class="tnav" aria-label="Main">${bar}</nav>
 <div class="acts"><a class="btn" href="${cta[1]}">${cta[0]}</a><button class="burger" type="button" popovertarget="hmenu" aria-label="Open menu"><i></i></button></div></header>
 <div class="hmenu" id="hmenu" popover data-lenis-prevent><button class="x" type="button" popovertarget="hmenu" popovertargetaction="hide" aria-label="Close menu">×</button>
-<nav aria-label="Menu">${items.map(([n, h], i) => `<a href="${h}" style="--i:${i}">${n}</a>`).join('')}</nav><p>${also}</p></div>`);
-  const hd = d.querySelector('.hd'), m = d.getElementById('hmenu');
-  m.addEventListener('click', (e) => { if (e.target.closest('nav a')) m.hidePopover(); });   // a link closes the menu on its way
-  const logo = hd.querySelector('.logo img'), light = d.body.dataset.hd === 'light';   // data-hd="light": a pale hero, so dark ink until the page scrolls
-  const sync = () => { const s = scrollY > 40; hd.classList.toggle('s', s); hd.classList.toggle('lt', light && !s); logo.src = light && !s ? '/img/treqz-green.svg' : '/img/treqz-cream.svg'; };
-  addEventListener('scroll', sync, { passive: true }); sync();
+<nav aria-label="Menu">${burger}</nav><p>The outdoor app for India. Free, works with no network.</p></div>`);
+    const hd = d.querySelector('.hd'), m = d.getElementById('hmenu');
+    m.addEventListener('click', (e) => { if (e.target.closest('nav a')) m.hidePopover(); });   // a link closes the menu on its way
+    const logo = hd.querySelector('.logo img'), light = d.body.dataset.hd === 'light';   // data-hd="light": a pale hero, so dark ink until the page scrolls
+    const sync = () => { const s = scrollY > 40; hd.classList.toggle('s', s); hd.classList.toggle('lt', light && !s); logo.src = light && !s ? '/img/treqz-green.svg' : '/img/treqz-cream.svg'; };
+    addEventListener('scroll', sync, { passive: true }); sync();
+  }
+  // the cream pill slides to the hovered item and rests on the current section
+  const tn = d.querySelector('.tnav'), pill = tn.querySelector('.tpill'), items = [...tn.querySelectorAll('.ti')];
+  const at = (el, snap) => {   // snap: place it without gliding (first paint, resize, font swap), so it never animates from a size measured while the bar was hidden
+    items.forEach((i) => i.classList.toggle('on', i === el)); pill.style.opacity = el ? 1 : 0;
+    if (!el) return;
+    if (snap) pill.style.transition = 'none';
+    pill.style.left = el.offsetLeft + 'px'; pill.style.width = el.offsetWidth + 'px';
+    if (snap) { void pill.offsetWidth; pill.style.transition = ''; }
+  };
+  const rest = (snap) => at(items[cur], snap === true);
+  items.forEach((i) => i.addEventListener('mouseenter', () => at(i)));
+  tn.addEventListener('mouseleave', () => rest());
+  tn.addEventListener('focusin', (e) => at(e.target.closest('.ti')));
+  tn.addEventListener('focusout', (e) => { if (!tn.contains(e.relatedTarget)) rest(); });
+  rest(true); addEventListener('resize', () => rest(true)); d.fonts?.ready.then(() => rest(true));   // the font swap changes the widths
 })();

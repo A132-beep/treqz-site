@@ -2,9 +2,11 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Treqz: running and trekking app for India</title>
 <link rel="canonical" href="https://treqz.com/">
+<script src="/veil.js"></script>
 <meta name="description" content="Free running and trekking app for India. Track runs and treks, claim your city on the map, compete with friends and earn rewards. Fly 59 Indian treks in 3D.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link media="print" onload="this.media='all'" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=swap">
+<link rel="stylesheet" href="header.css">
 <link rel="preload" as="image" href="img/treqz/tq-hero-1-m.webp">
 <style>
   /* tokens (Figma "Treqz"): brand green, deep green, lime cream; Google Sans Flex */
@@ -36,27 +38,12 @@
   /* header, hero and quest follow Figma frame 7:49 (1920 wide); calc(N * var(--u)) is N Figma px */
   .top{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;height:max(64px,calc(126 * var(--u)));padding-inline:max(16px,9vw)}
   .top .logo img{height:max(24px,calc(40 * var(--u)));width:auto}
-  /* menu: a burger next to Download App opens a full-screen list (native popover: Esc and outside-click close it) */
+  /* menu: a burger next to Download App opens a dropdown (header.css; native popover: Esc and outside-click close it) */
   .top .acts{display:flex;align-items:center;gap:10px}
   .burger{display:grid;place-items:center;width:var(--bs);aspect-ratio:1;border:0;border-radius:50%;background:var(--c);cursor:pointer}
   .burger i,.burger i::before{display:block;width:18px;height:2px;border-radius:2px;background:var(--g);transition:transform .35s}
   .burger i{position:relative}.burger i::before{content:'';position:absolute;top:6px}.burger i{transform:translateY(-3px)}
-  /* ribbon menu: every link is a tilted cream ribbon that sweeps in from alternate sides, and sweeps back out on close */
-  .menu{inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;border:0;padding:clamp(90px,13vh,140px) 0 40px;background:transparent;color:var(--c);overflow:hidden auto;
-    transition:background .5s,display .8s allow-discrete,overlay .8s allow-discrete}
-  .menu:popover-open{background:var(--gd)}
-  @starting-style{.menu:popover-open{background:transparent}}
-  .menu::backdrop{background:transparent}
-  .menu nav{display:grid;gap:max(2.2vh,1.8vw)}
-  .menu nav a{--r:-.5deg;--x:-120vw;display:block;width:130vw;margin-left:-15vw;padding:.06em 0 .1em calc(15vw + var(--pad));background:var(--c);color:var(--g);font-size:clamp(38px,6.6vw,96px);font-weight:700;letter-spacing:-.03em;line-height:1.05;
-    rotate:var(--r);translate:var(--x) 0;transition:translate .75s cubic-bezier(.7,0,.2,1) calc(var(--i) * 70ms),rotate .4s,background .3s,color .3s}
-  .menu nav a:nth-child(even){--r:.5deg;--x:120vw}
-  .menu:popover-open nav a{--x:0vw}
-  @starting-style{.menu:popover-open nav a{--x:-120vw}.menu:popover-open nav a:nth-child(even){--x:120vw}}
-  .menu nav a:hover{rotate:0deg;background:#fff}
-  .menu nav a::after{content:' ↗';opacity:0;transition:opacity .3s}.menu nav a:hover::after{opacity:1}
-  .menu .x{position:absolute;z-index:2;top:calc((max(64px,calc(126 * var(--u))) - var(--bs)) / 2);right:max(16px,9vw);width:var(--bs);height:var(--bs);border-radius:50%;border:0;background:var(--c);color:var(--g);font-size:26px;cursor:pointer;transition:rotate .4s}.menu .x:hover{rotate:90deg}
-  .menu p{margin:40px 0 0;padding-left:var(--pad);color:var(--mute);font-size:14px;opacity:0;transition:opacity .4s .5s}.menu:popover-open p{opacity:1}
+  #menu{top:calc(max(64px,calc(126 * var(--u))) + 4px)}   /* under this page's taller bar; the menu itself is in header.css */
   .top .btn{height:max(40px,calc(50 * var(--u)));padding:0 max(16px,calc(22 * var(--u)));font-size:max(13px,calc(16 * var(--u)))}
   .hq{position:relative;height:calc(2909 * var(--u));margin-top:calc(-1 * max(64px,calc(126 * var(--u))));overflow:hidden}
   .hero-t{position:absolute;z-index:4;left:0;right:0;top:calc(182 * var(--u));text-align:center;padding-inline:16px}
@@ -75,16 +62,12 @@
   .ribbon{top:0;left:0;z-index:2;width:100%;height:calc(3149 * var(--u));pointer-events:none;overflow:visible}
   .ribbon text{font:700 53px var(--f);letter-spacing:-.01em;fill:var(--g)}
   /* quest: cut-out athletes either side */
-  .hq .cut{z-index:3;height:auto;max-width:none;pointer-events:none}   /* rings sit behind the athletes but stay clickable */
+  .hq .cut{z-index:3;height:auto;max-width:none;pointer-events:none}
   .hq .run{left:calc(-218 * var(--u));top:calc(1824 * var(--u));width:calc(1000 * var(--u))}   /* front shoe and face where the Figma has them */
   .hq .trek{right:calc(-70 * var(--u));bottom:0;width:calc(936 * var(--u))}
   .q-h{z-index:5;left:0;right:0;top:calc(2184 * var(--u));text-align:center}
   .q-h h2{font-size:var(--h2);line-height:1.1}
   .q-h .btn{height:max(40px,calc(77 * var(--u)));padding:0 max(18px,calc(22 * var(--u)));margin-top:calc(30 * var(--u));font-size:max(14px,calc(22 * var(--u)))}
-  .ring{z-index:2;display:grid;place-items:center;aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.6);font-weight:500;transition:background .35s,color .35s,transform .35s}
-  .ring:hover{background:var(--c);color:var(--g);transform:scale(1.06)}
-  .ring.r1{left:calc(426 * var(--u));top:calc(1862 * var(--u));width:calc(280 * var(--u));font-size:calc(60 * var(--u))}
-  .ring.r2{left:calc(1184 * var(--u));top:calc(2384 * var(--u));width:calc(292 * var(--u));font-size:calc(58 * var(--u))}
 
   /* 3 three things */
   /* 3 three things: a pinned scene; scrolling swaps the photo and deals the next card (after fun-cards.learnframer.site) */
@@ -92,26 +75,24 @@
   .tw{position:sticky;top:0;height:100vh;overflow:hidden}
   .bgs img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.14);transition:opacity 1s,transform 1.8s cubic-bezier(.2,.7,.2,1)}
   .bgs img.on{opacity:1;transform:none}
-  .tw::after{content:'';position:absolute;inset:0;background:linear-gradient(rgba(2,45,33,.55),transparent 35%,transparent 70%,rgba(2,45,33,.5))}
+  .tw::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,45,33,.92),rgba(2,45,33,.7) 35%,transparent 70%),linear-gradient(rgba(2,45,33,.55),transparent 35%,transparent 70%,rgba(2,45,33,.5))}
   .three h2{position:absolute;z-index:2;left:var(--pad);top:50%;transform:translateY(calc(-100% - 14px));font-size:var(--h2);line-height:1.05;color:var(--c)}
   .steps3{position:absolute;z-index:2;left:var(--pad);top:calc(50% + 14px);display:flex;gap:10px}
   .steps3 a{padding:8px 16px;border-radius:99px;border:1px solid rgba(229,252,201,.5);color:var(--c);font-size:14px;font-weight:500;transition:background .4s,color .4s}
   .steps3 a.on{background:var(--c);color:var(--g)}
-  .qc{position:absolute;z-index:3;right:var(--pad);top:50%;width:min(460px,calc(100vw - 32px));padding:clamp(22px,2.4vw,32px);border-radius:28px;background:var(--c);color:var(--g);box-shadow:0 30px 80px rgba(0,0,0,.3);opacity:0;pointer-events:none;transform:translate(0,-38%) rotate(5deg) scale(.94);transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .6s}
-  .qc.on{opacity:1;pointer-events:auto;transform:translate(0,-50%)}
-  .qc.out{transform:translate(0,-66%) rotate(-6deg) scale(.94)}
-  .qc h3{text-wrap:balance;font-size:var(--h3);line-height:1.1;transition:color .3s}
+  .qc{position:absolute;z-index:3;left:var(--pad);top:calc(50% + 74px);width:min(460px,calc(100vw - 32px));color:#fff;opacity:0;pointer-events:none;transform:translateY(24px);transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .6s}
+  .qc.on{opacity:1;pointer-events:auto;transform:none}
+  .qc.out{transform:translateY(-24px)}
+  .qc h3{text-wrap:balance;font-size:var(--h3);line-height:1.1;margin:14px 0 12px}
   .qc h3 i{display:inline-block;font-style:normal;transition:transform .4s}.qc:hover h3 i{transform:translateX(8px)}
-  .qc .tag{display:inline-block;margin-bottom:14px;padding:5px 12px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid rgba(5,70,52,.3)}
-  .qc .tag.live{background:var(--g);color:var(--c);border-color:var(--g)}
-  /* the photo stack fans out on hover, like the reference */
-  .pile{position:relative;height:112px;margin:22px 0 18px}
-  .pile img{position:absolute;left:0;top:6px;width:84px;height:100px;object-fit:cover;border-radius:14px;border:4px solid #fff;box-shadow:0 8px 20px rgba(2,45,33,.25);transform:translateX(calc(var(--i) * 14px)) rotate(calc(var(--i) * -3deg));transition:transform .5s cubic-bezier(.3,1.4,.4,1)}
-  .qc:hover .pile img{transform:translateX(calc(var(--i) * 96px)) rotate(calc((var(--i) - 1) * 8deg)) translateY(calc(var(--i) * -4px))}
-  @media (hover:none){.qc.on .pile img{transform:translateX(calc(var(--i) * 96px)) rotate(calc((var(--i) - 1) * 8deg))}}   /* touch: the active card shows its photos fanned */
+  .qc .tag{display:inline-block;padding:5px 12px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid rgba(229,252,201,.5);color:var(--c)}
+  .qc .tag.live{background:var(--c);color:var(--g);border-color:var(--c)}
+  /* a real app screen per step, half out of view at the bottom */
+  .ph3 img{position:absolute;z-index:2;right:clamp(40px,9vw,150px);bottom:0;width:clamp(260px,27vw,400px);aspect-ratio:390/848;border-radius:13% / 6%;box-shadow:0 0 0 10px #0b0f0d,0 0 0 11px rgba(255,255,255,.16),0 -20px 80px rgba(0,0,0,.5);opacity:0;transform:translateY(70%) rotate(-4deg);transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .6s}
+  .ph3 img.on{opacity:1;transform:translateY(28%) rotate(-4deg)}
   .meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;font-weight:600}
   .meta span{display:flex;align-items:center;gap:6px}.meta svg{width:14px;height:14px}
-  .qc p{margin:12px 0 0;font-size:15px;line-height:1.5;opacity:.8}
+  .qc p{margin:12px 0 0;font-size:15px;line-height:1.5;opacity:.85}
 
   /* 4 plan: seven trek cards deal out of one, fan into an arc and settle into a row (after hero-intro.learnframer.site) */
   .plan{text-align:center;padding-block:clamp(90px,10vw,160px);overflow:hidden}
@@ -133,62 +114,34 @@
   .plan p{color:var(--mute);max-width:34em;margin:0 auto 30px;font-size:18px}
   .plan .acts{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 
-  /* 5 why trust: full-bleed photo */
-  .trust{position:relative;min-height:clamp(620px,56vw,1000px);display:flex;flex-direction:column;justify-content:space-between;padding-block:clamp(70px,8vw,130px) 48px;overflow:hidden}
-  .trust>img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;z-index:-1;will-change:transform}
-  .trust::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(2,45,33,.55),transparent 55%),linear-gradient(transparent 65%,rgba(2,45,33,.85))}   /* the photo stays as in Figma; just enough shade for the text */
-  .trust p.lead{max-width:34em;margin:22px 0 0;font-size:clamp(17px,1.4vw,21px)}
-  .pts{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,3vw,48px);margin-top:60px}
-  .pts p{margin:0;padding-top:16px;border-top:1px solid rgba(255,255,255,.4);font-size:14px;line-height:1.45}
+  /* 5 why trust: same build as the treks page's "Not a booking site" block. Photo full-bleed on the left half, a pale panel of big rows on the right */
+  .trust{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:clamp(640px,56vw,880px);overflow:hidden;background:#f2f8ec;color:#03342a}
+  .trust>img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+  .tp{display:flex;flex-direction:column;padding:clamp(40px,5vw,72px) clamp(24px,4vw,64px)}
+  .tp .H{color:#03342a}
+  .tp .lead{margin:16px 0 0;max-width:26em;font-size:clamp(16px,1.25vw,19px);color:rgba(3,52,42,.7)}
+  .trows{margin:auto 0 0;padding-top:40px}
+  .trows div{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:20px 0 16px;border-bottom:1px solid rgba(3,52,42,.14)}
+  .trows dt{font-weight:300;font-size:clamp(40px,4.4vw,76px);letter-spacing:-.04em;line-height:.9;white-space:nowrap;color:#0b5c45}
+  .trows dd{margin:0;max-width:15em;text-align:right;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;line-height:1.4}
 
   /* 6 no signal: phone in hand, app screens fan out from behind it */
-  .nosig{text-align:center;padding-block:clamp(90px,9vw,140px) 0;overflow:hidden}
-  .stage{position:relative;height:clamp(560px,52vw,800px);margin-top:clamp(40px,5vw,70px)}
-  .hand{position:absolute;z-index:3;bottom:0;left:calc(50% - .817 * var(--hw));width:var(--hw);--hw:clamp(560px,52vw,820px)}
-  .hand img{width:100%;-webkit-mask:linear-gradient(90deg,transparent 8%,#000 34%);mask:linear-gradient(90deg,transparent 8%,#000 34%)}
-  .hand .scr{position:absolute;left:66.6%;top:5.6%;width:30.2%;height:62.4%;border-radius:12% / 6%;overflow:hidden;background:var(--g)}
-  .sc{position:absolute;z-index:2;bottom:var(--b);left:50%;width:clamp(150px,13.5vw,214px);aspect-ratio:9/18.5;margin-left:calc(clamp(150px,13.5vw,214px) / -2);border-radius:20px;background:#f4fbe9;color:var(--g);text-align:left;padding:14px;font-size:12px;line-height:1.3;box-shadow:0 20px 60px rgba(0,0,0,.35);transform:translateX(calc(var(--x) * var(--p,1))) rotate(calc(var(--r) * var(--p,1)));transition:transform .2s linear}
-  .sc figcaption{position:absolute;top:calc(100% + 14px);left:-20px;right:-20px;text-align:center;color:#fff;font-size:13px;font-weight:500}
-  .sc .k{font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
-  .sc .big{font-size:30px;font-weight:700;letter-spacing:-.04em;line-height:1}
-  .sc .pill{display:inline-block;margin-top:8px;padding:4px 9px;border-radius:99px;background:var(--g);color:var(--c);font-size:10px;font-weight:600}
-  .sc ol{margin:10px 0 0;padding:0;list-style:none}
-  .sc li{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid rgba(5,70,52,.14)}
-  .s1{--x:-36vw;--r:-7deg;--b:110px}.s2{--x:-20vw;--r:-3deg;--b:250px}.s3{--x:19vw;--r:3deg;--b:110px}.s4{--x:36vw;--r:7deg;--b:250px}
-  .scr .map{position:absolute;inset:0}
-  .scr .hud{position:absolute;inset:auto 8% 6%;background:rgba(3,52,42,.88);color:#fff;border-radius:12px;padding:10px;font-size:clamp(9px,.8vw,12px);text-align:left}
-  .scr .hud b{display:block;color:var(--c);font-size:1.3em}
-  .scr .off{position:absolute;top:9%;left:50%;transform:translateX(-50%);padding:3px 10px;border-radius:99px;background:var(--c);color:var(--g);font-size:clamp(8px,.7vw,11px);font-weight:600;white-space:nowrap}
+  .nosig{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,5vw,80px);align-items:center;max-width:1280px;margin:0 auto;padding-block:clamp(90px,9vw,140px);overflow-x:clip}   /* clip sideways only, so the phone shadows can fade out below */
+  .nosig > *{min-width:0}
+  .nosig .lead{max-width:26em;margin:22px 0 0;font-size:clamp(17px,1.4vw,21px);color:var(--mute)}
+  .ns-pts{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:16px;font-size:clamp(15px,1.15vw,17px)}
+  .ns-pts li{display:grid;grid-template-columns:6.5em 1fr;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+  .ns-pts b{color:var(--c);font-weight:600}
+  .stage{position:relative;height:clamp(520px,46vw,680px)}
+  .ns{position:absolute;top:0;width:clamp(220px,20vw,300px);aspect-ratio:390/848;border-radius:13% / 6%;overflow:hidden;box-shadow:0 0 0 8px #0b0f0d,0 0 0 9px rgba(255,255,255,.14),0 30px 60px rgba(0,0,0,.45);transform:translateY(calc((1 - var(--p,1)) * 80px)) rotate(calc(var(--r) * var(--p,1)));transition:transform .2s linear}
+  .ns img{width:100%;height:100%;display:block;object-fit:cover}
+  .ns.a{left:4%;top:7%;--r:-5deg}.ns.b{left:44%;--r:4deg}
+  .ns figcaption{position:absolute;padding:8px 14px;border-radius:99px;background:var(--c);color:var(--g);font-size:13px;font-weight:600;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .ns.a figcaption{left:10px;bottom:16%}.ns.b figcaption{left:10px;top:52%}
   .dot{animation:ping 2s infinite;transform-origin:center;transform-box:fill-box}
   @keyframes ping{0%{r:4;opacity:1}100%{r:16;opacity:0}}
 
-  /* 7 how it works: a trail that draws itself between three stops */
-  .how{background:var(--c);color:var(--g);padding-block:clamp(90px,9vw,140px);position:relative;overflow:hidden}
-  .how .H{color:var(--g)}
-  /* the three steps as a climb: a trail draws itself up the mountain and each camp pops in as it is reached */
-  .steps{margin-top:clamp(40px,5vw,70px)}
-  .steps svg{display:block;width:100%;height:auto;overflow:visible}
-  .steps .hill{fill:var(--g);opacity:.1}
-  .steps .trail{fill:none;stroke:var(--g);stroke-width:4;stroke-dasharray:10 12;stroke-linecap:round}
-  .steps .mask{fill:none;stroke:var(--c);stroke-width:12}
-  .camp{transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .6s cubic-bezier(.3,1.6,.4,1)}
-  .camp.on{transform:none}
-  .camp circle{fill:var(--g)}.camp text{fill:var(--c);font:700 30px var(--f);text-anchor:middle}
-  .legs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,3vw,40px);margin-top:18px;text-align:center}
-  .legs small{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;opacity:.6;margin-bottom:6px}
-  .legs h3{font-size:var(--h3)}.legs p{margin:8px auto 0;max-width:18em;opacity:.8}
 
-  /* 8 rewards: a sticker wall */
-  .rew{display:grid;grid-template-columns:5fr 6fr;gap:clamp(32px,6vw,100px);align-items:center;padding-block:clamp(90px,9vw,140px)}
-  .rew p{color:var(--mute);max-width:28em;margin:22px 0 0;font-size:18px}
-  .rew small{display:block;margin-top:18px;color:var(--c);font-size:14px}
-  /* the rewards as die-cut stickers you can peel and drag round a board (after 3d-stick-drag.learnframer.site) */
-  .board{position:relative;height:clamp(440px,42vw,640px);perspective:900px}   /* no box: just where the stickers start */
-  .rew{position:relative}
-  .board small{position:absolute;left:20px;top:16px;margin:0;color:var(--mute);font-size:13px}
-  .stk2{position:absolute;left:var(--l);top:var(--t);width:var(--w);max-width:none;cursor:grab;touch-action:none;user-select:none;-webkit-user-drag:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35));transform:rotate(var(--r));transition:transform .55s cubic-bezier(.3,1.5,.4,1),filter .3s}
-  .stk2:hover{filter:drop-shadow(0 10px 16px rgba(0,0,0,.4))}
-  .stk2.lift{cursor:grabbing;z-index:9;transition:transform .08s linear,filter .2s;filter:drop-shadow(0 28px 34px rgba(0,0,0,.5))}
 
   /* 9 built for India */
   .india{position:relative;background:var(--c);color:var(--g);padding-block:clamp(90px,9vw,140px);overflow:hidden}
@@ -227,20 +180,22 @@
   /* waitlist (after socialproof.learnframer.site): field over a full-width button, then a proof pill */
   .wl{display:flex;gap:6px;max-width:520px;padding:6px;border:1px solid rgba(229,252,201,.35);border-radius:99px;background:rgba(2,45,33,.6);backdrop-filter:blur(12px);transition:border-color .3s}   /* the button sits inside the field */
   .wl:focus-within{border-color:var(--c)}
+  .wl2{display:flex;gap:8px;max-width:520px;margin-bottom:8px}.wl2 input{flex:1;min-width:0;height:52px;padding:0 20px;border:1px solid rgba(229,252,201,.35);border-radius:99px;outline:0;background:rgba(2,45,33,.6);backdrop-filter:blur(12px);font:500 16px var(--f);color:#fff}.wl2 input:focus{border-color:var(--c)}.wl2 input::placeholder{color:rgba(255,255,255,.65)}
   .wl input{flex:1;min-width:0;padding:0 18px;border:0;outline:0;background:none;font:500 16px var(--f);color:#fff}
   .wl input::placeholder{color:rgba(255,255,255,.65)}
-  .wl .btn{height:52px;background:var(--c);color:var(--g)}
-  .proof{display:flex;width:max-content;align-items:center;gap:12px;margin-top:18px;padding:6px 18px 6px 6px;border-radius:99px;background:rgba(2,45,33,.7);backdrop-filter:blur(10px);border:1px solid var(--line)}
+  .wl .btn{height:38px;background:var(--c);color:var(--g)}
+  .proof{display:flex;width:max-content;align-items:center;gap:10px;margin-top:16px;color:rgba(255,255,255,.85);text-shadow:0 1px 8px rgba(0,0,0,.4)}   /* quiet reassurance under the button, not another control */
   .proof .av{display:flex}
-  .proof .av i{display:grid;place-items:center;width:38px;height:38px;margin-left:-10px;border-radius:50%;border:2px solid var(--gd);background:var(--c);color:var(--g);font:700 15px var(--f);font-style:normal}
+  .proof .av i{display:grid;place-items:center;width:28px;height:28px;margin-left:-8px;border-radius:50%;border:2px solid var(--gd);background:var(--c);color:var(--g);font:700 12px var(--f);font-style:normal;text-shadow:none}
   .proof .av i:first-child{margin-left:0}.proof .av i:nth-child(2){background:#bfe8a0}.proof .av i:nth-child(3){background:var(--g);color:var(--c)}
   .proof .av i.me{width:0;margin-left:0;border-width:0;overflow:hidden;transition:width .5s cubic-bezier(.3,1.4,.4,1),margin .5s,border-width .5s}
-  .proof.joined .av i.me{width:38px;margin-left:-10px;border-width:2px}
+  .proof.joined .av i.me{width:28px;margin-left:-8px;border-width:2px}
   .roll{height:20px;overflow:hidden;text-align:left;font-size:14px;font-weight:500}
   .roll b{display:block;height:20px;line-height:20px;font-weight:500;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
   .proof.joined .roll b{transform:translateY(-100%)}
-  .who{display:inline-flex;gap:4px;margin-top:14px;padding:4px;border-radius:99px;background:rgba(2,45,33,.7);backdrop-filter:blur(10px);border:1px solid var(--line);font-size:14px;font-weight:600}   /* a segmented toggle, readable on any photo */
-  .who label{padding:8px 16px;border-radius:99px;cursor:pointer;transition:background .3s,color .3s}
+  .who{display:flex;width:max-content;align-items:center;gap:2px;margin-bottom:14px;padding:3px;border-radius:99px;background:rgba(2,45,33,.45);backdrop-filter:blur(12px);font-size:13px;font-weight:500}   /* a small question before the fields: smaller and lighter than them */
+  .who span{padding:0 10px 0 12px;color:rgba(255,255,255,.7)}
+  .who label{padding:6px 14px;border-radius:99px;cursor:pointer;transition:background .3s,color .3s}
   .who label:has(input:checked){background:var(--c);color:var(--g)}
   .who label:has(input:focus-visible){outline:2px solid var(--c);outline-offset:2px}
   .who input{position:absolute;opacity:0;pointer-events:none}
@@ -261,59 +216,29 @@
   footer .fine{font-size:13px;color:var(--mute);line-height:1.6}
 
   @media (max-width:900px){
-    .three h2{top:90px;transform:none}.steps3{top:auto;bottom:28px}.qc{right:16px}   /* phones: title on top, card, pills at the bottom */
+    .three h2{top:90px;transform:none}.steps3{top:184px}.qc{top:240px}.ph3 img{width:min(56vw,260px);right:50%;margin-right:calc(min(56vw,260px) / -2)}.tw::after{background:linear-gradient(rgba(2,45,33,.9),rgba(2,45,33,.8) 55%,rgba(2,45,33,.3) 80%,rgba(2,45,33,.5))}   /* phones: title, pills, text, then the app screen rising from the bottom */
     .hero-t h1,.cta h2{font-size:44px;line-height:1.08}.hero-t p{max-width:none}
-    .rew,.faq{grid-template-columns:1fr}
+    .faq{grid-template-columns:1fr}
     .deck{--w:84px;--sp:.62}.pc b{font-size:11px}
-    .pts{grid-template-columns:1fr 1fr}
+    .trust{grid-template-columns:1fr}.trust>img{height:56vw;min-height:280px}
     .feats{grid-template-columns:1fr}
     .india .cut{opacity:.18}
     .hq{height:calc(2909 * var(--u) + 150px)}.hq .s{top:150px}   /* room for the hero text above the cards */
-    .s1,.s4{display:none}.s2{--x:-30vw}.s3{--x:30vw}
-    .stage{height:600px}.hand{--hw:620px}
-    .trust::before{background:rgba(3,52,42,.74)}
+    .nosig{grid-template-columns:1fr}
+    .stage{height:auto;display:flex;justify-content:center;gap:4vw;margin-top:10px}.ns{position:relative;width:min(38vw,240px);margin:0}.ns.a{left:auto;top:24px}.ns.b{left:auto}.ns figcaption{font-size:11px;padding:6px 10px}
   }
-  @media (max-width:600px){.legs{grid-template-columns:1fr;text-align:left}.legs p{margin-left:0}}
-  @media (max-width:600px){.hq .run{left:190px;top:auto;bottom:0;width:320px}.hq .trek{right:180px;width:340px}.ring.r1{left:300px}.ring.r2{left:540px}}   /* phones see the middle of the stage */
+  @media (max-width:600px){.hq .run{left:190px;top:auto;bottom:0;width:320px}.hq .trek{right:180px;width:340px}}   /* phones see the middle of the stage */
   @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.w>span,.fade{transform:none;opacity:1}}
-  /* loader: logo and a load count on deep green; when ready a giant slogan ribbon sweeps across and the page is underneath */
-  .ld{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--gd);overflow:hidden}
-  .ld img{width:clamp(160px,18vw,260px);height:auto}
-  .ld b{position:absolute;left:50%;top:calc(50% + clamp(48px,6vw,80px));transform:translateX(-50%);font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--mute)}
-  .ld-rib{position:absolute;left:50%;top:50%;width:200vmax;height:130vmax;display:flex;align-items:center;justify-content:center;background:var(--c);color:var(--g);font-size:clamp(48px,8vw,120px);font-weight:700;letter-spacing:-.03em;white-space:nowrap;transform:translate(-50%,-50%) rotate(-8deg) translateX(-110%)}
-  .ld.go{animation:ldbg 1.3s steps(1) forwards}.ld.go .ld-rib{animation:sweep 1.3s cubic-bezier(.7,0,.25,1) forwards}
-  @keyframes sweep{45%,55%{transform:translate(-50%,-50%) rotate(-8deg) translateX(0)}100%{transform:translate(-50%,-50%) rotate(-8deg) translateX(110%)}}
-  @keyframes ldbg{50%{background:transparent}100%{background:transparent}}
-  .ld.go img,.ld.go b{animation:ldbg2 1.3s steps(1) forwards}@keyframes ldbg2{50%,100%{opacity:0}}
-  html.ld-on{overflow:hidden}
 </style>
 <link rel="icon" href="/favicon.ico?v=d7a48e7d" sizes="32x32"><link rel="icon" href="/favicon.svg?v=d7a48e7d" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=d7a48e7d"><meta property="og:type" content="website"><meta property="og:site_name" content="Treqz"><meta property="og:url" content="https://treqz.com/"><meta property="og:title" content="Treqz: running and trekking app for India"><meta property="og:description" content="Free running and trekking app for India. Track runs and treks, claim your city on the map, compete with friends and earn rewards. Fly 59 Indian treks in 3D."><meta property="og:image" content="https://treqz.com/img/treqz/tq-team-9.webp"><meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json" id="ld">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "Treqz", "alternateName": ["Treqz app", "Treqz India"], "url": "https://treqz.com/", "publisher": {"@id": "https://treqz.com/#org"}}, {"@type": "Organization", "@id": "https://treqz.com/#org", "name": "Treqz", "alternateName": ["Treqz app", "Treqz India"], "url": "https://treqz.com/", "description": "Treqz is a free running and trekking app for India: track runs and treks, claim your city, join run clubs and explore 59 treks in 3D.", "logo": "https://treqz.com/apple-touch-icon.png", "sameAs": ["https://www.instagram.com/treqz_india/"]}]}</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}addEventListener('load',()=>setTimeout(()=>document.head.append(Object.assign(document.createElement('script'),{src:'https://www.googletagmanager.com/gtag/js?id=G-GDJGTQJ4XM'}))));gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config','G-GDJGTQJ4XM');</script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "046eb4d3531d4d408edc25291cf3fca8"}'></script>
 </head><body>
-<div class="ld" id="tqld" aria-hidden="true"><img src="img/treqz-cream.svg" alt=""><b id="ldn">0%</b><div class="ld-rib">MAP IT. MOVE IT. CLAIM IT.</div></div>
-<script>
-(() => {   // once per visit; the count follows the real load (held at 90 until it lands, 6 s at most)
-  const ld = document.getElementById('tqld'); let seen = false;
-  try { seen = sessionStorage.tqLd; sessionStorage.tqLd = 1; } catch (e) {}
-  if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return ld.remove();
-  document.documentElement.classList.add('ld-on');
-  const n = document.getElementById('ldn'), t0 = performance.now(); let v = 0, loaded = false;
-  addEventListener('load', () => { loaded = true; });
-  const tick = (t) => {
-    const cap = loaded || t - t0 > 6000 ? 100 : 90, target = Math.min(cap, (t - t0) / 12);
-    v += (target - v) * .15; if (target === 100 && v > 99.4) v = 100;
-    n.textContent = Math.round(v) + '%';
-    if (v < 100) return requestAnimationFrame(tick);
-    ld.classList.add('go'); setTimeout(() => document.documentElement.classList.remove('ld-on'), 650); setTimeout(() => ld.remove(), 1350);
-  };
-  requestAnimationFrame(tick);
-})();
-</script>
 
 <header class="top" id="top">
   <a class="logo" href="./" aria-label="Treqz home"><img src="img/treqz-cream.svg" alt="Treqz" width="187" height="40"></a>
+  <nav class="tnav" aria-label="Main"><a href="treks/">Trek</a><a href="run/">Run</a><a href="crew/">Crew</a><a href="blog/">Blog</a><a href="/free-tools/">Free tools</a><a href="#contact">Contact</a></nav>
   <div class="acts"><a class="btn" href="#waitlist">Download App</a><button class="burger" type="button" popovertarget="menu" aria-label="Open menu"><i></i></button></div>
 </header>
 <div class="menu" id="menu" popover data-lenis-prevent>
@@ -347,9 +272,7 @@
     </svg>
     <img class="cut run" src="img/treqz/tq-quest-run.webp" alt="A runner mid-stride" loading="lazy">
     <img class="cut trek" src="img/treqz/tq-quest-trek.webp" alt="A trekker with poles climbing a rock" loading="lazy">
-    <a class="ring r1" href="#run">Run</a>
-    <a class="ring r2" href="treks/">Trek</a>
-    <div class="q-h"><h2 class="split">Pick Your<br> Main Quest.</h2><a class="btn c fade" href="#how">Know More</a></div>
+    <div class="q-h"><h2 class="split">Pick Your<br> Main Quest.</h2><a class="btn c fade" href="#run">Know More</a></div>
   </div>
 </section>
 
@@ -357,9 +280,10 @@
   <div class="tw">
     <div class="bgs" aria-hidden="true"><img class="on" src="img/treqz/tq-three-trek.jpg" alt="" loading="lazy"><img src="img/treqz/tq-three-turf.jpg" alt="" loading="lazy"><img src="img/treqz/tq-three-squad.jpg" alt="" loading="lazy"></div>
     <h2 class="split">One App.<br> Three Things.</h2>
-    <a class="qc on" href="treks/" data-k="0"><span class="tag live">Live now</span><h3>Find Your Trek <i>→</i></h3><div class="pile"><img src="img/treqz/tq-th-duo.webp" alt="" loading="lazy" style="--i:0"><img src="img/treqz/tq-th-trust-ridge.webp" alt="" loading="lazy" style="--i:1"><img src="img/treqz/tq-card-trek-m.webp" alt="" loading="lazy" style="--i:2"></div><div class="meta"><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2zm4 0v9.6m6-8V14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>59 treks in 3D</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.8 7.3V4H7.2v5h4V7.3z"/></svg>Best months</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l2.1 4.5 4.9.6-3.6 3.4.9 4.9L8 12l-4.3 2.4.9-4.9L1 6.1l4.9-.6z"/></svg>Permits</span></div><p>See 59 Indian treks in 3D, with honest info on difficulty, best months and permits.</p></a>
-    <div class="qc" data-k="1"><span class="tag">Coming soon</span><h3>Claim Your Turf <i>→</i></h3><div class="pile"><img src="img/treqz/tq-th-puffer.webp" alt="" loading="lazy" style="--i:0"><img src="img/treqz/tq-th-park-run.webp" alt="" loading="lazy" style="--i:1"><img src="img/treqz/tq-card-run-m.webp" alt="" loading="lazy" style="--i:2"></div><div class="meta"><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2zm4 0v9.6m6-8V14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Claim turf</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.8 7.3V4H7.2v5h4V7.3z"/></svg>Race previews</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l2.1 4.5 4.9.6-3.6 3.4.9 4.9L8 12l-4.3 2.4.9-4.9L1 6.1l4.9-.6z"/></svg>Earn Peaks</span></div><p>Run or walk a loop and the ground inside becomes your crew's turf. Train for your next trek, find races with 3D course previews, and earn Peaks for showing up.</p></div>
-    <div class="qc" data-k="2"><span class="tag">Coming soon</span><h3>Meet Your Sweat Squad <i>→</i></h3><div class="pile"><img src="img/treqz/tq-th-tent.webp" alt="" loading="lazy" style="--i:0"><img src="img/treqz/tq-th-friends.webp" alt="" loading="lazy" style="--i:1"><img src="img/treqz/tq-card-crew-m.webp" alt="" loading="lazy" style="--i:2"></div><div class="meta"><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2zm4 0v9.6m6-8V14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Friends</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.8 7.3V4H7.2v5h4V7.3z"/></svg>Weekly races</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l2.1 4.5 4.9.6-3.6 3.4.9 4.9L8 12l-4.3 2.4.9-4.9L1 6.1l4.9-.6z"/></svg>Real rewards</span></div><p>Every kilometre earns Peaks. Compete with friends and spend them on real rewards.</p></div>
+    <a class="qc on" href="treks/" data-k="0"><span class="tag live">Live now</span><h3>Find Your Trek <i>→</i></h3><div class="meta"><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2zm4 0v9.6m6-8V14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>59 treks in 3D</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.8 7.3V4H7.2v5h4V7.3z"/></svg>Best months</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l2.1 4.5 4.9.6-3.6 3.4.9 4.9L8 12l-4.3 2.4.9-4.9L1 6.1l4.9-.6z"/></svg>Permits</span></div><p>See 59 Indian treks in 3D, with honest info on difficulty, best months and permits.</p></a>
+    <div class="qc" data-k="1"><span class="tag">Coming soon</span><h3>Claim Your Turf <i>→</i></h3><div class="meta"><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2zm4 0v9.6m6-8V14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Claim turf</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.8 7.3V4H7.2v5h4V7.3z"/></svg>Race previews</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l2.1 4.5 4.9.6-3.6 3.4.9 4.9L8 12l-4.3 2.4.9-4.9L1 6.1l4.9-.6z"/></svg>Earn Peaks</span></div><p>Run or walk a loop and the ground inside becomes your crew's turf. Train for your next trek, find races with 3D course previews, and earn Peaks for showing up.</p></div>
+    <div class="qc" data-k="2"><span class="tag">Coming soon</span><h3>Meet Your Sweat Squad <i>→</i></h3><div class="meta"><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2zm4 0v9.6m6-8V14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Friends</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.8 7.3V4H7.2v5h4V7.3z"/></svg>Weekly races</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l2.1 4.5 4.9.6-3.6 3.4.9 4.9L8 12l-4.3 2.4.9-4.9L1 6.1l4.9-.6z"/></svg>Real rewards</span></div><p>Every kilometre earns Peaks. Compete with friends and spend them on real rewards.</p></div>
+    <div class="ph3" aria-hidden="true"><img class="on" src="img/treqz/tq-app-trek.webp" alt="" loading="lazy"><img src="img/treqz/tq-app-turf.webp" alt="" loading="lazy"><img src="img/treqz/tq-app-squad.webp" alt="" loading="lazy"></div>
     <nav class="steps3" aria-label="Three things"><a class="on" href="#run" data-k="0">Trek</a><a href="#run" data-k="1">Turf</a><a href="#run" data-k="2">Squad</a></nav>
   </div>
 </section>
@@ -379,58 +303,31 @@
     <div class="acts fade"><a class="btn c" href="treks/">Open the trek atlas</a><a class="btn o" href="guides/">Browse guides</a></div>
 </section>
 
-<section class="trust pad" aria-label="Why trust Treqz">
-  <img src="img/treqz/tq-trust.webp" alt="" loading="lazy" id="trustImg">
-  <div><h2 class="H split">Why Trust Treqz.</h2>
-    <p class="lead fade">Treqz rebuilds every Indian trail from real terrain, keeps you on it when the signal drops, and turns every trek and run into ground you can claim with your crew. We don't sell treks or take commissions.</p></div>
-  <div class="pts">
-    <p class="fade">Days, altitudes, permits and prices link to where they came from.</p>
-    <p class="fade" style="--dl:.08s">We don't sell treks, and no operator pays for a listing or a ranking.</p>
-    <p class="fade" style="--dl:.16s">Routes are rebuilt from elevation data and satellite imagery.</p>
-    <p class="fade" style="--dl:.24s">Every condition report shows when it was reported. Rule changes are flagged.</p>
-  </div>
+<section class="trust" aria-label="Why trust Treqz">
+  <img src="img/treqz/tq-trust-run.webp" srcset="img/treqz/tq-trust-run-m.webp 1000w, img/treqz/tq-trust-run.webp 2000w" sizes="(max-width:900px) 100vw, 50vw" alt="Friends running together along a seaside promenade" loading="lazy">
+  <div class="tp"><h2 class="H split">Why Trust Treqz.</h2>
+    <p class="lead fade">Neutral, sourced, and built from real terrain.</p>
+    <dl class="trows">
+      <div class="fade"><dt>0</dt><dd>Commissions or paid rankings</dd></div>
+      <div class="fade" style="--dl:.08s"><dt>Sourced</dt><dd>Every day, height, permit and price</dd></div>
+      <div class="fade" style="--dl:.16s"><dt>Real terrain</dt><dd>Routes rebuilt from elevation and satellite data</dd></div>
+      <div class="fade" style="--dl:.24s"><dt>Dated</dt><dd>Every condition report and rule change</dd></div>
+    </dl></div>
 </section>
 
-<section class="nosig" id="nosig" aria-label="No signal? No stress.">
-  <h2 class="H split">No Signal?<br> No Stress.</h2>
+<section class="nosig pad" id="nosig" aria-label="No signal? No stress.">
+  <div><h2 class="H split">No Signal?<br> No Stress.</h2>
+    <p class="lead fade">Save a trek once at home. On the trail, the 3D map, route and camps work with no network.</p>
+    <ul class="ns-pts">
+      <li class="fade"><b>Before</b>Download the trek. Kalsubai is 3 MB.</li>
+      <li class="fade" style="--dl:.08s"><b>On the trail</b>GPS uses satellites, not mobile data.</li>
+      <li class="fade" style="--dl:.16s"><b>For family</b>Share the route, camps and return date before the signal drops.</li>
+    </ul></div>
   <div class="stage" id="stage">
-    <figure class="sc s1"><div class="k">GPS</div><div class="big">±4 m</div><svg viewBox="0 0 120 70" style="width:100%;margin:12px 0"><g fill="none" stroke="#054634" stroke-width="1.4"><circle cx="60" cy="40" r="10"/><circle cx="60" cy="40" r="22" opacity=".5"/><circle cx="60" cy="40" r="34" opacity=".25"/></g><circle cx="60" cy="40" r="4" fill="#054634"/><g fill="#054634"><rect x="12" y="6" width="9" height="5" rx="1"/><rect x="96" y="12" width="9" height="5" rx="1"/><rect x="88" y="54" width="9" height="5" rx="1"/><rect x="20" y="52" width="9" height="5" rx="1"/></g></svg><div>Mobile data <b>off</b></div><span class="pill">Satellite fix</span><figcaption>Satellites, not mobile data.</figcaption></figure>
-    <figure class="sc s2"><div class="k">Kedarkantha · saved</div><ol><li><span>Sankri</span><b>1,950 m</b></li><li><span>Juda ka Talab</span><b>2,773 m</b></li><li><span>Base Camp</span><b>3,413 m</b></li><li><span>Summit</span><b>3,810 m</b></li></ol><span class="pill">Offline ✓</span><figcaption>The full route, camps and itinerary, no signal needed.</figcaption></figure>
-    <figure class="sc s3"><div class="k">Next stop</div><div class="big">1.2 km</div><div style="margin:6px 0 10px">to Camp 2</div><svg viewBox="0 0 120 44" style="width:100%"><path d="M0 40 L20 34 L38 36 L58 24 L76 20 L96 8 L120 4" fill="none" stroke="#054634" stroke-width="2"/><circle cx="58" cy="24" r="4" fill="#054634"/></svg><div style="margin-top:10px"><b>340 m</b> climb<br><b>about 1 hour</b></div><figcaption>1.2 km to Camp 2 · 340 m climb · about 1 hour.</figcaption></figure>
-    <figure class="sc s4"><div class="k">Shared with family</div><div class="big" style="font-size:22px;margin:8px 0">Back by Sunday</div><ol><li><span>Route</span><b>✓</b></li><li><span>Camps</span><b>✓</b></li><li><span>Return date</span><b>✓</b></li></ol><span class="pill">Sent before the signal drops</span><figcaption>Route, camps and return date for family.</figcaption></figure>
-    <div class="hand"><img src="img/treqz/tq-phone-hand.webp" alt="A hand holding a phone showing a trail map offline" loading="lazy">
-      <div class="scr"><svg class="map" viewBox="0 0 100 200" preserveAspectRatio="xMidYMid slice"><rect width="100" height="200" fill="#054634"/><g fill="none" stroke="#e5fcc9" stroke-opacity=".16" stroke-width=".6"><path d="M-10 160 C20 140 40 170 70 150 S110 120 120 130"/><path d="M-10 135 C20 115 45 145 72 122 S110 95 120 105"/><path d="M-10 110 C25 92 45 118 70 96 S105 70 120 80"/><path d="M-10 85 C25 66 48 92 70 70 S100 46 120 54"/><path d="M-10 60 C25 42 50 66 72 46 S100 22 120 30"/></g><path d="M18 182 C30 160 26 140 44 126 S62 98 52 80 S70 50 78 34" fill="none" stroke="#e5fcc9" stroke-width="2.4" stroke-dasharray="4 3"/><circle cx="52" cy="80" r="4" fill="#e5fcc9"/><circle class="dot" cx="52" cy="80" r="4" fill="none" stroke="#e5fcc9"/><circle cx="78" cy="34" r="3" fill="#fff"/></svg>
-        <span class="off">No signal · map saved</span><div class="hud">Base Camp<b>3,413 m</b>Summit day tomorrow</div></div></div>
+    <figure class="ns a"><img src="img/treqz/tq-app-offline.webp" alt="Treqz app: Kalsubai saved and ready offline, 3 MB" width="720" height="1565" loading="lazy"><figcaption>Ready offline · 3 MB</figcaption></figure>
+    <figure class="ns b"><img src="img/treqz/tq-app-map.webp" alt="Treqz app: the 3D satellite map with the trek route, saved for offline use" width="720" height="1565" loading="lazy"><figcaption>3D map, saved offline</figcaption></figure>
   </div>
 </section>
-
-<section class="how pad" id="how" aria-label="How it works">
-  <h2 class="H split">As Easy as 1, 2, 3.</h2>
-  <div class="steps" id="steps">
-    <svg viewBox="0 0 1200 300" aria-hidden="true"><path class="hill" d="M0 280 L200 238 L370 252 L600 156 L790 176 L1000 52 L1200 70 L1200 300 L0 300Z"/><path class="trail" d="M0 280 L200 238 L370 252 L600 156 L790 176 L1000 52 L1200 70"/><path class="mask" id="trailMask" d="M0 280 L200 238 L370 252 L600 156 L790 176 L1000 52 L1200 70"/><g class="camp"><circle cx="200" cy="238" r="30"/><text x="200" y="249">1</text></g><g class="camp"><circle cx="600" cy="156" r="30"/><text x="600" y="167">2</text></g><g class="camp"><circle cx="1000" cy="52" r="30"/><text x="1000" y="63">3</text></g></svg>
-    <div class="legs">
-      <div class="fade"><small>Base Camp</small><h3>Get the App</h3><p>Free on Android, then iPhone.</p></div>
-      <div class="fade" style="--dl:.12s"><small>Camp 2</small><h3>Go Outside</h3><p>Trek a mountain, or run and walk in your city.</p></div>
-      <div class="fade" style="--dl:.24s"><small>Summit</small><h3>Earn and Win</h3><p>Collect Peaks, beat your friends, get rewards.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="rew pad" id="rewards" aria-label="What you get">
-  <div>
-    <h2 class="H split">Move More. Get More.</h2>
-    <p class="fade">Every real trek, run and walk earns Peaks. Spend them on things you actually want.</p>
-    <small class="fade">Only real activity counts. Rides in a car or fake GPS earn nothing.</small>
-  </div>
-  <div class="board fade" id="board" aria-label="Rewards">
-    <img class="stk2" src="img/treqz/tq-sticker-gear.webp" alt="Gear up sticker: discounts on shoes and gear" style="--l:6%;--t:8%;--w:46%;--r:-6deg" draggable="false">
-    <img class="stk2" src="img/treqz/tq-sticker-race.webp" alt="Race mode sticker: race entries" style="--l:52%;--t:5%;--w:42%;--r:7deg" draggable="false">
-    <img class="stk2" src="img/treqz/tq-sticker-peaks.webp" alt="Paid in Peaks sticker: trek discounts" style="--l:5%;--t:58%;--w:50%;--r:4deg" draggable="false">
-    <img class="stk2" src="img/treqz/tq-sticker-flex.webp" alt="Big flex sticker: badges and bragging rights" style="--l:62%;--t:46%;--w:30%;--r:-9deg" draggable="false">
-    <small>Drag the stickers</small>
-  </div>
-</section>
-
 <section class="india pad" aria-label="Built for India's outdoors">
   <img class="cut" src="img/treqz/tq-cut-trekker-she.webp" alt="" loading="lazy">
   <h2 class="H split">Built for India's Outdoors.</h2>
@@ -462,9 +359,10 @@
   <h2 class="split">See You<br> Outside.</h2>
   <p class="fade">Be the first to get Treqz when it launches.</p>
   <form class="fade" id="wl" method="POST">
+    <div class="who" role="radiogroup" aria-label="Joining as"><span>Joining as</span><label><input type="radio" name="as" value="me" checked> Just me</label><label><input type="radio" name="as" value="team" id="asTeam"> With a team</label></div>
+    <div class="wl2"><input name="name" required placeholder="Your name" aria-label="Your name" autocomplete="name"><input name="city" required placeholder="Your city" aria-label="Your city" autocomplete="address-level2"></div>
     <div class="wl"><input type="email" name="email" required placeholder="Enter your email" aria-label="Your email" autocomplete="email"><button class="btn">Join the waitlist</button></div>
     <div class="proof" id="proof"><span class="av" aria-hidden="true"><i title="Trek">▲</i><i title="Run">➜</i><i title="Crew">✦</i><i class="me" id="me"></i></span><span class="roll" role="status"><b>Be one of the first to join</b><b>You're in. See you outside.</b></span></div>
-    <div class="who" role="radiogroup" aria-label="Joining as"><label><input type="radio" name="as" value="me" checked> Just me</label><label><input type="radio" name="as" value="team" id="asTeam"> With a team</label></div>
     <div id="wlMsg" role="status"></div>
   </form>
   <div class="alt fade">Planning a trek now? <a href="treks/">Explore 59 treks in 3D</a></div>
@@ -507,20 +405,19 @@ const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersec
 $$('.split,.fade').forEach((el) => io.observe(el));
 
 /* scenes: photo ring turns, slogan rides the road, athletes drift, screens fan out, trail draws */
-const row = $('#row'), slogan = $('#slogan'), stage = $('#stage'), mask = $('#trailMask'), trustImg = $('#trustImg');
-const mlen = mask.getTotalLength(); mask.style.strokeDasharray = mlen;
-const steps = $('#steps'), trust = trustImg.parentNode, clamp = (v) => Math.min(1, Math.max(0, v));
+const row = $('#row'), slogan = $('#slogan'), stage = $('#stage');
+const clamp = (v) => Math.min(1, Math.max(0, v));
 /* the ring holds each photo twice, on opposite sides, so it is full all the way round */
 row.innerHTML += row.innerHTML;
 const N = row.children.length; let R = 0;
 const rep = () => slogan.getComputedTextLength() / 8;   // one MAP IT. MOVE IT. CLAIM IT.
 const measure = () => { R = row.children[0].offsetWidth * .5415 / Math.sin(Math.PI / N); };   // drum radius: Figma card spacing for any card count
 measure(); addEventListener('resize', measure);
-const camps = $$('.camp'), three = $('.three'), qcs = $$('.qc'), bgs = $$('.bgs img'), tabs = $$('.steps3 a');
+const three = $('.three'), qcs = $$('.qc'), bgs = $$('.bgs img'), phs = $$('.ph3 img'), tabs = $$('.steps3 a');
 let cur = 0;
 const show = (k) => { if (k === cur) return; cur = k;
   qcs.forEach((c, i) => { c.classList.toggle('on', i === k); c.classList.toggle('out', i < k); });
-  bgs.forEach((b, i) => b.classList.toggle('on', i === k)); tabs.forEach((t, i) => t.classList.toggle('on', i === k)); };
+  bgs.forEach((b, i) => b.classList.toggle('on', i === k)); phs.forEach((b, i) => b.classList.toggle('on', i === k)); tabs.forEach((t, i) => t.classList.toggle('on', i === k)); };
 tabs.forEach((t) => t.addEventListener('click', (e) => { e.preventDefault(); const y = three.offsetTop + (+t.dataset.k + .5) * (three.offsetHeight - innerHeight) / 3; lenis ? lenis.scrollTo(y) : scrollTo({ top: y, behavior: 'smooth' }); }));
 /* teams sphere: photos on a Fibonacci sphere; auto-turns, drag to spin with momentum */
 const sph = $('#sphere');   // 16 photos, each once
@@ -537,19 +434,6 @@ function spin(r) {
   [...sph.children].forEach((im, i) => { const [x, y, z] = pts[i], x1 = x * Math.cos(a) + z * Math.sin(a), z1 = -x * Math.sin(a) + z * Math.cos(a), y2 = y * Math.cos(b) - z1 * Math.sin(b), z2 = y * Math.sin(b) + z1 * Math.cos(b);
     im.style.transform = `translate(${x1 * R}px,${y2 * R}px) scale(${(.45 + .55 * (z2 + 1) / 2).toFixed(3)})`; im.style.opacity = clamp((z2 + .7) / .5); im.style.zIndex = Math.round(100 + z2 * 100); });
 }
-/* rewards: pick a sticker up, it lifts and tilts the way you drag it, then settles where you drop it */
-$$('.stk2').forEach((st) => {
-  let x = 0, y = 0, last = null, calm;
-  const put = (rx = 0, ry = 0, sc = 1) => { st.style.transform = `translate(${x}px,${y}px) rotate(var(--r)) rotateX(${rx}deg) rotateY(${ry}deg) scale(${sc})`; };
-  st.addEventListener('pointerdown', (e) => { last = [e.clientX, e.clientY]; st.setPointerCapture(e.pointerId); st.classList.add('lift'); put(0, 0, 1.12); });
-  st.addEventListener('pointermove', (e) => { if (!last) return;
-    const dx = e.clientX - last[0], dy = e.clientY - last[1], b = st.closest('section').getBoundingClientRect(), r = st.getBoundingClientRect();
-    x += Math.max(b.left - r.left, Math.min(b.right - r.right, dx)); y += Math.max(b.top - r.top, Math.min(b.bottom - r.bottom, dy));   // roams the whole section
-    last = [e.clientX, e.clientY]; const k = (v) => Math.max(-28, Math.min(28, v * 1.6));
-    put(k(-dy), k(dx), 1.12); clearTimeout(calm); calm = setTimeout(() => last && put(0, 0, 1.12), 90); });
-  const drop = () => { if (!last) return; last = null; st.classList.remove('lift'); put(); };
-  st.addEventListener('pointerup', drop); st.addEventListener('pointercancel', drop);
-});
 /* footer: the logo as a field of halftone dots; the pointer parts them on springs, a click sends a shock ring through */
 (() => {
   const cv = $('#ht'), ctx = cv.getContext('2d'), logo = new Image(), INK = [229, 252, 201], WARM = [255, 255, 255];
@@ -601,16 +485,13 @@ function frame(now) {   // all reads first, then all writes: one layout per fram
   lenis?.raf(now);
   const vh = innerHeight, vw = innerWidth, y = scrollY, drift = still ? 0 : (now - t0) / 1000;
   const th = three.getBoundingClientRect(); show(Math.min(2, Math.max(0, Math.floor(-th.top / (th.height - vh) * 3))));
-  const s = stage.getBoundingClientRect().top, h = steps.getBoundingClientRect().top, tr = trust.getBoundingClientRect();
+  const s = stage.getBoundingClientRect().top;
   const a = drift * 5 + y * .04;   // degrees: a slow turn on its own, a nudge on scroll
   [...row.children].forEach((f, i) => { const t = ((i * 360 / N + a) % 360 + 540) % 360 - 180;   // -180..180, 0 = facing us (nearest)
     f.style.transform = `translateZ(${-R}px) rotateY(${t}deg) translateZ(${R}px)`; f.style.opacity = clamp((90 - Math.abs(t)) / 14); });   // three cards plus edge slivers, like the Figma
   slogan.setAttribute('startOffset', -((y * .7 + drift * 40) % rep()));
   spin(sph.getBoundingClientRect());
   stage.style.setProperty('--p', clamp((vh - s) / (vh * .75)).toFixed(3));   // inherited by the screens
-  const climb = clamp((vh * .85 - h) / (vh * .6)); mask.style.strokeDashoffset = -mlen * climb;
-  camps.forEach((p, i) => p.classList.toggle('on', climb > [.14, .5, .86][i]));   // each camp pops as the trail reaches it
-  trustImg.style.transform = `translateY(${Math.max(-1, Math.min(1, (tr.top + tr.height / 2 - vh / 2) / vh)) * -6}%)`;
   /* card stack: as the next section rises over this one, it sinks back, rounds its corners and dims */
   const tops = secs.map((x) => x.getBoundingClientRect().top), rv = reveal.map((x) => x.getBoundingClientRect().top);
   secs.forEach((x, i) => { const n = tops[i + 1], p = n === undefined || still ? 0 : clamp((vh - n) / vh);
@@ -630,10 +511,11 @@ $$('[data-team]').forEach((a) => a.addEventListener('click', () => { $('#asTeam'
 wl.addEventListener('submit', async (e) => {
   e.preventDefault();
   msg.textContent = 'Adding you…';
-  const body = new URLSearchParams({ 'entry.257845312': wl.email.value.trim(), 'entry.1319691017': ('home | ' + wl.as.value + ' | ' + location.search).slice(0, 500) });
+  const body = new URLSearchParams({ 'entry.257845312': wl.email.value.trim(), 'entry.1319691017': ('home | name: ' + wl.elements.name.value.trim() + ' | city: ' + wl.elements.city.value.trim() + ' | ' + wl.as.value + ' | ' + location.search).slice(0, 500) });
   const ok = await fetch(GF, { method: 'POST', mode: 'no-cors', body }).then(() => true, () => false);
   msg.textContent = ok ? '' : 'That didn\'t go through. Please try again.';
   if (ok) { $('#me').textContent = wl.email.value[0].toUpperCase(); $('#proof').classList.add('joined'); wl.reset(); }   // your initial joins the stack
 });
 </script>
+<script src="/header.js" defer></script>
 </body></html>

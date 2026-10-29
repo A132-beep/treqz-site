@@ -2,8 +2,9 @@
 // Loaded sync in <head> on every page (build_dist.py adds it in dist/); the html::after cover stops a flash before the columns exist.
 (() => {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const d = document, de = d.documentElement, first = !sessionStorage.vl;
-  sessionStorage.vl = 1;
+  const d = document, de = d.documentElement;
+  let first = true;
+  try { first = !sessionStorage.vl; sessionStorage.vl = 1; } catch (e) {}   // storage blocked: treat every page as the first, still run the veil
   de.classList.add('vl');
   d.head.insertAdjacentHTML('beforeend', `<style>
 html.vl::after{content:'';position:fixed;inset:0;z-index:2147483647;background:#f2f8ec}
@@ -29,5 +30,6 @@ html.vl::after{content:'';position:fixed;inset:0;z-index:2147483647;background:#
     e.preventDefault();
     v.classList.remove('up'); v.classList.add('go');
     setTimeout(() => { location.href = u.href; }, 600 + 4 * 90);
+    setTimeout(() => { v.classList.remove('go'); v.classList.add('up'); }, 4000);   // a link that doesn't replace the page (a download) must not leave the cover up
   });
 })();
