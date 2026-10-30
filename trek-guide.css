@@ -7,7 +7,7 @@ a{color:inherit}
 img{display:block;max-width:100%}
 .pad{padding-inline:var(--pad)}
 h1,h2,h3{margin:0;letter-spacing:-.035em;font-weight:700}
-h2{font-size:clamp(36px,4.6vw,64px);line-height:1;color:var(--c);margin-bottom:36px}
+h2{font-size:clamp(34px,4.6vw,66px);line-height:1.05;color:var(--c);margin-bottom:36px}
 .eyebrow{display:block;margin-bottom:14px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--m)}
 
 /* hero: the trek's own photo, its name large, the five numbers on frosted glass */
@@ -17,7 +17,7 @@ h2{font-size:clamp(36px,4.6vw,64px);line-height:1;color:var(--c);margin-bottom:3
 .credit{position:absolute;right:calc(var(--pad) + 18px);bottom:calc(clamp(40px,5vw,64px) + 14px);font-size:11px;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.7)}
 .ht{grid-column:1;grid-row:1;align-self:end}
 .crumb{font-size:14px;color:var(--m)}.crumb a{text-decoration:none}.crumb a:hover{text-decoration:underline}
-.hero h1{margin-top:12px;font-size:clamp(52px,6.4vw,104px);line-height:.9;letter-spacing:-.05em;color:var(--c)}
+.hero h1{margin-top:12px;font-size:clamp(44px,6.6vw,96px);line-height:.98;letter-spacing:-.035em;color:var(--c)}
 .dv{margin:12px 0 0;font-size:clamp(17px,1.5vw,22px);font-weight:300;color:rgba(255,255,255,.8)}
 .glass{grid-column:1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 16px;padding-top:24px;border-top:1px solid var(--l)}
 .glass b{display:block;font-size:clamp(20px,1.9vw,28px);font-weight:600;letter-spacing:-.03em;white-space:nowrap}

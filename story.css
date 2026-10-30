@@ -1,0 +1,42 @@
+/* Shared styles for the Run and Crew pages (layouts drafted in /design/run/ and /design/crew/). Treqz greens, cream and trail orange. */
+:root{--bg:#022d21;--g:#03342a;--g2:#054634;--c:#e5fcc9;--o:#f07f2b;--ink:#1d1d1b;--mute:rgba(255,255,255,.68);--line:rgba(229,252,201,.16);--pad:clamp(16px,6vw,120px);--f:'Google Sans Flex',system-ui,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:#fff;font:400 17px/1.5 var(--f);-webkit-font-smoothing:antialiased;overflow-x:clip}
+main{overflow-x:clip}   /* stickers may hang off a card edge, never off the screen */
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.035em;line-height:1.05;color:#fff}
+h1{font-size:clamp(44px,6.6vw,96px);line-height:.98}
+h2{font-size:clamp(34px,4.6vw,66px)}
+.pad{padding-inline:var(--pad)}
+.sec{padding-block:clamp(90px,11vw,170px)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);border-radius:99px;font-size:13px;font-weight:600;color:var(--c)}
+.lead{max-width:30em;margin:22px 0 0;font-size:clamp(17px,1.4vw,21px);color:var(--mute)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:99px;background:var(--c);color:var(--g);font:600 16px var(--f);text-decoration:none;border:0;cursor:pointer;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.btn:hover{transform:translateY(-2px) rotate(-1deg)}
+.btn.o{background:none;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.5)}
+.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.fine{margin-top:16px;font-size:13px;color:var(--mute)}
+/* hand-drawn pill: text on the wobbly ink card */
+.hp{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:url(/img/ill/wobbly-ink-rounded-card.webp) center/100% 100% no-repeat;color:var(--ink);font-weight:600;font-size:14px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.hp small{font-size:13px;font-weight:500;letter-spacing:0;text-transform:none;color:rgba(29,29,27,.65)}
+.ill{position:absolute;pointer-events:none;height:auto}
+.ph{overflow:hidden;border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.tape{position:absolute;top:-14px;left:50%;width:84px;height:28px;translate:-50% 0;rotate:-4deg;background:rgba(229,252,201,.55);backdrop-filter:blur(2px);border-radius:3px}
+.ex{font-size:12px;color:rgba(3,52,42,.5)}
+/* reveal: d.js adds .in as each block scrolls into view; --d staggers siblings. Without JS everything simply shows. */
+.js .rv{opacity:0;translate:0 48px;transition:opacity .9s cubic-bezier(.2,.8,.2,1),translate .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;translate:0 0}
+.js .pop{opacity:0;scale:.6;rotate:-8deg;transition:opacity .5s,scale .7s cubic-bezier(.3,1.6,.5,1),rotate .7s cubic-bezier(.3,1.6,.5,1);transition-delay:var(--d,0s)}
+.js .in .pop,.js .pop.in{opacity:1;scale:1;rotate:var(--r,0deg)}
+/* big headings: each line slides up out of a mask */
+.ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.ln>span{display:block}
+.js .ln>span{translate:0 105%;transition:translate 1s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.js .in .ln>span,.js .ln.in>span{translate:0 0}
+@media (prefers-reduced-motion:reduce){.js .rv,.js .pop,.js .ln>span{opacity:1;translate:none;scale:none;transition:none}}
+@media (prefers-reduced-motion:no-preference){.bob{animation:bob 5s ease-in-out infinite alternate}@keyframes bob{to{translate:0 -10px}}}
+footer{padding:48px var(--pad);border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
+.guides>section{padding:0;margin:0}   /* the blog block (tools/blog.py) inside a story block */

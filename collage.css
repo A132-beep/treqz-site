@@ -65,37 +65,9 @@
 .sc .prog{height:1.6cqw;margin:1.6cqw 0 1cqw;border-radius:2cqw;background:#e9e3cf;overflow:hidden}
 .sc .prog b{display:block;height:100%;width:var(--p);border-radius:2cqw;background:var(--o)}
 
-/* 5 · Run: close a loop */
-.s5 .ph{left:6%;top:10%;width:46%;height:74%;rotate:-2deg}
-.s5 .loop{left:40%;top:14%;width:52%;rotate:3deg}
-.s5 .hex{left:52%;top:58%;width:40%;rotate:-4deg}
-.s5 .pill{left:20%;top:82%;height:11%;rotate:-1.5deg}
-.s5 .spark{left:86%;top:4%;width:11%;rotate:14deg}
 
-/* 6 · Run: city runs, mountain gains */
-.s6 .ph{left:8%;top:8%;width:58%;height:62%;rotate:1.5deg}
-.s6 .peak{left:44%;top:46%;width:52%;rotate:-2deg}
-.s6 .panel{left:4%;top:66%;width:50%;rotate:-2deg}
-.s6 .panel b{font-size:3.4cqw}
-.s6 .medal{left:76%;top:2%;width:19%;rotate:10deg}
 
-/* 7 · Crew: club board */
-.s7 .ph{left:4%;top:12%;width:56%;height:70%;rotate:-1.5deg}
-.s7 .panel{left:50%;top:22%;width:44%;rotate:2deg}
-.s7 .row{display:grid;grid-template-columns:3.6cqw 1fr;align-items:center;gap:1.4cqw;padding:1cqw 0}
-.s7 .row i{font-style:normal;font-weight:700;color:var(--o)}
-.s7 .row b{display:block;font-weight:600}
-.s7 .row span{display:block;height:1.2cqw;margin-top:.6cqw;border-radius:2cqw;background:var(--g);width:var(--w)}
-.s7 .stamp{left:58%;top:62%;width:30%;rotate:-8deg}
-.s7 .hgrid{left:0;top:76%;width:30%;opacity:.9;rotate:6deg}
 
-/* 8 · Crew: campus vs office */
-.s8 .ph.a{left:4%;top:14%;width:42%;height:52%;rotate:-4deg}
-.s8 .ph.b{left:54%;top:22%;width:42%;height:52%;rotate:4deg}
-.s8 .vs{left:38%;top:30%;width:24%;display:grid;place-items:center;aspect-ratio:3/2;background:url(/img/ill/open-hand-drawn-marker-circle.webp) center/100% 100% no-repeat;font-weight:800;font-size:6cqw;color:#e5fcc9;z-index:2}   /* cream: the VS sits on the dark page between the photos */
-.s8 .pa{left:6%;top:70%;height:10%;rotate:-3deg}
-.s8 .pb{left:56%;top:78%;height:10%;rotate:3deg}
-.s8 .spark{left:84%;top:4%;width:12%;rotate:12deg}
 
 /* 9 · Trek: when to go */
 .s9 .ph{left:6%;top:8%;width:66%;height:56%;rotate:-1.5deg}
@@ -125,6 +97,6 @@
   .sc-js .sc:not(.in)>*{animation-play-state:paused}   /* collage.js: play each scene once it scrolls into view */
   .sc>*{animation:settle .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 90ms)}
   @keyframes settle{from{opacity:0;translate:0 4cqw;scale:.94}}
-  .sc .spark,.sc .burst,.sc .wind,.sc .mark,.sc .medal{animation:settle .9s cubic-bezier(.2,.8,.2,1) both,bob 5s ease-in-out 1s infinite alternate}
+  .sc .spark,.sc .burst,.sc .wind,.sc .mark{animation:settle .9s cubic-bezier(.2,.8,.2,1) both,bob 5s ease-in-out 1s infinite alternate}
   @keyframes bob{to{translate:0 -1.5cqw}}
 }

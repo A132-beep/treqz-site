@@ -56,4 +56,5 @@
   tn.addEventListener('focusin', (e) => at(e.target.closest('.ti')));
   tn.addEventListener('focusout', (e) => { if (!tn.contains(e.relatedTarget)) rest(); });
   rest(true); addEventListener('resize', () => rest(true)); d.fonts?.ready.then(() => rest(true));   // the font swap changes the widths
+  addEventListener('load', () => rest(true));   // inner pages add header.css themselves; before it lands every item is full width, so measure again once it has
 })();
