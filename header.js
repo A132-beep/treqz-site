@@ -3,6 +3,11 @@
 // The iPhone app (TREKPEEK_APP) brings its own chrome.
 (() => {
   if (window.TREKPEEK_APP || document.getElementById('hmenu')) return;   // only our own menu means "already added", not any class="hd" on the page
+  if (new URLSearchParams(location.search).has('embed')) {   // the 3D map inside an operator's site (/embed/): no site chrome, no rival operators, links open a new tab
+    document.head.insertAdjacentHTML('beforeend', '<style>#s-ops,#s-ops~*:not(footer){display:none!important}</style>');
+    document.querySelector('base')?.setAttribute('target', '_blank');
+    return;
+  }
   const d = document, p = location.pathname, home = p.replace(/index\.html$/, '') === '/' && d.getElementById('top');
   const month = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'][new Date().getMonth()];
   const S = [   // [name, link, dropdown links]

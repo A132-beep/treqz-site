@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free 3D Trek Map for Your Website | Treqz</title>
+<script src="/veil.js"></script>
+<link rel="canonical" href="https://treqz.com/embed/">
+<meta name="description" content="Put a free 3D flythrough of any of 59 Indian treks on your trek page. Copy one line of code. No sign-up, no cost.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+<style>
+  .em{display:grid;gap:16px;max-width:900px}
+  .em select,.em textarea{width:100%;padding:14px 18px;border:1px solid rgba(229,252,201,.35);border-radius:16px;background:rgba(2,45,33,.6);color:#fff;font:500 16px 'Google Sans Flex',system-ui,sans-serif}
+  .em textarea{height:120px;font:13px/1.5 ui-monospace,Consolas,monospace;resize:vertical}
+  .em button{justify-self:start;padding:12px 22px;border:0;border-radius:99px;background:#e5fcc9;color:#054634;font:600 15px 'Google Sans Flex',system-ui,sans-serif;cursor:pointer}
+  .em .pv{border-radius:16px;overflow:hidden;border:1px solid rgba(229,252,201,.18)}
+  .em .pv iframe{display:block;width:100%;height:520px;border:0}
+  .em ol{margin:0;padding-left:20px;line-height:1.7;color:rgba(255,255,255,.85)}
+</style>
+<script src="/header.js" defer></script><link rel="icon" href="/favicon.ico?v=d7a48e7d" sizes="32x32"><link rel="icon" href="/favicon.svg?v=d7a48e7d" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=d7a48e7d"><meta property="og:type" content="website"><meta property="og:site_name" content="Treqz"><meta property="og:url" content="https://treqz.com/embed/"><meta property="og:title" content="Free 3D Trek Map for Your Website | Treqz"><meta property="og:description" content="Put a free 3D flythrough of any of 59 Indian treks on your trek page. Copy one line of code. No sign-up, no cost."><meta property="og:image" content="https://treqz.com/img/photo/hero/goechala.webp"><meta name="twitter:card" content="summary_large_image">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}addEventListener('load',()=>setTimeout(()=>document.head.append(Object.assign(document.createElement('script'),{src:'https://www.googletagmanager.com/gtag/js?id=G-GDJGTQJ4XM'}))));gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config','G-GDJGTQJ4XM');</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "046eb4d3531d4d408edc25291cf3fca8"}'></script>
+</head>
+<body>
+<header class="mhead" style="--m:url(../img/envato/tsomgo-m.webp);--d:url(../img/envato/tsomgo.webp)"><div class="wrap">
+  <div class="crumb"><a class="logo" href="../"><img src="../img/logo-cream.svg" alt="Treqz" width="82" height="22"></a> · For trek operators</div>
+  <h1>A free 3D map for your trek page</h1>
+  <p>Show your trekkers the whole route in 3D, camp by camp, from real elevation and satellite data. Copy one line of code. No sign-up, no cost, no ads.</p>
+</div></header>
+<main class="wrap">
+  <section><h2>Get the code</h2>
+  <div class="em">
+    <label for="trek">Pick your trek</label>
+    <select id="trek"></select>
+    <textarea id="code" readonly aria-label="Embed code"></textarea>
+    <button type="button" id="copy">Copy code</button>
+    <ol>
+      <li>Paste the code into your trek page where you want the map, in HTML or "Custom HTML" mode (WordPress, Wix and Squarespace all have one).</li>
+      <li>Keep the credit line under the map. It's what keeps the map free.</li>
+      <li>The map shows the route, camps, weather and altitude. It never lists other operators.</li>
+    </ol>
+    <h2>Preview</h2>
+    <div class="pv"><iframe id="pv" title="3D trek map preview" loading="lazy"></iframe></div>
+  </div></section>
+</main>
+<footer class="wrap">Trails © OpenStreetMap contributors (ODbL). Elevation: AWS Terrain Tiles (Mapzen, SRTM and others). Imagery: Esri, Maxar, Earthstar Geographics.</footer>
+<script>
+  const SITE = 'https://treqz.com', sel = document.getElementById('trek'), code = document.getElementById('code'), pv = document.getElementById('pv');
+  // the credit link sits in the operator's own page (not inside the iframe), so it counts as their link to the trek guide
+  const snippet = (t) => `<iframe src="${SITE}/${t.id}/3d/?embed" title="${t.name} trek 3D map" width="100%" height="560" style="border:0;border-radius:12px" loading="lazy" allowfullscreen></iframe>\n<p style="font-size:13px"><a href="${SITE}/${t.id}/">${t.name} trek 3D map</a> by Treqz</p>`;
+  const show = (T) => { const t = T.find((x) => x.id === sel.value); code.value = snippet(t); pv.src = `/${t.id}/3d/?embed`; };
+  fetch('/treks.json').then((r) => r.json()).then((T) => {
+    T.sort((a, b) => a.name.localeCompare(b.name));
+    sel.innerHTML = T.map((t) => `<option value="${t.id}">${t.name}</option>`).join('');
+    sel.value = new URLSearchParams(location.search).get('trek') || 'kedarkantha';
+    sel.onchange = () => show(T); show(T);
+  });
+  document.getElementById('copy').onclick = (e) => navigator.clipboard.writeText(code.value).then(() => { e.target.textContent = 'Copied'; setTimeout(() => e.target.textContent = 'Copy code', 1500); });
+</script>
+</body></html>

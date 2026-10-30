@@ -1,0 +1,23 @@
+# Treqz
+
+> Treqz is a free running and trekking app for India, and a free, neutral atlas of 59 Indian treks. Every trek is shown in 3D from real elevation and satellite data, and every fact (days, altitude, permits, prices, seasons) links to its source. Treqz sells nothing: there are no booking or affiliate links, and operators appear with their own published prices.
+
+## Treks
+- [All treks](https://treqz.com/treks/): the trek hub, with every trek by region and month
+- [Trek guides](https://treqz.com/guides/): treks by region, difficulty, nearest city and season, plus side-by-side comparisons
+- [Treks by month](https://treqz.com/treks-in-january/): which treks are at their best each month (one page per month)
+- Each trek has a guide at https://treqz.com/<trek>/ (route, elevation, season, cost, operators) and a 3D flythrough at https://treqz.com/<trek>/3d/
+
+## Running
+- [Treqz Run](https://treqz.com/run/): territory running; close a loop on foot to claim the hexagon tiles of your city
+- [Run clubs](https://treqz.com/run-clubs/)
+
+## Free tools
+- [Free tools](https://treqz.com/free-tools/): trek finder, running pace calculator, 5 km plan, run club name generator
+
+## For operators
+- [Free 3D trek map embed](https://treqz.com/embed/): put a trek's 3D map on your own site
+
+## Optional
+- [Blog](https://treqz.com/blog/)
+- [Sitemap](https://treqz.com/sitemap.xml)

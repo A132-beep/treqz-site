@@ -9,12 +9,13 @@
 <link rel="stylesheet" href="header.css">
 <link rel="preload" as="image" href="img/treqz/tq-hero-1-m.webp">
 <style>
+  :where(img){height:auto}   /* width/height attributes reserve space; CSS sizes still win */
   /* tokens (Figma "Treqz"): brand green, deep green, lime cream; Google Sans Flex */
   :root{--h2:clamp(36px,4.6vw,68px);--h3:clamp(24px,2.3vw,34px);--g:#054634;--gd:#022d21;--u:max(calc(100vw / 1920), .5px);--c:#e5fcc9;--ink:#fff;--mute:rgba(255,255,255,.66);--line:rgba(229,252,201,.18);--pad:clamp(16px,6vw,136px);--f:'Google Sans Flex',system-ui,sans-serif;--bs:max(40px,calc(50 * var(--u)))}
   *{box-sizing:border-box}
   html.lenis{height:auto}.lenis-stopped{overflow:hidden}   /* Lenis does the smooth scrolling */
   /* section to section: the one leaving sinks back into a rounded card; photo sections open as a growing circle */
-  body>section{transform-origin:50% 100%}
+  main>section{transform-origin:50% 100%}
   .trust>img,.cta>img{clip-path:inset(calc((1 - var(--rv,1)) * 22%) calc((1 - var(--rv,1)) * 24%) round calc((1 - var(--rv,1)) * 80px))}   /* the photo grows from a rounded window to full bleed, never cut flat by the edge */
   body{margin:0;background:var(--gd);color:var(--ink);font:400 17px/1.45 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
@@ -250,6 +251,7 @@
   <p>The outdoor app for India. Free, works with no network.</p>
 </div>
 
+<main>
 <section class="hq" aria-label="Treqz">
   <div class="hero-t">
     <span class="chip fade">The outdoor app for India</span>
@@ -259,31 +261,31 @@
   </div>
   <div class="s">
     <div class="strip" aria-hidden="true"><div class="row" id="row">
-      <figure><img src="img/treqz/tq-hero-1-m.webp" alt=""></figure>
-      <figure><img src="img/treqz/tq-hero-2-m.webp" alt=""></figure>
-      <figure><img src="img/treqz/tq-hero-3-m.webp" alt=""></figure>
-      <figure><img src="img/treqz/tq-hero-4-m.webp" alt="" loading="lazy"></figure>
-      <figure><img src="img/treqz/tq-hero-5-m.webp" alt="" loading="lazy"></figure>
-      <figure><img src="img/treqz/tq-hero-6-m.webp" alt="" loading="lazy"></figure>
+      <figure><img src="img/treqz/tq-hero-1-m.webp" alt="" width="825" height="1100"></figure>
+      <figure><img src="img/treqz/tq-hero-2-m.webp" alt="" width="734" height="1100"></figure>
+      <figure><img src="img/treqz/tq-hero-3-m.webp" alt="" width="880" height="1100"></figure>
+      <figure><img src="img/treqz/tq-hero-4-m.webp" alt="" loading="lazy" width="733" height="1100"></figure>
+      <figure><img src="img/treqz/tq-hero-5-m.webp" alt="" loading="lazy" width="736" height="981"></figure>
+      <figure><img src="img/treqz/tq-hero-6-m.webp" alt="" loading="lazy" width="619" height="1100"></figure>
     </div></div>
     <svg class="ribbon" viewBox="0 0 1920 3149" aria-hidden="true">
       <path id="road" d="M-60 2620 C 100 2200 300 1520 576 1505 C 800 1495 960 2050 1150 2060 C 1330 2070 1380 1560 1450 1580 C 1520 1600 1530 1810 1590 1800 C 1700 1780 1850 1500 2010 1400" fill="none" stroke="#e5fcc9" stroke-width="110" stroke-linecap="round"/>
       <text dy="19"><textPath href="#road" id="slogan">MAP IT. MOVE IT. CLAIM IT. MAP IT. MOVE IT. CLAIM IT. MAP IT. MOVE IT. CLAIM IT. MAP IT. MOVE IT. CLAIM IT. MAP IT. MOVE IT. CLAIM IT. MAP IT. MOVE IT. CLAIM IT. MAP IT. MOVE IT. CLAIM IT. MAP IT. MOVE IT. CLAIM IT.</textPath></text>
     </svg>
-    <img class="cut run" src="img/treqz/tq-quest-run.webp" alt="A runner mid-stride" loading="lazy">
-    <img class="cut trek" src="img/treqz/tq-quest-trek.webp" alt="A trekker with poles climbing a rock" loading="lazy">
+    <img class="cut run" src="img/treqz/tq-quest-run.webp" alt="A runner mid-stride" loading="lazy" width="914" height="1100">
+    <img class="cut trek" src="img/treqz/tq-quest-trek.webp" alt="A trekker with poles climbing a rock" loading="lazy" width="880" height="1100">
     <div class="q-h"><h2 class="split">Pick Your<br> Main Quest.</h2><a class="btn c fade" href="#run">Know More</a></div>
   </div>
 </section>
 
 <section class="three" id="run" aria-label="One app. Three things.">
   <div class="tw">
-    <div class="bgs" aria-hidden="true"><img class="on" src="img/treqz/tq-three-trek.jpg" alt="" loading="lazy"><img src="img/treqz/tq-three-turf.jpg" alt="" loading="lazy"><img src="img/treqz/tq-three-squad.jpg" alt="" loading="lazy"></div>
+    <div class="bgs" aria-hidden="true"><img class="on" src="img/treqz/tq-three-trek.jpg" alt="" loading="lazy" width="1600" height="1066"><img src="img/treqz/tq-three-turf.jpg" alt="" loading="lazy" width="1600" height="1066"><img src="img/treqz/tq-three-squad.jpg" alt="" loading="lazy" width="1600" height="1071"></div>
     <h2 class="split">One App.<br> Three Things.</h2>
     <a class="qc on" href="treks/" data-k="0"><span class="tag live">Live now</span><h3>Find Your Trek <i>→</i></h3><div class="meta"><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2zm4 0v9.6m6-8V14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>59 treks in 3D</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.8 7.3V4H7.2v5h4V7.3z"/></svg>Best months</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l2.1 4.5 4.9.6-3.6 3.4.9 4.9L8 12l-4.3 2.4.9-4.9L1 6.1l4.9-.6z"/></svg>Permits</span></div><p>See 59 Indian treks in 3D, with honest info on difficulty, best months and permits.</p></a>
     <div class="qc" data-k="1"><span class="tag">Coming soon</span><h3>Claim Your Turf <i>→</i></h3><div class="meta"><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2zm4 0v9.6m6-8V14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Claim turf</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.8 7.3V4H7.2v5h4V7.3z"/></svg>Race previews</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l2.1 4.5 4.9.6-3.6 3.4.9 4.9L8 12l-4.3 2.4.9-4.9L1 6.1l4.9-.6z"/></svg>Earn Peaks</span></div><p>Run or walk a loop and the ground inside becomes your crew's turf. Train for your next trek, find races with 3D course previews, and earn Peaks for showing up.</p></div>
     <div class="qc" data-k="2"><span class="tag">Coming soon</span><h3>Meet Your Sweat Squad <i>→</i></h3><div class="meta"><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 3l4-2 6 2 4-2v12l-4 2-6-2-4 2zm4 0v9.6m6-8V14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>Friends</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm.8 7.3V4H7.2v5h4V7.3z"/></svg>Weekly races</span><span><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l2.1 4.5 4.9.6-3.6 3.4.9 4.9L8 12l-4.3 2.4.9-4.9L1 6.1l4.9-.6z"/></svg>Real rewards</span></div><p>Every kilometre earns Peaks. Compete with friends and spend them on real rewards.</p></div>
-    <div class="ph3" aria-hidden="true"><img class="on" src="img/treqz/tq-app-trek.webp" alt="" loading="lazy"><img src="img/treqz/tq-app-turf.webp" alt="" loading="lazy"><img src="img/treqz/tq-app-squad.webp" alt="" loading="lazy"></div>
+    <div class="ph3" aria-hidden="true"><img class="on" src="img/treqz/tq-app-trek.webp" alt="" loading="lazy" width="720" height="1565"><img src="img/treqz/tq-app-turf.webp" alt="" loading="lazy" width="720" height="1565"><img src="img/treqz/tq-app-squad.webp" alt="" loading="lazy" width="720" height="1565"></div>
     <nav class="steps3" aria-label="Three things"><a class="on" href="#run" data-k="0">Trek</a><a href="#run" data-k="1">Turf</a><a href="#run" data-k="2">Squad</a></nav>
   </div>
 </section>
@@ -291,20 +293,20 @@
 <section class="plan pad" aria-label="Plan it in one place">
     <h2 class="H split">Plan It in One Place.</h2>
     <div class="deck fade">
-      <a class="pc" href="markha/" style="--i:0"><img src="img/treqz/tq-plan-markha.webp" alt="Colourful mountains along the Markha Valley trek, Ladakh" loading="lazy"><b class="">Markha Valley · 5,260 m</b></a>
-      <a class="pc" href="kheerganga/" style="--i:1"><img src="img/treqz/tq-plan-kheerganga.webp" alt="Forest and cloud on the Kheerganga trek" loading="lazy"><b class="pin">Kheerganga · 2,960 m</b></a>
-      <a class="pc" href="kashmirgreatlakes/" style="--i:2"><img src="img/treqz/tq-plan-krishansar.webp" alt="Krishansar Lake on the Kashmir Great Lakes trek" loading="lazy"><b class="">Kashmir Great Lakes · 4,206 m</b></a>
-      <a class="pc" href="goechala/" style="--i:3;--o0:1"><img src="img/treqz/tq-plan-thangsing.webp" alt="Camp at Thangsing below Kanchenjunga, Sikkim" loading="lazy"><b class="">Goechala · 4,602 m</b></a>
-      <a class="pc" href="treks-in-kashmir-and-ladakh/" style="--i:4"><img src="img/treqz/tq-plan-ladakh.webp" alt="A lone trekker in the arid mountains of Ladakh" loading="lazy"><b class="">Ladakh treks</b></a>
-      <a class="pc" href="treks-in-western-ghats/" style="--i:5"><img src="img/treqz/tq-plan-ghats.webp" alt="The Western Ghats" loading="lazy"><b class="">Western Ghats</b></a>
-      <a class="pc" href="treks-in-himachal/" style="--i:6"><img src="img/treqz/tq-plan-spiti.webp" alt="A bridge over the Spiti river, Himachal" loading="lazy"><b class="pin g">Spiti, Himachal</b></a>
+      <a class="pc" href="markha/" style="--i:0"><img src="img/treqz/tq-plan-markha.webp" alt="Colourful mountains along the Markha Valley trek, Ladakh" loading="lazy" width="917" height="1100"><b class="">Markha Valley · 5,260 m</b></a>
+      <a class="pc" href="kheerganga/" style="--i:1"><img src="img/treqz/tq-plan-kheerganga.webp" alt="Forest and cloud on the Kheerganga trek" loading="lazy" width="917" height="1100"><b class="pin">Kheerganga · 2,960 m</b></a>
+      <a class="pc" href="kashmirgreatlakes/" style="--i:2"><img src="img/treqz/tq-plan-krishansar.webp" alt="Krishansar Lake on the Kashmir Great Lakes trek" loading="lazy" width="917" height="1100"><b class="">Kashmir Great Lakes · 4,206 m</b></a>
+      <a class="pc" href="goechala/" style="--i:3;--o0:1"><img src="img/treqz/tq-plan-thangsing.webp" alt="Camp at Thangsing below Kanchenjunga, Sikkim" loading="lazy" width="917" height="1100"><b class="">Goechala · 4,602 m</b></a>
+      <a class="pc" href="treks-in-kashmir-and-ladakh/" style="--i:4"><img src="img/treqz/tq-plan-ladakh.webp" alt="A lone trekker in the arid mountains of Ladakh" loading="lazy" width="917" height="1100"><b class="">Ladakh treks</b></a>
+      <a class="pc" href="treks-in-western-ghats/" style="--i:5"><img src="img/treqz/tq-plan-ghats.webp" alt="The Western Ghats" loading="lazy" width="917" height="1100"><b class="">Western Ghats</b></a>
+      <a class="pc" href="treks-in-himachal/" style="--i:6"><img src="img/treqz/tq-plan-spiti.webp" alt="A bridge over the Spiti river, Himachal" loading="lazy" width="917" height="1100"><b class="pin g">Spiti, Himachal</b></a>
     </div>
     <p class="fade">Pick when you can go, fly the trail, check how hard it really is, read the rules, then compare who runs it. No sign-up.</p>
     <div class="acts fade"><a class="btn c" href="treks/">Open the trek atlas</a><a class="btn o" href="guides/">Browse guides</a></div>
 </section>
 
 <section class="trust" aria-label="Why trust Treqz">
-  <img src="img/treqz/tq-trust-run.webp" srcset="img/treqz/tq-trust-run-m.webp 1000w, img/treqz/tq-trust-run.webp 2000w" sizes="(max-width:900px) 100vw, 50vw" alt="Friends running together along a seaside promenade" loading="lazy">
+  <img src="img/treqz/tq-trust-run.webp" srcset="img/treqz/tq-trust-run-m.webp 1000w, img/treqz/tq-trust-run.webp 2000w" sizes="(max-width:900px) 100vw, 50vw" alt="Friends running together along a seaside promenade" loading="lazy" width="2000" height="1333">
   <div class="tp"><h2 class="H split">Why Trust Treqz.</h2>
     <p class="lead fade">Neutral, sourced, and built from real terrain.</p>
     <dl class="trows">
@@ -329,7 +331,7 @@
   </div>
 </section>
 <section class="india pad" aria-label="Built for India's outdoors">
-  <img class="cut" src="img/treqz/tq-cut-trekker-she.webp" alt="" loading="lazy">
+  <img class="cut" src="img/treqz/tq-cut-trekker-she.webp" alt="" loading="lazy" width="959" height="1100">
   <h2 class="H split">Built for India's Outdoors.</h2>
   <div class="feats">
     <div class="feat fade"><svg viewBox="0 0 44 44" fill="none" stroke="#054634" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l32 32M16 30a8 8 0 0 1 12 0M10 23a17 17 0 0 1 8-5M34 23a17 17 0 0 0-5-3.6M4 16a26 26 0 0 1 8-4.5M40 16a26 26 0 0 0-17-6.4"/><circle cx="22" cy="36" r="1.6" fill="#054634"/></svg><h3>Works With No Network</h3><p>Made for Himalayan trails where phones lose signal.</p></div>
@@ -339,7 +341,7 @@
 </section>
 
 <section class="teams" id="teams" aria-label="For teams">
-  <div class="sphere" id="sphere" aria-hidden="true"><img src="img/treqz/tq-teams.webp" alt="" loading="lazy" data-t="0deg"><img src="img/treqz/tq-team-1.webp" alt="" loading="lazy" data-t="22.5deg"><img src="img/treqz/tq-team-2.webp" alt="" loading="lazy" data-t="45deg"><img src="img/treqz/tq-team-3.webp" alt="" loading="lazy" data-t="67.5deg"><img src="img/treqz/tq-team-4.webp" alt="" loading="lazy" data-t="90deg"><img src="img/treqz/tq-team-5.webp" alt="" loading="lazy" data-t="112.5deg"><img src="img/treqz/tq-team-6.webp" alt="" loading="lazy" data-t="135deg"><img src="img/treqz/tq-team-7.webp" alt="" loading="lazy" data-t="157.5deg"><img src="img/treqz/tq-team-8.webp" alt="" loading="lazy" data-t="180deg"><img src="img/treqz/tq-team-9.webp" alt="" loading="lazy" data-t="202.5deg"><img src="img/treqz/tq-team-10.webp" alt="" loading="lazy" data-t="225deg"><img src="img/treqz/tq-team-11.webp" alt="" loading="lazy" data-t="247.5deg"><img src="img/treqz/tq-team-12.webp" alt="" loading="lazy" data-t="270deg"><img src="img/treqz/tq-team-13.webp" alt="" loading="lazy" data-t="292.5deg"><img src="img/treqz/tq-team-14.webp" alt="" loading="lazy" data-t="315deg"><img src="img/treqz/tq-team-15.webp" alt="" loading="lazy" data-t="337.5deg"></div>
+  <div class="sphere" id="sphere" aria-hidden="true"><img src="img/treqz/tq-teams.webp" alt="" loading="lazy" data-t="0deg" width="1600" height="1066"><img src="img/treqz/tq-team-1.webp" alt="" loading="lazy" data-t="22.5deg" width="720" height="720"><img src="img/treqz/tq-team-2.webp" alt="" loading="lazy" data-t="45deg" width="720" height="720"><img src="img/treqz/tq-team-3.webp" alt="" loading="lazy" data-t="67.5deg" width="720" height="720"><img src="img/treqz/tq-team-4.webp" alt="" loading="lazy" data-t="90deg" width="720" height="720"><img src="img/treqz/tq-team-5.webp" alt="" loading="lazy" data-t="112.5deg" width="720" height="720"><img src="img/treqz/tq-team-6.webp" alt="" loading="lazy" data-t="135deg" width="720" height="720"><img src="img/treqz/tq-team-7.webp" alt="" loading="lazy" data-t="157.5deg" width="720" height="720"><img src="img/treqz/tq-team-8.webp" alt="" loading="lazy" data-t="180deg" width="720" height="720"><img src="img/treqz/tq-team-9.webp" alt="" loading="lazy" data-t="202.5deg" width="720" height="720"><img src="img/treqz/tq-team-10.webp" alt="" loading="lazy" data-t="225deg" width="720" height="720"><img src="img/treqz/tq-team-11.webp" alt="" loading="lazy" data-t="247.5deg" width="720" height="720"><img src="img/treqz/tq-team-12.webp" alt="" loading="lazy" data-t="270deg" width="720" height="720"><img src="img/treqz/tq-team-13.webp" alt="" loading="lazy" data-t="292.5deg" width="720" height="720"><img src="img/treqz/tq-team-14.webp" alt="" loading="lazy" data-t="315deg" width="720" height="720"><img src="img/treqz/tq-team-15.webp" alt="" loading="lazy" data-t="337.5deg" width="720" height="720"></div>
   <div class="mid"><h2 class="H split">Bring Your Club,<br> Office or College.</h2><p class="fade">Join as a team, compete with other teams, and win together.</p><a class="btn c fade" href="#waitlist" data-team>See Treqz for teams</a></div>
 </section>
 
@@ -355,7 +357,7 @@
 </section>
 
 <section class="cta pad" id="waitlist" aria-label="Join the waitlist">
-  <img src="img/treqz/tq-cta-trail.webp" alt="" loading="lazy">
+  <img src="img/treqz/tq-cta-trail.webp" alt="" loading="lazy" width="1600" height="1066">
   <h2 class="split">See You<br> Outside.</h2>
   <p class="fade">Be the first to get Treqz when it launches.</p>
   <form class="fade" id="wl" method="POST">
@@ -384,6 +386,7 @@
   <p class="guides"><b>Blog</b>: <a href="blog/running/">Running guides</a> · <a href="blog/trek-guides/">Trek guides</a> · <a href="blog/trek-planning/">Trek planning</a> · <a href="blog/trek-safety/">Trek safety</a> · <a href="blog/clubs-and-teams/">Clubs and teams</a> · <a href="blog/kedarkantha-trek-guide/">Kedarkantha trek guide: itinerary, cost, best time, permits</a> · <a href="blog/best-winter-treks-in-india/">Best winter treks in India (December to February)</a> · <a href="blog/how-to-start-running-in-india-5k-plan/">How to start running in India: a 5K plan for beginners</a> · <a href="blog/how-to-start-a-run-club-in-india/">How to start a run club in India: a step-by-step checklist</a> · <a href="blog/himalayan-trek-packing-list/">Himalayan trek packing list: winter and summer</a> · <a href="blog/altitude-sickness-on-treks/">Altitude sickness on treks: symptoms, prevention, when to descend</a> · <a href="blog/best-running-apps-in-india/">Best running apps in India, compared</a> · <a href="blog/what-is-territory-running/">What is territory running? How GPS turf games work</a> · <a href="blog/trek-permits-in-india/">Trek permits in India: what Indians and foreigners need</a> · <a href="blog/how-much-does-a-trek-in-india-cost/">How much does a trek in India cost? Prices for 6 popular treks</a> · <a href="blog/">All posts</a></p>
 </div></section>
 <!-- seo:end -->
+</main>
 <footer class="wrap pad" id="contact">
   <div class="fr">
     <div><p style="margin:0 0 6px;font-weight:600;font-size:20px">The outdoor app for India.</p><p class="fine" style="margin:0">Free. Works with no network. Made in India.</p></div>
@@ -479,7 +482,7 @@ function spin(r) {
 })();
 /* smooth scroll (Lenis), driven by the frame loop below; in-page links glide too */
 const lenis = !still && window.Lenis ? new Lenis({ anchors: true }) : null;
-const secs = $$('body>section'), reveal = $$('.trust,.cta');
+const secs = $$('main>section'), reveal = $$('.trust,.cta');
 $('#menu').addEventListener('click', (e) => { if (e.target.closest('nav a')) $('#menu').hidePopover(); });   // a link closes the menu on its way
 const t0 = performance.now();
 function frame(now) {   // all reads first, then all writes: one layout per frame
