@@ -53,3 +53,4 @@ body:has(.hd) a.brand{display:none}
 @media (prefers-reduced-motion:reduce){.tpill,.dd{transition:none}.dd a{animation:none!important}}
 @media (min-width:1201px){.burger{display:none!important}}
 @media (max-width:1200px){.tnav{display:none}}
+.skip{position:fixed;left:16px;top:-64px;z-index:100;padding:10px 18px;border-radius:99px;background:#e5fcc9;color:#054634;font:600 14px 'Google Sans Flex',system-ui,sans-serif;text-decoration:none;transition:top .2s}.skip:focus{top:12px}

@@ -26,11 +26,12 @@
   } else {
     const join = d.getElementById('join'), cta = join ? [d.body.dataset.cta || 'Get early access', '#join'] : ['Download App', '/#waitlist'];
     const link = d.createElement('link'); link.rel = 'stylesheet'; link.href = '/header.css'; d.head.append(link);
-    d.body.insertAdjacentHTML('afterbegin', `<header class="hd"><a class="logo" href="/" aria-label="Treqz home"><img src="/img/treqz-cream.svg" alt="Treqz" width="187" height="40"></a>
+    d.body.insertAdjacentHTML('afterbegin', `<a class="skip" href="#main">Skip to content</a><header class="hd"><a class="logo" href="/" aria-label="Treqz home"><img src="/img/treqz-cream.svg" alt="Treqz" width="187" height="40"></a>
 <nav class="tnav" aria-label="Main">${bar}</nav>
 <div class="acts"><a class="btn" href="${cta[1]}">${cta[0]}</a><button class="burger" type="button" popovertarget="hmenu" aria-label="Open menu"><i></i></button></div></header>
 <div class="hmenu" id="hmenu" popover data-lenis-prevent><button class="x" type="button" popovertarget="hmenu" popovertargetaction="hide" aria-label="Close menu">×</button>
 <nav aria-label="Menu">${burger}</nav><p>The outdoor app for India. Free, works with no network.</p></div>`);
+    const mn = d.querySelector('main'); if (mn && !mn.id) mn.id = 'main';   // the skip link's target
     const hd = d.querySelector('.hd'), m = d.getElementById('hmenu');
     hd.style.visibility = 'hidden'; m.style.visibility = 'hidden';   // until header.css lands, so the dropdown lists never flash unstyled
     const reveal = () => { hd.style.visibility = ''; m.style.visibility = ''; };

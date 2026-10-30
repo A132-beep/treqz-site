@@ -1,0 +1,130 @@
+/* Collage scenes: our photos, our ink illustrations (img/ill/) and real trek data, layered like a scrapbook.
+   Each scene is a fixed-ratio box (.sc.sN); children sit at % positions and text scales with cqw, so it looks the same at any width.
+   Preview and source of truth for layouts: /collage/. Used on the home, Run, Crew and trek guide pages. */
+.sc{--k:#1d1d1b;--o:#f07f2b;--g:#03342a;--c:#e5fcc9;position:relative;aspect-ratio:10/9;container-type:inline-size}
+.sc>*{position:absolute;margin:0}
+.sc .ph{overflow:hidden;border-radius:4.5cqw;box-shadow:0 2cqw 5cqw rgba(3,52,42,.18)}
+.sc .ph img{display:block;width:100%;height:100%;object-fit:cover}
+.sc .ill{pointer-events:none;height:auto}
+.sc .cr{position:absolute;right:2cqw;bottom:1.6cqw;padding:.3cqw 1cqw;border-radius:9cqw;background:rgba(0,0,0,.45);color:#fff;font-size:1.5cqw}
+/* hand-drawn label: text on the wobbly ink card */
+.sc .pill{display:flex;width:max-content;align-items:center;gap:2cqw;padding:0 4.5cqw;background:url(/img/ill/wobbly-ink-rounded-card.webp) center/100% 100% no-repeat;color:var(--k);font-weight:600;font-size:3cqw;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.sc .pill small{display:block;font-size:2.2cqw;font-weight:500;letter-spacing:.02em;text-transform:none;color:rgba(29,29,27,.65)}
+.sc .pill svg{flex:none;width:3.6cqw;height:3.6cqw}
+
+/* 1 · Navigate */
+.s1 .ph{left:14%;top:12%;width:64%;height:66%;rotate:-1.5deg}
+.s1 .sign{left:35%;top:60%;width:52%;rotate:-2deg}
+.s1 .sign+span{left:50%;top:64.5%;width:36%;rotate:-2deg;color:var(--k);font-size:2.7cqw;font-weight:650;line-height:1.15;letter-spacing:.04em;text-transform:uppercase}
+.s1 .sign+span small{display:block;font-size:2.2cqw;font-weight:500;letter-spacing:.02em;text-transform:none;color:rgba(29,29,27,.65)}
+.s1 .then{left:36%;top:83%;height:9%;rotate:-1deg;font-size:2.6cqw}
+.s1 .spark{left:4%;top:2%;width:13%;rotate:-12deg}
+
+/* 2 · Together */
+.s2 .ph.big{left:16%;top:17%;width:68%;height:78%;rotate:1deg}
+.s2 .ph.th{width:20%;height:18%;border-radius:2.6cqw;border:.6cqw solid #fff;box-shadow:0 1.2cqw 3cqw rgba(3,52,42,.22)}
+.s2 .t1{left:30%;top:4%;rotate:-3deg}.s2 .t2{left:52%;top:3%;rotate:2deg}.s2 .t3{left:74%;top:6%;rotate:4deg}
+.s2 .mark{left:3%;top:58%;width:13%;rotate:-6deg}
+.s2 .av{left:58%;top:84%;width:30%;rotate:3deg}
+
+/* 3 · Find */
+.s3 .burst{left:40%;top:0;width:20%}
+.s3 .search{left:50%;translate:-50% 0;top:13%;height:12%;z-index:2;font-size:2.9cqw}
+.s3 .card{left:6%;top:29%;width:50%;height:62%;border-radius:4.5cqw;background:#fffdf6;box-shadow:0 2cqw 5cqw rgba(3,52,42,.16);overflow:hidden}
+.s3 .card .ph{position:relative;height:60%;border-radius:0;box-shadow:none}
+.s3 .card .meta{padding:3cqw 3.6cqw;font-size:2.4cqw;line-height:1.5;color:rgba(3,52,42,.75)}
+.s3 .card .meta b{display:block;font-size:3.4cqw;color:var(--g)}
+.s3 .tag{position:absolute;left:3cqw;top:3cqw;padding:.6cqw 2cqw;border-radius:9cqw;background:var(--g);color:var(--c);font-size:2.2cqw;font-weight:600}
+.s3 .filt{left:53%;top:31%;width:41%;padding:3.6cqw;border-radius:4cqw;background:#fff;box-shadow:0 2cqw 5cqw rgba(3,52,42,.18);font-size:2.4cqw;z-index:1}
+.s3 .filt h4{margin:0 0 1.6cqw;font-size:2.3cqw;letter-spacing:.12em;text-transform:uppercase;color:rgba(3,52,42,.6)}
+.s3 .filt label{display:flex;justify-content:space-between;align-items:center;padding:.9cqw 0}
+.s3 .filt i{width:2.6cqw;height:2.6cqw;border:.25cqw solid rgba(3,52,42,.35);border-radius:.6cqw}
+.s3 .filt i.on{background:var(--g);border-color:var(--g);box-shadow:inset 0 0 0 .5cqw #fff}
+.s3 .filt hr{border:0;border-top:1px solid rgba(3,52,42,.12);margin:2cqw 0}
+.s3 .bars{display:flex;align-items:flex-end;gap:.5cqw;height:9cqw}
+.s3 .bars span{flex:1;background:var(--g);border-radius:.4cqw .4cqw 0 0}
+.s3 .bars span.off{background:#d9cfae}
+.s3 .rng{position:relative;height:.6cqw;margin-top:1.2cqw;border-radius:1cqw;background:#d9cfae}
+.s3 .rng b{position:absolute;inset:0 auto 0 var(--a);width:var(--w);background:var(--g);border-radius:1cqw}
+.s3 .rng+small{display:flex;justify-content:space-between;margin-top:1cqw;font-size:1.9cqw;color:rgba(3,52,42,.55)}
+
+/* 4 · Route */
+.s4 .map{left:33%;top:30%;width:60%;height:62%;rotate:4deg;border:1cqw solid #fff;border-radius:4.5cqw;overflow:hidden;box-shadow:0 2cqw 5cqw rgba(3,52,42,.2);background:#ccc}
+.s4 .map svg{display:block;width:100%;height:100%}
+.s4 .ph{left:13%;top:16%;width:45%;height:36%;border:.8cqw solid #fff;rotate:-2deg;z-index:1}
+.s4 .pa{left:57%;top:7%;width:40%;height:10%;rotate:2deg;z-index:2}   /* A: Sankri, top of the route */
+.s4 .pb{left:6%;top:84%;width:40%;height:10%;rotate:-2deg;z-index:2}   /* B: summit, foot of the map */
+.s4 .dot{display:grid;place-items:center;width:7cqw;height:7cqw;border-radius:50%;border:.5cqw solid var(--k);font-weight:700;font-size:3.4cqw;z-index:3}
+.s4 .da{left:28%;top:72%;background:var(--c);color:var(--g)}.s4 .db{left:83%;top:19%;background:var(--o);color:#fff}
+.s4 .wind{left:5%;top:7%;width:15%;rotate:-6deg;z-index:2}
+
+/* shared panels for the page scenes */
+.sc .panel{border-radius:4cqw;background:#fff;box-shadow:0 2cqw 5cqw rgba(3,52,42,.18);padding:3.4cqw;font-size:2.4cqw;color:var(--g)}
+.sc .panel h4{margin:0 0 1.6cqw;font-size:2.2cqw;letter-spacing:.12em;text-transform:uppercase;color:rgba(3,52,42,.6)}
+.sc .ex{font-size:1.9cqw;color:rgba(3,52,42,.5)}
+.sc .prog{height:1.6cqw;margin:1.6cqw 0 1cqw;border-radius:2cqw;background:#e9e3cf;overflow:hidden}
+.sc .prog b{display:block;height:100%;width:var(--p);border-radius:2cqw;background:var(--o)}
+
+/* 5 · Run: close a loop */
+.s5 .ph{left:6%;top:10%;width:46%;height:74%;rotate:-2deg}
+.s5 .loop{left:40%;top:14%;width:52%;rotate:3deg}
+.s5 .hex{left:52%;top:58%;width:40%;rotate:-4deg}
+.s5 .pill{left:20%;top:82%;height:11%;rotate:-1.5deg}
+.s5 .spark{left:86%;top:4%;width:11%;rotate:14deg}
+
+/* 6 · Run: city runs, mountain gains */
+.s6 .ph{left:8%;top:8%;width:58%;height:62%;rotate:1.5deg}
+.s6 .peak{left:44%;top:46%;width:52%;rotate:-2deg}
+.s6 .panel{left:4%;top:66%;width:50%;rotate:-2deg}
+.s6 .panel b{font-size:3.4cqw}
+.s6 .medal{left:76%;top:2%;width:19%;rotate:10deg}
+
+/* 7 · Crew: club board */
+.s7 .ph{left:4%;top:12%;width:56%;height:70%;rotate:-1.5deg}
+.s7 .panel{left:50%;top:22%;width:44%;rotate:2deg}
+.s7 .row{display:grid;grid-template-columns:3.6cqw 1fr;align-items:center;gap:1.4cqw;padding:1cqw 0}
+.s7 .row i{font-style:normal;font-weight:700;color:var(--o)}
+.s7 .row b{display:block;font-weight:600}
+.s7 .row span{display:block;height:1.2cqw;margin-top:.6cqw;border-radius:2cqw;background:var(--g);width:var(--w)}
+.s7 .stamp{left:58%;top:62%;width:30%;rotate:-8deg}
+.s7 .hgrid{left:0;top:76%;width:30%;opacity:.9;rotate:6deg}
+
+/* 8 · Crew: campus vs office */
+.s8 .ph.a{left:4%;top:14%;width:42%;height:52%;rotate:-4deg}
+.s8 .ph.b{left:54%;top:22%;width:42%;height:52%;rotate:4deg}
+.s8 .vs{left:38%;top:30%;width:24%;display:grid;place-items:center;aspect-ratio:3/2;background:url(/img/ill/open-hand-drawn-marker-circle.webp) center/100% 100% no-repeat;font-weight:800;font-size:6cqw;color:#e5fcc9;z-index:2}   /* cream: the VS sits on the dark page between the photos */
+.s8 .pa{left:6%;top:70%;height:10%;rotate:-3deg}
+.s8 .pb{left:56%;top:78%;height:10%;rotate:3deg}
+.s8 .spark{left:84%;top:4%;width:12%;rotate:12deg}
+
+/* 9 · Trek: when to go */
+.s9 .ph{left:6%;top:8%;width:66%;height:56%;rotate:-1.5deg}
+.s9 .flags{left:14%;top:0;width:76%;z-index:2}
+.s9 .panel{left:30%;top:60%;width:64%;rotate:1.5deg}
+.s9 .mo{display:grid;grid-template-columns:repeat(12,1fr);gap:.6cqw;text-align:center;font-size:1.9cqw}
+.s9 .mo span{padding:1.4cqw 0;border-radius:1.2cqw;color:rgba(3,52,42,.5)}
+.s9 .mo span.b{background:var(--g);color:var(--c);font-weight:700}
+.s9 .mo span.o{box-shadow:inset 0 0 0 .25cqw var(--g);color:var(--g)}
+.s9 .tent{left:2%;top:64%;width:22%;rotate:-6deg}
+.s9.w .pill{left:34%;top:68%;height:11%;rotate:1.5deg;font-size:3.6cqw}   /* trek guide version: a "Best …" pill instead of the month panel */
+
+/* 10 · Trek: pack and cost */
+.s10 .panel.list{left:6%;top:8%;width:52%;rotate:-2deg}
+.s10 .list label{display:flex;gap:1.6cqw;align-items:flex-start;padding:.9cqw 0;line-height:1.3}
+.s10 .list i{flex:none;width:2.6cqw;height:2.6cqw;margin-top:.2cqw;border-radius:.6cqw;background:var(--g);box-shadow:inset 0 0 0 .5cqw #fff;outline:.25cqw solid var(--g)}
+.s10 .list label:nth-child(n+5) i{background:none}
+.s10 .list small{display:block;color:rgba(3,52,42,.55);font-size:1.9cqw}
+.s10 .panel.cost{left:50%;top:62%;width:44%;rotate:2deg}
+.s10 .cost b{display:block;font-size:4.6cqw;letter-spacing:-.02em}
+.s10 .pack{left:62%;top:4%;width:30%;rotate:6deg}
+.s10 .poles{left:4%;top:68%;width:22%;rotate:-10deg}
+.s10 .stampp{left:30%;top:72%;width:20%;rotate:-8deg}
+
+/* entrance: each layer settles in, one after another */
+@media (prefers-reduced-motion:no-preference){
+  .sc-js .sc:not(.in)>*{animation-play-state:paused}   /* collage.js: play each scene once it scrolls into view */
+  .sc>*{animation:settle .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 90ms)}
+  @keyframes settle{from{opacity:0;translate:0 4cqw;scale:.94}}
+  .sc .spark,.sc .burst,.sc .wind,.sc .mark,.sc .medal{animation:settle .9s cubic-bezier(.2,.8,.2,1) both,bob 5s ease-in-out 1s infinite alternate}
+  @keyframes bob{to{translate:0 -1.5cqw}}
+}

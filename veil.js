@@ -18,7 +18,7 @@ html.vl::after{content:'';position:fixed;inset:0;z-index:2147483647;background:#
   const v = d.createElement('div');
   v.className = 'veil';
   v.setAttribute('aria-hidden', 'true');
-  v.innerHTML = [0, 1, 2, 3, 4].map((k) => `<i style="--k:${k}"></i>`).join('') + '<img src="/img/logo-green.svg" alt="">';
+  v.innerHTML = [0, 1, 2, 3, 4].map((k) => `<i style="--k:${k}"></i>`).join('') + '<img src="/img/logo-green.svg" alt="" width="150" height="40">';
   const lift = () => setTimeout(() => v.classList.add('up'), first ? 700 : 120);   // logo holds on the first visit only
   d.addEventListener('DOMContentLoaded', () => { d.body.append(v); de.classList.remove('vl'); void v.offsetWidth; lift(); });   // reflow first so the lift transitions; timers, not rAF, so a background tab still clears
   addEventListener('pageshow', (e) => { if (e.persisted) v.classList.remove('go'), v.classList.add('up'); });   // back button: never return to a covered page
