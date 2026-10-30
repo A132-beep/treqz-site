@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Get Your Treqz Trek Passport: Free, for Every Trail | Treqz</title>
+<link rel="canonical" href="https://treqz.com/passport/">
+<script src="/veil.js"></script>
+<meta name="description" content="Sign up free and get your Treqz Trek Passport. Every summit you stand on, GPS-verified, earns a stamp in the Treqz app. Android first, launching soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..800&display=optional" rel="stylesheet">
+<link rel="stylesheet" href="../pages.css"><link rel="stylesheet" href="../story.css"><script src="../story.js"></script><script src="/me.js"></script>
+<style>
+  /* The Treqz Trek Passport, as designed in the app (img/passport/cover.webp is its cover art). The cover and identity page are rebuilt
+     here so they carry the visitor's own details; signing up opens the book. Stamps are earned in the app. */
+  .pp-hero{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(40px,6vw,100px);align-items:center;padding-block:clamp(130px,13vw,180px) clamp(80px,9vw,140px)}
+  .pp-hero h1 em{font-style:normal;color:var(--c)}
+
+  /* sign-up */
+  .get{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:480px}
+  .get>*{grid-column:1/-1}.get .half{grid-column:auto}
+  .get label{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--mute)}
+  .pp-hero>*{min-width:0}
+  .get input,.get select{min-width:0;width:100%;height:52px;padding:0 18px;border:1px solid rgba(229,252,201,.3);border-radius:16px;background:rgba(2,36,25,.6);color:#fff;font:500 16px var(--f)}
+  .get input:focus,.get select:focus{outline:none;border-color:var(--c)}
+  .get .btn{justify-content:center}
+  [hidden]{display:none!important}
+  /* the two ways in, side by side: email (the form) and Google; the email button takes the row when Google is off */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center}
+  .two .btn{height:44px}   /* the same height as Google's large button */
+  .two:has(#gbtn[hidden]) .btn{grid-column:1/-1;height:52px}
+  #gbtn{display:flex;justify-content:center;min-height:44px;overflow:hidden;border-radius:99px}
+  @media (max-width:420px){.two{grid-template-columns:1fr}}
+  .note{margin:0;font-size:13px;color:var(--mute)}
+  .note a{color:var(--c)}
+  #msg{min-height:1.4em;font-weight:600;color:var(--c)}
+
+  /* the 3D book: the cover swings open on the identity page */
+  .stage{position:relative;perspective:1800px;display:grid;place-items:center}
+  /* a few of the brand's ink illustrations (img/ill), one job each */
+  .pp-hero{position:relative}
+  .pp-arrow{position:absolute;left:43%;top:56%;width:clamp(80px,7vw,120px);rotate:-8deg;pointer-events:none}
+  .pp-arrow+span{position:absolute;left:41%;top:51%;rotate:-6deg;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--o);pointer-events:none}
+  @media (max-width:900px){.pp-arrow,.pp-arrow+span{display:none}}
+  .book{position:relative;width:min(100%,420px);aspect-ratio:692/982;transform-style:preserve-3d;rotate:y var(--ry,-14deg);rotate:var(--tilt,0 1 0 -14deg);transition:rotate .6s cubic-bezier(.2,.8,.2,1)}
+  .book::before{content:"";position:absolute;inset:3% -3% -4% 3%;border-radius:10px;background:rgba(0,0,0,.45);filter:blur(28px);transform:translateZ(-40px)}
+  .page,.cover{position:absolute;inset:0;border-radius:4px 10px 10px 4px;overflow:hidden;backface-visibility:hidden}
+  .cover{transform-origin:left center;transform:translateZ(2px);transition:transform 1.4s cubic-bezier(.6,0,.2,1);z-index:2;box-shadow:inset 6px 0 10px rgba(0,0,0,.25)}
+  .cover img.art{width:100%;height:100%;object-fit:cover}
+  .open .cover{transform:translateZ(2px) rotateY(-165deg)}   /* 2px in front, so the page behind never shows through */
+  .av{position:absolute;left:51.3%;top:28.21%;width:29.76%;aspect-ratio:1;translate:-50% -50%;display:grid;place-items:center;border-radius:50%;overflow:hidden;color:#e5d6b8;font-weight:800;font-size:clamp(40px,5vw,64px)}
+  .av img{width:100%;height:100%;object-fit:cover}
+  .handle{position:absolute;left:51.3%;top:42.06%;translate:-50% -50%;color:#e9dcc2;font-weight:800;font-size:clamp(10px,1.05vw,13px);letter-spacing:.14em;white-space:nowrap;text-transform:uppercase}
+  .page{background:#e2dccd;color:#1d2b25;padding:9% 8% 7%;font-size:clamp(9px,.95vw,12px);box-shadow:inset 14px 0 18px -10px rgba(0,0,0,.25)}
+  .page .ptop{display:flex;justify-content:space-between;gap:8px}
+  .k{font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c2551f}
+  .lbl{font-size:.82em;letter-spacing:.12em;text-transform:uppercase;color:#6c736b}
+  .no{font-weight:800;font-size:1.3em;letter-spacing:.06em;color:#c2551f;text-align:right}
+  .who{display:grid;grid-template-columns:36% 1fr;gap:8%;margin-top:9%}
+  .photo{aspect-ratio:4/5;border-radius:8px;background:#122a20;display:grid;place-items:end center;overflow:hidden;color:#e5d6b8;font-weight:800;font-size:clamp(28px,3.4vw,46px)}
+  .photo span{margin-bottom:12%}
+  .photo img{width:100%;height:100%;object-fit:cover}
+  .who b{display:block;margin:2px 0 8px;font-size:1.9em;letter-spacing:-.01em;text-transform:uppercase;color:#0f1f19;line-height:1}
+  .who i{display:block;margin:2px 0 8px;font-style:normal;font-size:1.25em;color:#0f1f19}
+  .born{display:flex;gap:4px;flex-wrap:wrap}
+  .born span{padding:3px 9px;border-radius:99px;border:1px solid #c9c2b1;color:#7b8178}
+  .born span.on{background:#e7893a;border-color:#e7893a;color:#1d2b25;font-weight:700}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;margin-top:9%;padding-top:7%;border-top:1px solid #cfc8b6}
+  .grid2 b{display:block;margin-top:2px;font-size:1.25em;font-weight:500;color:#0f1f19}
+  .peak{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8%;padding:6% 7%;border-radius:12px;background:#122a20;color:#e5d6b8}
+  .peak b{display:block;margin-top:3px;color:#fff;font-size:1.15em}
+  .peak strong{font-size:2.2em;color:#e7893a;letter-spacing:-.03em;white-space:nowrap}
+  .foot{position:absolute;left:8%;right:8%;bottom:5%;display:flex;justify-content:space-between;color:#6c736b;font-size:.9em}
+  .issued{position:absolute;right:9%;top:34%;padding:4px 12px;border:3px solid #c2551f;border-radius:6px;color:#c2551f;font-weight:800;font-size:1.6em;letter-spacing:.12em;rotate:-14deg;opacity:0;scale:2.2}
+  .issued-ok .issued{opacity:.85;scale:1;transition:scale .5s cubic-bezier(.3,1.6,.5,1) 1.3s,opacity .2s 1.3s}
+  #pp3d{display:none;width:100%;height:min(74vh,640px);border:0;background:none;color-scheme:normal}   /* same scheme as book.html, or the browser paints the frame white */
+  .has3d #pp3d{display:block}
+  .has3d .book{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}   /* still read by screen readers */
+
+  /* locked until sign-up: a clear layer over the book takes every click, with a seal on the cover */
+  .lock{position:absolute;inset:0;z-index:3;display:grid;place-items:end center;padding-bottom:16%;background:none;border:0;cursor:pointer;font:inherit;color:inherit}
+  .lock .seal{display:flex;align-items:center;gap:14px;padding:14px 22px 14px 16px;border-radius:20px;background:#f4ead2;color:#14332a;box-shadow:0 18px 40px rgba(0,0,0,.45);text-align:left;transition:translate .3s}
+  .lock:hover .seal{translate:0 -3px}
+  .lock .seal b{display:block;font-size:16px}
+  .lock .seal small{display:block;margin-top:2px;font-size:13px;color:#5b6a62}
+  .lock svg{flex:none;width:34px;height:40px;color:#c2551f;overflow:visible}
+  .lock .shackle{transform-origin:34px 24px;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+  .lock.unlocking .shackle{transform:translateY(-7px) rotate(28deg)}
+  .lock.unlocking{opacity:0;transition:opacity .5s .55s;pointer-events:none}
+  /* signed up: a tick, the message, what's next */
+  .done{margin-top:34px;max-width:480px;padding:30px;border:1px solid var(--line);border-radius:24px;background:rgba(229,252,201,.05)}
+  .done svg{width:64px;height:64px}
+  .done circle{fill:none;stroke:#3fbf6f;stroke-width:5;stroke-dasharray:180;stroke-dashoffset:180;animation:draw .6s ease-out forwards}
+  .done path{fill:none;stroke:#3fbf6f;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:50;stroke-dashoffset:50;animation:draw .4s .5s ease-out forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .done h2{margin-top:14px;font-size:clamp(30px,3vw,44px)}
+  .done p{margin:10px 0 0;color:var(--mute)}
+  .done p b{color:var(--c);letter-spacing:.04em}
+  .done .acts{margin-top:22px}
+  .done .again{margin-top:16px;font-size:13px;color:var(--mute)}
+  .done .again button{background:none;border:0;padding:0;color:var(--c);font:600 13px var(--f);text-decoration:underline;cursor:pointer}
+  @media (prefers-reduced-motion:reduce){.done circle,.done path{animation:none;stroke-dashoffset:0}.lock .shackle{transition:none}}
+  .hint{position:absolute;left:0;right:0;top:100%;margin-top:14px;text-align:center;font-size:13px;color:var(--mute)}
+  .hint button{background:none;border:0;padding:0;color:var(--c);font:600 13px var(--f);text-decoration:underline;cursor:pointer}
+
+
+  @media (max-width:900px){.pp-hero{grid-template-columns:1fr}.stage{order:-1}.book{width:min(78vw,340px)}#pp3d{height:min(110vw,460px)}}
+  @media (prefers-reduced-motion:reduce){.book,.cover{transition:none}}
+</style>
+<script src="/header.js" defer></script><link rel="icon" href="/favicon.ico?v=d7a48e7d" sizes="32x32"><link rel="icon" href="/favicon.svg?v=d7a48e7d" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=d7a48e7d"><meta property="og:type" content="website"><meta property="og:site_name" content="Treqz"><meta property="og:url" content="https://treqz.com/passport/"><meta property="og:title" content="Get Your Treqz Trek Passport: Free, for Every Trail | Treqz"><meta property="og:description" content="Sign up free and get your Treqz Trek Passport. Every summit you stand on, GPS-verified, earns a stamp in the Treqz app. Android first, launching soon."><meta property="og:image" content="https://treqz.com/img/photo/hero/goechala.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@Treqzapp"><meta name="twitter:title" content="Get Your Treqz Trek Passport: Free, for Every Trail | Treqz"><meta name="twitter:description" content="Sign up free and get your Treqz Trek Passport. Every summit you stand on, GPS-verified, earns a stamp in the Treqz app. Android first, launching soon."><meta name="twitter:image" content="https://treqz.com/img/photo/hero/goechala.webp">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}addEventListener('load',()=>setTimeout(()=>document.head.append(Object.assign(document.createElement('script'),{src:'https://www.googletagmanager.com/gtag/js?id=G-GDJGTQJ4XM'}))));gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config','G-GDJGTQJ4XM');</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "046eb4d3531d4d408edc25291cf3fca8"}'></script>
+</head>
+<body data-cta="Get your passport">
+<main>
+
+<section class="pp-hero pad" id="join">
+  <div data-anim>
+    <span class="eyebrow rv">Free · Republic of the Mountains</span>
+    <h1><span class="ln"><span>Get your</span></span><span class="ln" style="--d:.12s"><span><em>Trek Passport.</em></span></span></h1>
+    <p class="lead rv" style="--d:.3s">One passport for every trail in India. Stand on a summit and the Treqz app stamps it, verified by GPS.</p>
+    <form class="get rv" style="--d:.4s" id="get" aria-label="Get your Treqz Trek Passport">
+      <label>Your name<input name="name" required autocomplete="name" maxlength="32"></label>
+      <label>Email<input type="email" name="email" required autocomplete="email"></label>
+      <label class="half">Base camp (your city)<input name="city" required autocomplete="address-level2" maxlength="28"></label>
+      <label class="half">Born for<select name="born"><option>Trekker</option><option>Runner</option><option>Both</option></select></label>
+      <div class="two"><button class="btn">Get my passport</button><div id="gbtn" hidden></div></div>
+      <div id="msg" role="status"></div>
+      <p class="note">Your passport is saved on this device. We use your email only to tell you when the app launches. <a href="../privacy/">Privacy</a></p>
+    </form>
+    <div class="done" id="done" hidden role="status">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28"/><path d="M19 33 l9 9 l17 -19"/></svg>
+      <h2 id="doneH">You're in!</h2>
+      <p id="doneP"></p>
+      <div class="acts"><button class="btn" type="button" id="openBook">Open my passport</button></div>
+      <p class="again">Not you? <button type="button" id="again">Sign out</button></p>
+    </div>
+  </div>
+
+  <img class="pp-arrow" src="../img/ill/hand-drawn-curved-arrow.webp" alt=""><span aria-hidden="true">Changes as you type</span>
+  <div class="stage">
+    <iframe id="pp3d" src="book.html" title="Your Trek Passport in 3D: drag a page to turn it" loading="eager"></iframe>
+    <button type="button" class="lock" id="lock" aria-label="Locked. Sign up to open your passport"><span class="seal">
+      <svg viewBox="0 0 48 56" aria-hidden="true"><path class="shackle" d="M14 26 V17 a10 10 0 0 1 20 0 V26" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><rect x="5" y="25" width="38" height="29" rx="8" fill="currentColor"/><circle cx="24" cy="37" r="4.5" fill="#f4ead2"/><rect x="22" y="39" width="4" height="8" rx="2" fill="#f4ead2"/></svg>
+      <span><b>Sign up to open your passport</b><small>Free. Takes 10 seconds.</small></span></span></button>
+    <div class="book" id="book" aria-label="Your Treqz Trek Passport">
+      <div class="page" aria-hidden="false">
+        <div class="ptop"><div><span class="k">Trek passport · ट्रेक पासपोर्ट</span><br><span class="lbl" style="letter-spacing:.04em;text-transform:none">Type P · Code TQZ</span></div>
+          <div><span class="lbl">Passport no.</span><div class="no" id="vNo">TQZ-····-···</div></div></div>
+        <div class="who"><div class="photo" id="photo"><span>T</span></div>
+          <div><span class="lbl">Name · नाम</span><b id="vName">Your name</b>
+            <span class="lbl">Trail name · ट्रेल नाम</span><i id="vTrail">you</i>
+            <span class="lbl">Born for · जन्म से</span><div class="born" id="vBorn"><span class="on">Trekker</span><span>Runner</span><span>Both</span></div></div></div>
+        <div class="grid2">
+          <div><span class="lbl">Base camp · बेस कैंप</span><b id="vCity">Your city</b></div>
+          <div><span class="lbl">Crew · दल</span><b>Join one in the app</b></div>
+          <div><span class="lbl">Issued · जारी</span><b id="vDate">Not yet</b></div>
+          <div><span class="lbl">Passport no. · पासपोर्ट सं.</span><b id="vNo2">TQZ-····-···</b></div>
+        </div>
+        <div class="peak"><div><span class="lbl" style="color:#e5d6b8">Highest point · सर्वोच्च शिखर</span><b>Your first summit</b></div><strong>— m</strong></div>
+        <div class="foot"><span>Every stamp is verified by GPS on the trail.</span><span>3</span></div>
+        <span class="issued">Issued</span>
+      </div>
+      <div class="cover"><img class="art" src="../img/passport/cover.webp" alt="Treqz Trek Passport cover: Republic of the Mountains, भारत के पहाड़" width="692" height="982">
+        <div class="av" id="av">T</div><div class="handle" id="vHandle">@you</div></div>
+    </div>
+    <p class="hint"><span id="hintT">Your passport unlocks when you sign up.</span> <button type="button" id="peek" hidden>Close</button></p>
+  </div>
+</section>
+
+
+</main>
+<footer class="pad" id="contact"><b style="font-size:20px">The outdoor app for India.</b><p class="fine" style="margin:6px 0 0">Free. Works with no network. Made in India.</p>
+<nav class="lk" aria-label="Footer"><a href="../treks/">Trek</a><a href="../run/">Run</a><a href="../run-clubs/">Run clubs</a><a href="../crew/">Crew</a><a href="../guides/">Guides</a><a href="../blog/">Blog</a><a href="../free-tools/">Free tools</a><a href="https://www.instagram.com/treqz_india/" target="_blank" rel="noopener">Instagram</a></nav>
+<p class="fine">© 2026 Treqz · <a href="../privacy/" style="text-decoration:underline">Privacy</a></p></footer>
+
+<script>
+(() => {
+  const { number, trail, today, toData } = TQPass;   // shared with the header (me.js)
+  const f = document.getElementById('get'), book = document.getElementById('book'), msg = document.getElementById('msg'), $ = (id) => document.getElementById(id);
+  let picture = '';
+
+  function show(p) {   // fill the cover and identity page from {name, email, city, born, date?}
+    const name = (p.name || '').trim(), first = name.split(/\s+/)[0] || '', ok = p.email && /@.+\./.test(p.email);
+    $('vName').textContent = first || 'Your name';
+    $('vTrail').textContent = trail(name); $('vHandle').textContent = '@' + trail(name);
+    $('vCity').textContent = (p.city || '').trim() || 'Your city';
+    $('vNo').textContent = $('vNo2').textContent = ok ? number(p.email) : 'TQZ-····-···';
+    $('vDate').textContent = p.date || 'Not yet';
+    [...$('vBorn').children].forEach((s) => s.classList.toggle('on', s.textContent === (p.born || 'Trekker')));
+    const face = picture ? `<img src="${picture}" alt="" referrerpolicy="no-referrer">` : (first[0] || 'T').toUpperCase();
+    $('av').innerHTML = face; $('photo').innerHTML = picture ? face : `<span>${(first[0] || 'T').toUpperCase()}</span>`;
+  }
+
+  async function issue(p) {
+    p = { ...p, date: today() }; show(p); issuedAt = p.date; send3d(p);
+    msg.textContent = 'Making your passport…';
+    const sent = await TQPass.send(p);
+    if (!sent) { msg.textContent = 'We could not reach our list. Check your connection and try again.'; return; }   // stays locked: no sign-up, no passport
+    TQPass.save({ ...p, picture });   // the header swaps "Sign in" for the profile picture
+    done(p, false); unlock(true);
+  }
+
+  // signed up: the form turns into a tick and a message, and the passport unlocks
+  function done(p, back) {
+    const first = p.name.trim().split(/\s+/)[0];
+    $('doneH').textContent = back ? `Welcome back, ${first}.` : `You're in, ${first}!`;
+    $('doneP').innerHTML = `Passport <b>${number(p.email)}</b> is unlocked and saved on this device. Your first stamp comes with your first summit in the Treqz app. We'll email you the download link on launch day.`;
+    f.hidden = true; $('done').hidden = false;
+  }
+  function unlock(animate) {
+    const lock = $('lock'); book.classList.add('issued-ok'); $('peek').hidden = false;
+    $('hintT').textContent = 'Your passport is unlocked. Drag a page to turn it.';
+    const open = () => { lock.hidden = true; book.classList.add('open'); tp?.open(); $('peek').textContent = 'Close'; };
+    if (animate) { lock.classList.add('unlocking'); setTimeout(open, 1050); } else open();
+  }
+  $('lock').addEventListener('click', () => { f.name.focus(); f.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+  $('openBook').addEventListener('click', () => { book.classList.add('open'); tp?.open(); $('peek').textContent = 'Close'; document.querySelector('.stage').scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+  $('again').addEventListener('click', () => { TQPass.signOut(); location.reload(); });
+  addEventListener('tq-passport', () => { if (!TQPass.get() && book.classList.contains('issued-ok')) location.reload(); });   // signed out from the full-screen passport
+
+
+  // ---- the 3D passport (book.html): a sample until the visitor types, then theirs ----
+  const frame = $('pp3d'), stageEl = document.querySelector('.stage');
+  let tp = null, photo3d = '', t3d = 0, issuedAt = '';
+  const send3d = (p) => {
+    if (!tp || !p || !(p.name || p.email || p.city)) return;   // nothing typed yet: keep the sample
+    clearTimeout(t3d);
+    t3d = setTimeout(() => tp.setData(TQPass.data3d({ ...p, date: issuedAt }, photo3d)), 180);
+  };
+  frame.addEventListener('load', () => {
+    const w = frame.contentWindow, d = frame.contentDocument;
+    d.documentElement.classList.remove('preview');   // its own dark preview background; ours shows through instead
+    w.addEventListener('passport', (e) => { if (e.detail?.type === 'error') stageEl.classList.remove('has3d'); });   // no WebGL: the flat passport takes over
+    const wait = () => { if (w.TrekPassport) { tp = w.TrekPassport; stageEl.classList.add('has3d'); w.dispatchEvent(new Event('resize'));   /* it measured itself while hidden (0x0): measure again now it shows */ send3d(current()); if (book.classList.contains('issued-ok')) tp.open(); else tp.close(); } else setTimeout(wait, 60); };
+    wait();
+  });
+  const current = () => { const p = Object.fromEntries(new FormData(f)); return (p.name || p.email || p.city) ? p : null; };
+  f.addEventListener('input', () => { const p = Object.fromEntries(new FormData(f)); show(p); send3d(p); if (!book.classList.contains('issued-ok')) $('hintT').textContent = 'Your passport, live as you type. It unlocks when you sign up.'; });
+  f.addEventListener('submit', (e) => { e.preventDefault(); issue(Object.fromEntries(new FormData(f))); });
+  $('peek').addEventListener('click', () => { const o = book.classList.toggle('open'); $('peek').textContent = o ? 'Close' : 'Open'; if (tp) o ? tp.open() : tp.close(); });
+
+  // the book follows the pointer a little, like holding it
+  const stage = document.querySelector('.stage');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedia('(pointer: fine)').matches) {
+    stage.addEventListener('pointermove', (e) => { if (stageEl.classList.contains('has3d')) return; const r = stage.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      book.style.setProperty('--tilt', `${(-y).toFixed(2)} ${(1 + Math.abs(x)).toFixed(2)} 0 ${(-14 + x * 22).toFixed(1)}deg`); });
+    stage.addEventListener('pointerleave', () => book.style.removeProperty('--tilt'));
+  }
+
+  // a passport issued earlier on this device
+  { const s = TQPass.get(); if (s) { picture = s.picture || ''; for (const k of ['name', 'email', 'city', 'born']) if (f[k]) f[k].value = s[k] || f[k].value; show(s); issuedAt = s.date || '';
+    if (picture) toData(picture).then((u) => { photo3d = u; send3d(current()); });
+    if (s.city) { done(s, true); unlock(false); } else msg.textContent = 'Add your base camp to finish your passport.';   // a Google sign-up from the header has no city yet
+  } }
+
+  // Sign up with Google (me.js): fills the passport from the Google profile, then asks for the base camp if it's missing
+  $('gbtn').hidden = false;
+  TQPass.googleButton($('gbtn'), (t) => {
+    picture = t.picture || ''; if (picture) toData(picture).then((u) => { photo3d = u; send3d(current()); }); f.name.value = t.name || ''; f.email.value = t.email || '';
+    const p = Object.fromEntries(new FormData(f)); show(p);
+    if (p.city.trim()) issue({ ...p, google: true }); else { f.city.focus(); msg.textContent = 'Signed in with Google. Add your base camp to open your passport.'; }
+  }, Math.min(400, $('gbtn').getBoundingClientRect().width || 230)).catch(() => { $('gbtn').hidden = true; });
+})();
+</script>
+</body></html>

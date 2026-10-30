@@ -57,4 +57,31 @@
   tn.addEventListener('focusout', (e) => { if (!tn.contains(e.relatedTarget)) rest(); });
   rest(true); addEventListener('resize', () => rest(true)); d.fonts?.ready.then(() => rest(true));   // the font swap changes the widths
   addEventListener('load', () => rest(true));   // inner pages add header.css themselves; before it lands every item is full width, so measure again once it has
+
+  // Signed in = a passport saved on this device by /passport/. Then the header shows the profile picture (or initial), which opens the passport;
+  // before that, "Sign in" goes to /passport/ (which is the sign-in, so it isn't offered there).
+  const acts = d.querySelector('.hd .acts, #top .acts');
+  const paint = () => {
+    let s = null; try { s = JSON.parse(localStorage.getItem('tq-passport') || 'null'); } catch {}
+    let a = acts.querySelector('.me');
+    if (!s && p.startsWith('/passport')) { a?.remove(); return; }
+    if (!a) {
+      a = d.createElement('a'); a.className = 'me'; a.href = '/passport/'; acts.prepend(a);   // without me.js the link still works
+      a.addEventListener('click', (e) => { if (!window.TQPass) return; e.preventDefault(); a.classList.contains('in') ? TQPass.openPassport() : TQPass.signInPanel(a); });
+    }
+    a.classList.toggle('in', !!s); a.replaceChildren();
+    const cta = acts.querySelector('.btn'); if (cta) cta.style.display = s && p.startsWith('/passport') ? 'none' : '';   // "Get your passport" when you already have it
+    if (s) {
+      a.setAttribute('aria-label', `${s.name}: open your Treqz passport`); a.title = 'Your passport';
+      if (s.picture) { const i = d.createElement('img'); i.src = s.picture; i.alt = ''; i.referrerPolicy = 'no-referrer'; a.append(i); }
+      else a.textContent = (s.name || 'T').trim()[0].toUpperCase();
+    } else {
+      a.removeAttribute('title'); a.setAttribute('aria-label', 'Get your Trek Passport');
+      a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M8 15.5l2.6-4 1.6 2.2 1.3-1.7 2.5 3.5z"/><path d="M9 18.5h6"/></svg><span>Get passport</span>';   // a passport booklet with a mountain
+    }
+  };
+  paint();
+  if (!d.querySelector('script[src="/me.js"]')) { const s = d.createElement('script'); s.src = '/me.js'; s.async = true; d.head.append(s); }   // Google sign-in and the full-screen passport
+  addEventListener('storage', (e) => { if (e.key === 'tq-passport') paint(); });   // signed in or out in another tab
+  addEventListener('tq-passport', paint);   // /passport/ fires this right after sign-up or sign-out
 })();
