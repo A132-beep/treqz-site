@@ -26,7 +26,7 @@
   .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center}
   .two .btn{height:44px}   /* the same height as Google's large button */
   .two:has(#gbtn[hidden]) .btn{grid-column:1/-1;height:52px}
-  #gbtn{display:flex;justify-content:center;min-height:44px;overflow:hidden;border-radius:99px}
+  #gbtn{display:flex;justify-content:center;min-height:44px}
   @media (max-width:420px){.two{grid-template-columns:1fr}}
   .note{margin:0;font-size:13px;color:var(--mute)}
   .note a{color:var(--c)}
@@ -70,8 +70,8 @@
   .foot{position:absolute;left:8%;right:8%;bottom:5%;display:flex;justify-content:space-between;color:#6c736b;font-size:.9em}
   .issued{position:absolute;right:9%;top:34%;padding:4px 12px;border:3px solid #c2551f;border-radius:6px;color:#c2551f;font-weight:800;font-size:1.6em;letter-spacing:.12em;rotate:-14deg;opacity:0;scale:2.2}
   .issued-ok .issued{opacity:.85;scale:1;transition:scale .5s cubic-bezier(.3,1.6,.5,1) 1.3s,opacity .2s 1.3s}
-  #pp3d{display:none;width:100%;height:min(74vh,640px);border:0;background:none;color-scheme:normal}   /* same scheme as book.html, or the browser paints the frame white */
-  .has3d #pp3d{display:block}
+  #pp3d{position:absolute;inset:0 auto auto 0;visibility:hidden;width:100%;height:min(74vh,640px);border:0;background:none;color-scheme:normal}   /* same scheme as book.html, or the browser paints the frame white */
+  .has3d #pp3d{position:static;visibility:visible}   /* hidden but full size until ready: loaded at 0x0 (display:none) it never draws */
   .has3d .book{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}   /* still read by screen readers */
 
   /* locked until sign-up: a clear layer over the book takes every click, with a seal on the cover */
@@ -225,13 +225,15 @@
     clearTimeout(t3d);
     t3d = setTimeout(() => tp.setData(TQPass.data3d({ ...p, date: issuedAt }, photo3d)), 180);
   };
-  frame.addEventListener('load', () => {
+  const init3d = () => {
     const w = frame.contentWindow, d = frame.contentDocument;
+    if (init3d.done || d.URL === 'about:blank') return; init3d.done = true;
     d.documentElement.classList.remove('preview');   // its own dark preview background; ours shows through instead
     w.addEventListener('passport', (e) => { if (e.detail?.type === 'error') stageEl.classList.remove('has3d'); });   // no WebGL: the flat passport takes over
     const wait = () => { if (w.TrekPassport) { tp = w.TrekPassport; stageEl.classList.add('has3d'); w.dispatchEvent(new Event('resize'));   /* it measured itself while hidden (0x0): measure again now it shows */ send3d(current()); if (book.classList.contains('issued-ok')) tp.open(); else tp.close(); } else setTimeout(wait, 60); };
     wait();
-  });
+  };
+  frame.addEventListener('load', init3d); if (frame.contentDocument?.readyState === 'complete') init3d();   // a cached frame can finish before this script runs
   const current = () => { const p = Object.fromEntries(new FormData(f)); return (p.name || p.email || p.city) ? p : null; };
   f.addEventListener('input', () => { const p = Object.fromEntries(new FormData(f)); show(p); send3d(p); if (!book.classList.contains('issued-ok')) $('hintT').textContent = 'Your passport, live as you type. It unlocks when you sign up.'; });
   f.addEventListener('submit', (e) => { e.preventDefault(); issue(Object.fromEntries(new FormData(f))); });
