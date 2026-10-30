@@ -27,6 +27,7 @@
   .two .btn{height:44px}   /* the same height as Google's large button */
   .two:has(#gbtn[hidden]) .btn{grid-column:1/-1;height:52px}
   #gbtn{display:flex;justify-content:center;min-height:44px}
+  #gbtn iframe{color-scheme:light}   /* Google's frame is light; on our dark page a mismatch paints a white box around the pill */
   @media (max-width:420px){.two{grid-template-columns:1fr}}
   .note{margin:0;font-size:13px;color:var(--mute)}
   .note a{color:var(--c)}
