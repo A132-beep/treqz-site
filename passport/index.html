@@ -117,7 +117,7 @@
     <span class="eyebrow rv">Free · Republic of the Mountains</span>
     <h1><span class="ln"><span>Get your</span></span><span class="ln" style="--d:.12s"><span><em>Trek Passport.</em></span></span></h1>
     <p class="lead rv" style="--d:.3s">One passport for every trail in India. Stand on a summit and the Treqz app stamps it, verified by GPS.</p>
-    <form class="get rv" style="--d:.4s" id="get" aria-label="Get your Treqz Trek Passport">
+    <form class="get rv" style="--d:.4s" id="get" aria-label="Get your Treqz Trek Passport"><input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
       <label>Your name<input name="name" required autocomplete="name" maxlength="32"></label>
       <label>Email<input type="email" name="email" required autocomplete="email"></label>
       <label class="half">Base camp (your city)<input name="city" required autocomplete="address-level2" maxlength="28"></label>
@@ -193,7 +193,7 @@
   async function issue(p) {
     p = { ...p, date: today() }; show(p); issuedAt = p.date; send3d(p);
     msg.textContent = 'Making your passport…';
-    const sent = await TQPass.send(p);
+    const sent = await TQPass.send(p, f);
     if (!sent) { msg.textContent = 'We could not reach our list. Check your connection and try again.'; return; }   // stays locked: no sign-up, no passport
     TQPass.save({ ...p, picture });   // the header swaps "Sign in" for the profile picture
     done(p, false); unlock(true);

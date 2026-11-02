@@ -23,9 +23,11 @@
   const get = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; } };
   const save = (p) => { try { localStorage.setItem(KEY, JSON.stringify(p)); } catch {} dispatchEvent(new Event('tq-passport')); };
   const signOut = () => { try { localStorage.removeItem(KEY); } catch {} dispatchEvent(new Event('tq-passport')); };
-  // the details go to the waitlist sheet, like every other form; true when the request left (no-cors can't see the reply)
-  const send = (p) => fetch(GF, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ 'entry.257845312': p.email.trim(),
-    'entry.1319691017': `${location.pathname} | passport ${number(p.email)} | name: ${p.name} | city: ${p.city || ''} | born for: ${p.born || 'Trekker'}${p.google ? ' | google' : ''}`.slice(0, 1500) }) }).then(() => true, () => false);
+  // every form on the site posts to the waitlist sheet through here; true when the request left (no-cors can't see the reply).
+  // A filled honeypot (the hidden "website" field people never see) is a bot: report success and send nothing.
+  const post = (email, details, form) => form?.elements.website?.value ? Promise.resolve(true)
+    : fetch(GF, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ 'entry.257845312': String(email).trim(), 'entry.1319691017': details.slice(0, 1500) }) }).then(() => true, () => false);
+  const send = (p, form) => post(p.email, `${location.pathname} | passport ${number(p.email)} | name: ${p.name} | city: ${p.city || ''} | born for: ${p.born || 'Trekker'}${p.google ? ' | google' : ''}`, form);
   // WebGL can't draw another site's image, so a Google photo is copied into the page first ('' if Google refuses)
   const toData = async (url) => { try { const b = await (await fetch(url, { mode: 'cors' })).blob(); return await new Promise((r) => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(b); }); } catch { return ''; } };
   const data3d = (p, photo) => ({ profile: { name: (p.name || '').trim(), trailName: (p.name || '').trim() ? trail(p.name) : '', baseCamp: (p.city || '').trim(),
@@ -117,5 +119,5 @@
     });
   }
 
-  window.TQPass = { KEY, CLIENT_ID, REGIONS, number, trail, today, get, save, signOut, send, toData, data3d, googleButton, signInPanel, openPassport };
+  window.TQPass = { KEY, CLIENT_ID, REGIONS, number, trail, today, get, save, signOut, post, send, toData, data3d, googleButton, signInPanel, openPassport };
 })();

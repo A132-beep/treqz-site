@@ -421,7 +421,7 @@
   <img src="img/treqz/tq-cta-trail.webp" alt="" loading="lazy" width="1600" height="1066">
   <h2 class="split">See You<br> Outside.</h2>
   <p class="fade">Be the first to get Treqz when it launches.</p>
-  <form class="fade" id="wl" method="POST">
+  <form class="fade" id="wl" method="POST"><input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
     <div class="who" role="radiogroup" aria-label="Joining as"><span>Joining as</span><label><input type="radio" name="as" value="me" checked> Just me</label><label><input type="radio" name="as" value="team" id="asTeam"> With a team</label></div>
     <div class="wl2"><input name="name" required placeholder="Your name" aria-label="Your name" autocomplete="name"><input name="city" required placeholder="Your city" aria-label="Your city" autocomplete="address-level2"></div>
     <div class="wl"><input type="email" name="email" required placeholder="Enter your email" aria-label="Your email" autocomplete="email"><button class="btn">Join the waitlist</button></div>
@@ -462,7 +462,6 @@
 <script>
 const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const GF = 'https://docs.google.com/forms/d/e/1FAIpQLSdxfB55MurcN-h_KehAHOoOeBqokggc0UqFgxB8u8ztoWXQqQ/formResponse';   // Google Form "Treqz waitlist": entry.257845312 = email, entry.1319691017 = who and where from
 
 /* reveal: split headings into words; reveal blocks as they scroll in */
 $$('.split').forEach((el) => { el.innerHTML = el.innerHTML.split(/(<br>)/).map((p) => p === '<br>' ? p : p.trim().split(/\s+/).filter(Boolean).map((w, i) => `<span class="w"><span style="transition-delay:${i * 50}ms">${w}</span></span>`).join(' ')).join(''); });
@@ -570,19 +569,18 @@ requestAnimationFrame(frame);
 const FULL = ['january','february','march','april','may','june','july','august','september','october','november','december'];
 $('#fMonth').href = `treks-in-${FULL[new Date().getMonth()]}/`;
 
-/* waitlist: Formspree when FORM is set */
+/* waitlist: to the Google Form "Treqz waitlist" through me.js */
 const wl = $('#wl'), msg = $('#wlMsg');
 $$('[data-team]').forEach((a) => a.addEventListener('click', () => { $('#asTeam').checked = true; setTimeout(() => wl.email.focus({ preventScroll: true }), 700); }));
 wl.addEventListener('submit', async (e) => {
   e.preventDefault();
   msg.textContent = 'Adding you…';
-  const body = new URLSearchParams({ 'entry.257845312': wl.email.value.trim(), 'entry.1319691017': ('home | name: ' + wl.elements.name.value.trim() + ' | city: ' + wl.elements.city.value.trim() + ' | ' + wl.as.value + ' | ' + location.search).slice(0, 500) });
-  const ok = await fetch(GF, { method: 'POST', mode: 'no-cors', body }).then(() => true, () => false);
+  const ok = await TQPass.post(wl.email.value, ('home | name: ' + wl.elements.name.value.trim() + ' | city: ' + wl.elements.city.value.trim() + ' | ' + wl.as.value + ' | ' + location.search).slice(0, 500), wl);
   msg.textContent = ok ? '' : 'That didn\'t go through. Please try again.';
   if (ok) { $('#me').textContent = wl.email.value[0].toUpperCase(); $('#proof').classList.add('joined'); wl.reset(); }   // your initial joins the stack
 });
 </script>
-<script src="/header.js" defer></script>
+<script src="/me.js" defer></script><script src="/header.js" defer></script>
 <script>
   // 3 · difficulty counts and the spread of trek lengths, from treks.json
   fetch('treks.json').then((r) => r.json()).then((T) => {
