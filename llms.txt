@@ -8,6 +8,70 @@
 - [Treks by month](https://treqz.com/treks-in-january/): which treks are at their best each month (one page per month)
 - Each trek has a guide at https://treqz.com/<trek>/ (route, elevation, season, cost, operators) and a 3D flythrough at https://treqz.com/<trek>/3d/
 
+<!-- treks:start -->
+## Every trek, in one line
+Distance, days on the trail, highest point, difficulty, best months and the price range from the operators listed on the guide. Each guide links its sources.
+- [Kedarkantha trek](https://treqz.com/kedarkantha/): Uttarkashi, Uttarakhand. 23.0 km over 5 days; highest point 3,810 m; difficulty Easy–moderate. Best months Dec–Feb.
+- [Brahmatal trek](https://treqz.com/brahmatal/): Chamoli, Uttarakhand. 21.5 km over 5 days; highest point 3,734 m; difficulty Easy–moderate. Best months Dec–Feb. Cost ₹6,799–₹11,200 per person from 8 operators.
+- [Dayara Bugyal trek](https://treqz.com/dayara/): Uttarkashi, Uttarakhand. 25.0 km over 5 days; highest point 3,750 m; difficulty Easy. Best months Dec–Mar. Cost ₹4,700–₹11,299 per person from 9 operators.
+- [Har Ki Dun trek](https://treqz.com/harkidun/): Uttarkashi, Uttarakhand. 41.0 km over 7 days; highest point 3,566 m; difficulty Easy. Best months Sep–Dec. Cost ₹8,799–₹12,500 per person from 7 operators.
+- [Sandakphu trek](https://treqz.com/sandakphu/): Darjeeling, Sikkim & Darjeeling. 62.1 km over 7 days; highest point 3,636 m; difficulty Not graded. Best months Mar–May, Sep–Nov. Cost ₹9,000–₹33,999 per person from 7 operators.
+- [Nag Tibba trek](https://treqz.com/nagtibba/): Tehri, Uttarakhand. 15.0 km over 3 days; highest point 3,022 m; difficulty Not graded. Best months Dec–Mar. Cost ₹2,350–₹5,400 per person from 9 operators.
+- [Triund trek](https://treqz.com/triund/): Kangra, Himachal. 28.0 km over 2 days; highest point 2,875 m; difficulty Easy. Best months Mar–Jun, Sep–Nov. Cost ₹999–₹5,999 per person from 5 operators.
+- [Chopta Chandrashila trek](https://treqz.com/chopta/): Rudraprayag, Uttarakhand. 33.9 km over 5 days; highest point 3,700 m; difficulty Not graded. Best months Mar–Apr. Cost ₹5,500–₹9,500 per person from 5 operators.
+- [Kuari Pass trek](https://treqz.com/kuaripass/): Chamoli, Uttarakhand. 30.0 km over 5 days; highest point 3,814 m; difficulty Moderate. Best months Dec–Feb. Cost ₹8,499–₹17,999 per person from 7 operators.
+- [Valley of Flowers trek](https://treqz.com/valleyofflowers/): Chamoli, Uttarakhand. 46.0 km over 4 days; highest point 4,329 m; difficulty Not graded. Best months Jul–Aug. Cost ₹7,500–₹25,500 per person from 6 operators.
+- [Hampta Pass trek](https://treqz.com/hamptapass/): Kullu–Lahaul, Himachal. 22.0 km over 5 days; highest point 4,200 m; difficulty Moderate. Best months Jun–Oct. Cost ₹5,500–₹20,000 per person from 8 operators.
+- [Kashmir Great Lakes trek](https://treqz.com/kashmirgreatlakes/): Ganderbal, Kashmir & Ladakh. 67.0 km over 8 days; highest point 4,206 m; difficulty Hard. Best months Jul–Sep. Cost ₹14,500–₹42,500 per person from 11 operators.
+- [Goechala trek](https://treqz.com/goechala/): West Sikkim, Sikkim & Darjeeling. 60.1 km over 10 days; highest point 4,602 m; difficulty Hard. Best months Mar–Apr, Oct–Dec. Cost ₹19,500–₹42,700 per person from 7 operators.
+- [Roopkund trek](https://treqz.com/roopkund/): Chamoli, Uttarakhand. 49.0 km over 8 days; highest point 5,029 m; difficulty Moderate–hard. Best months May–Jun, Sep–Oct. Cost ₹14,900–₹32,000 per person from 6 operators.
+- [Pangarchulla trek](https://treqz.com/pangarchulla/): Chamoli, Uttarakhand. 33.0 km over 7 days; highest point 4,590 m; difficulty Hard. Best months Mar–Apr, Oct–Dec. Cost ₹11,250–₹32,000 per person from 5 operators.
+- [Ali–Bedni Bugyal trek](https://treqz.com/alibedni/): Chamoli, Uttarakhand. 27.0 km over 6 days; highest point 3,803 m; difficulty Easy. Best months May–Jun, Sep–Nov. Cost ₹8,950–₹13,500 per person from 5 operators.
+- [Bhrigu Lake trek](https://treqz.com/bhrigu/): Kullu, Himachal. 23.0 km over 4 days; highest point 4,300 m; difficulty Easy. Best months May–Jun, Sep–Oct. Cost ₹4,000–₹11,500 per person from 8 operators.
+- [Beas Kund trek](https://treqz.com/beaskund/): Kullu, Himachal. 20.0 km over 3 days; highest point 3,700 m; difficulty Easy. Best months Jun, Sep–Oct. Cost ₹4,500–₹15,500 per person from 6 operators.
+- [Tarsar Marsar trek](https://treqz.com/tarsarmarsar/): Anantnag, Kashmir & Ladakh. 46.0 km over 7 days; highest point 4,024 m; difficulty Moderate. Best months Jul–Aug. Cost ₹13,500–₹17,250 per person from 8 operators.
+- [Markha Valley trek](https://treqz.com/markha/): Leh, Kashmir & Ladakh. 67.0 km over 5 days; highest point 5,260 m; difficulty Moderate–hard. Best months Jul–Aug. Cost ₹18,450–₹78,500 per person from 6 operators.
+- [Chadar trek](https://treqz.com/chadar/): Leh, Kashmir & Ladakh. 51.0 km over 9 days; highest point 3,399 m; difficulty Hard. Best months Jan. Cost ₹22,500–₹32,000 per person from 5 operators.
+- [Pin Parvati Pass trek](https://treqz.com/pinparvati/): Kullu–Spiti, Himachal. 82.5 km over 12 days; highest point 5,319 m; difficulty Hard. Best months Jun–Sep. Cost ₹44,500–₹70,000 per person from 5 operators.
+- [Rupin Pass trek](https://treqz.com/rupin/): Uttarkashi–Kinnaur, Himachal. 58.0 km over 8 days; highest point 4,650 m; difficulty Moderate–hard. Best months May–Jun, Sep–Oct. Cost ₹15,750–₹22,000 per person from 7 operators.
+- [Buran Ghati trek](https://treqz.com/buranghati/): Shimla–Kinnaur, Himachal. 31.3 km over 8 days; highest point 4,575 m; difficulty Moderate–hard. Best months May–Jun, Sep–Oct. Cost ₹16,500–₹26,000 per person from 6 operators.
+- [Bali Pass trek](https://treqz.com/balipass/): Uttarkashi, Uttarakhand. 60.0 km over 8 days; highest point 4,950 m; difficulty Hard. Best months May–Jun, Sep–Oct. Cost ₹16,999–₹22,000 per person from 7 operators.
+- [Phulara Ridge trek](https://treqz.com/phulara/): Uttarkashi, Uttarakhand. 29.0 km over 6 days; highest point 3,700 m; difficulty Easy. Best months May–Jun, Sep–Oct. Cost ₹8,500–₹11,500 per person from 8 operators.
+- [Kedartal trek](https://treqz.com/kedartal/): Uttarkashi, Uttarakhand. 38.0 km over 7 days; highest point 4,750 m; difficulty Moderate–hard. Best months May–Jun, Sep–Oct. Cost ₹14,000–₹25,000 per person from 7 operators.
+- [Gaumukh Tapovan trek](https://treqz.com/gaumukh/): Uttarkashi, Uttarakhand. 40.0 km over 8 days; highest point 4,460 m; difficulty Moderate. Best months Apr–Jun, Sep–Oct. Cost ₹15,000–₹45,000 per person from 9 operators.
+- [Pindari Glacier trek](https://treqz.com/pindari/): Bageshwar, Uttarakhand. 58.0 km over 8 days; highest point 3,660 m; difficulty Moderate. Best months Apr–May, Sep–Oct. Cost ₹9,500–₹19,950 per person from 10 operators.
+- [Kafni Glacier trek](https://treqz.com/kafni/): Bageshwar, Uttarakhand. 71.0 km over 8 days; highest point 3,895 m; difficulty Moderate. Best months May–Jun, Sep–Oct. Cost ₹8,999–₹18,500 per person from 5 operators.
+- [Panchachuli Base trek](https://treqz.com/panchachuli/): Pithoragarh, Uttarakhand. 28.9 km over 6 days; highest point ; difficulty Easy–moderate. Best months May–Jun, Oct. Cost ₹14,500–₹30,000 per person from 6 operators.
+- [Kareri Lake trek](https://treqz.com/kareri/): Kangra, Himachal. 26.0 km over 3 days; highest point 2,934 m; difficulty Easy. Best months May–Jun, Sep–Nov. Cost ₹4,000–₹7,600 per person from 5 operators.
+- [Prashar Lake trek](https://treqz.com/prashar/): Mandi, Himachal. 18.0 km over 2 days; highest point 2,730 m; difficulty Easy. Best months Apr–Jun, Sep–Nov. Cost ₹2,199–₹6,599 per person from 4 operators.
+- [Sar Pass trek](https://treqz.com/sarpass/): Kullu, Himachal. 28.0 km over 5 days; highest point 4,223 m; difficulty Moderate. Best months May–Jun. Cost ₹5,999–₹12,500 per person from 8 operators.
+- [Dzongri trek](https://treqz.com/dzongri/): West Sikkim, Sikkim & Darjeeling. 57.7 km over 7 days; highest point 4,170 m; difficulty Moderate–hard. Best months Mar–May, Oct–Nov. Cost ₹13,500–₹54,150 per person from 6 operators.
+- [Kudremukh trek](https://treqz.com/kudremukh/): Chikmagalur, Western Ghats. 16.5 km over 3 days; highest point 1,892 m; difficulty Moderate. Best months Jun–Aug, Nov–Feb. Cost ₹3,099–₹4,839 per person from 6 operators.
+- [Kumara Parvatha trek](https://treqz.com/kumaraparvatha/): Dakshina Kannada, Western Ghats. 16.7 km over 3 days; highest point 1,712 m; difficulty Moderate–hard. Best months Oct–Feb. Cost ₹3,650–₹3,999 per person from 4 operators.
+- [Chembra trek](https://treqz.com/chembra/): Wayanad, Western Ghats. 2.7 km over 1 days; highest point 2,100 m; difficulty Easy. Cost ₹250–₹4,500 per person from 4 operators.
+- [Meesapulimala trek](https://treqz.com/meesapulimala/): Idukki, Western Ghats. 18.6 km over 2 days; highest point 2,640 m; difficulty Hard. Best months Sep–Mar. Cost ₹3,800–₹4,000 per person from 2 operators.
+- [Kalsubai trek](https://treqz.com/kalsubai/): Ahilyanagar, Western Ghats. 13.0 km over 2 days; highest point 1,646 m; difficulty Easy. Best months Oct–Mar. Cost ₹750–₹1,199 per person from 4 operators.
+- [Harishchandragad trek](https://treqz.com/harishchandragad/): Ahilyanagar, Western Ghats. 9.2 km over 2 days; highest point 1,422 m; difficulty Easy. Best months Jul–Sep. Cost ₹999–₹2,500 per person from 4 operators.
+- [Rajmachi trek](https://treqz.com/rajmachi/): Pune, Western Ghats. 24.4 km over 2 days; highest point 826 m; difficulty Easy. Best months Jun–Sep, Nov–Mar. Cost ₹1,399–₹1,999 per person from 4 operators.
+- [Sandhan Valley trek](https://treqz.com/sandhanvalley/): Ahilyanagar, Western Ghats. 6.8 km over 3 days; highest point Canyon; difficulty Easy. Best months Oct–Mar. Cost ₹2,299–₹3,000 per person from 4 operators.
+- [Dzükou Valley trek](https://treqz.com/dzukou/): Kohima, Northeast. 21.4 km over 2 days; highest point 2,452 m; difficulty Moderate. Best months Oct, Mar–Apr. Cost ₹4,950–₹30,999 per person from 4 operators.
+- [Nongriat root bridges trek](https://treqz.com/nongriat/): East Khasi Hills, Northeast. 9.3 km over 1 days; highest point ; difficulty Moderate–hard. Best months Oct–Mar. Cost ₹1,752–₹18,450 per person from 4 operators.
+- [Bailey Trail (Tawang) trek](https://treqz.com/baileytrail/): West Kameng–Tawang, Northeast. 61.8 km over 10 days; highest point 4,980 m; difficulty Hard. Best months Apr–Jun, Sep–Oct. Cost ₹23,999–₹51,250 per person from 2 operators.
+- [Dholkal (Bailadila) trek](https://treqz.com/dholkal/): Dantewada, Central India. 16.0 km over 1 days; highest point 914 m; difficulty Moderate–hard. Best months Dec–Feb. Cost ₹16,000–₹16,000 per person from 1 operators.
+- [Rajgad to Torna trek](https://treqz.com/rajgadtorna/): Pune, Western Ghats. 21.0 km over 2 days; highest point 1,403 m; difficulty Easy–moderate. Best months Sep–Feb. Cost ₹1,499–₹7,499 per person from 5 operators.
+- [Tadiandamol trek](https://treqz.com/tadiandamol/): Kodagu, Western Ghats. 14.0 km over 3 days; highest point 1,748 m; difficulty Easy–moderate. Best months Sep–Feb. Cost ₹3,100–₹4,499 per person from 6 operators.
+- [David Scott Trail trek](https://treqz.com/davidscott/): East Khasi Hills, Northeast. 6.9 km over 2 days; highest point 1,829 m; difficulty Easy. Best months Oct–Apr. Cost ₹800–₹60,000 per person from 6 operators.
+- [Agasthyarkoodam trek](https://treqz.com/agasthyarkoodam/): Thiruvananthapuram, Western Ghats. 48.0 km over 3 days; highest point 1,868 m; difficulty Moderate–hard. Best months Jan–Feb. Cost ₹3,000–₹7,999 per person from 4 operators.
+- [Madmaheshwar trek](https://treqz.com/madmaheshwar/): Rudraprayag, Uttarakhand. 38.0 km over 4 days; highest point 3,497 m; difficulty Easy–moderate. Best months May–Jun, Sep–Oct. Cost ₹5,999–₹16,000 per person from 5 operators.
+- [Kolahoi Glacier trek](https://treqz.com/kolahoi/): Anantnag, Kashmir & Ladakh. 37.0 km over 5 days; highest point 3,850 m; difficulty Easy–moderate. Best months Jul–Sep. Cost ₹25,000–₹25,000 per person from 1 operators.
+- [Dodital trek](https://treqz.com/dodital/): Uttarkashi, Uttarakhand. 44.0 km over 6 days; highest point 4,150 m; difficulty Moderate. Best months Apr–Jun, Oct–Dec. Cost ₹10,000–₹64,900 per person from 7 operators.
+- [Satopanth Tal trek](https://treqz.com/satopanth/): Chamoli, Uttarakhand. 37.4 km over 8 days; highest point 4,346 m; difficulty Moderate–hard. Best months May–Jun, Sep–Oct. Cost ₹15,000–₹55,000 per person from 5 operators.
+- [Kheerganga trek](https://treqz.com/kheerganga/): Kullu, Himachal. 18.0 km over 1 days; highest point 2,960 m; difficulty Easy–moderate. Best months Apr–Jun, Sep–Oct. Cost ₹1,099–₹8,999 per person from 5 operators.
+- [Rumtse to Tso Moriri trek](https://treqz.com/tsomoriri/): Leh, Kashmir & Ladakh. 97.8 km over 7 days; highest point 5,435 m; difficulty Hard. Best months Jul–Aug. Cost ₹55,000–₹82,000 per person from 2 operators.
+- [Green Lake trek](https://treqz.com/greenlake/): Mangan, Sikkim & Darjeeling. 46.0 km over 12 days; highest point 4,935 m; difficulty Moderate–hard. Best months Apr–May, Oct–Nov. Cost ₹78,000–₹170,000 per person from 2 operators.
+- [Indrahar Pass trek](https://treqz.com/indrahar/): Kangra, Himachal. 44.0 km over 4 days; highest point 4,342 m; difficulty Moderate. Best months May–Jun, Sep–Oct. Cost ₹6,499–₹8,800 per person from 2 operators.
+<!-- treks:end -->
+
 ## Running
 - [Treqz Run](https://treqz.com/run/): territory running; close a loop on foot to claim the hexagon tiles of your city
 - [Run clubs](https://treqz.com/run-clubs/)
