@@ -4,6 +4,7 @@
 
 ## Treks
 - [All treks](https://treqz.com/treks/): the trek hub, with every trek by region and month
+- [Trek costs in India](https://treqz.com/trek-costs/): every published operator price for every trek, by length, region and difficulty, with a CSV of the data
 - [Trek guides](https://treqz.com/guides/): treks by region, difficulty, nearest city and season, plus side-by-side comparisons
 - [Treks by month](https://treqz.com/treks-in-january/): which treks are at their best each month (one page per month)
 - Each trek has a guide at https://treqz.com/<trek>/ (route, elevation, season, cost, operators) and a 3D flythrough at https://treqz.com/<trek>/3d/
