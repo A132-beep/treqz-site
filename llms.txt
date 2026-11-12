@@ -12,7 +12,7 @@
 <!-- treks:start -->
 ## Every trek, in one line
 Distance, days on the trail, highest point, difficulty, best months and the price range from the operators listed on the guide. Each guide links its sources.
-- [Kedarkantha trek](https://treqz.com/kedarkantha/): Uttarkashi, Uttarakhand. 23.0 km over 5 days; highest point 3,810 m; difficulty Easy–moderate. Best months Dec–Feb.
+- [Kedarkantha trek](https://treqz.com/kedarkantha/): Uttarkashi, Uttarakhand. 23.0 km over 5 days; highest point 3,810 m; difficulty Easy–moderate. Best months Dec–Feb. Cost ₹4,999–₹11,450 per person from 20 operators.
 - [Brahmatal trek](https://treqz.com/brahmatal/): Chamoli, Uttarakhand. 21.5 km over 5 days; highest point 3,734 m; difficulty Easy–moderate. Best months Dec–Feb. Cost ₹6,799–₹11,200 per person from 8 operators.
 - [Dayara Bugyal trek](https://treqz.com/dayara/): Uttarkashi, Uttarakhand. 25.0 km over 5 days; highest point 3,750 m; difficulty Easy. Best months Dec–Mar. Cost ₹4,700–₹11,299 per person from 9 operators.
 - [Har Ki Dun trek](https://treqz.com/harkidun/): Uttarkashi, Uttarakhand. 41.0 km over 7 days; highest point 3,566 m; difficulty Easy. Best months Sep–Dec. Cost ₹8,799–₹12,500 per person from 7 operators.
