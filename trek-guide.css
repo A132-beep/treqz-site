@@ -161,3 +161,4 @@ html.lenis{height:auto;scroll-behavior:auto}.lenis-stopped{overflow:hidden}
 .withsc.pk p{margin:0 0 16px;max-width:34em;color:var(--m)}
 .withsc.pk a{color:var(--c);font-weight:600}
 @media (max-width:900px){.withsc{grid-template-columns:1fr}}
+.wint h3{margin:34px 0 0;font-size:22px}.wint .note{margin-top:10px}   /* the winter block under the month grid on winter-season treks */
